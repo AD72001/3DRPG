@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -10,13 +7,17 @@ public class CharacterMovement : MonoBehaviour
     public float turnSpeed;
     Vector3 position;
 
+    public static bool isAttacking = false;
+
     //Component
     [SerializeField] private CharacterController controller;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         position = transform.position;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,7 +27,12 @@ public class CharacterMovement : MonoBehaviour
         {
             // Locate the location of the click
             LocatePosition();
-        }        
+        }      
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            CheckIfExistObject();
+        }  
 
         // Move Characters to the location
         MoveToPosition();
@@ -37,23 +43,58 @@ public class CharacterMovement : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 1000))
+        if (Physics.Raycast(ray, out hit, 2000))
         {
-            position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-            Debug.Log(position);
+            if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy"))
+            {
+                isAttacking = false;
+                CharacterCombat.normalAtk = false;
+                position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+            }
+
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                isAttacking = true;
+                CharacterCombat.normalAtk = true;
+                GetComponent<CharacterCombat>().opponent = hit.collider.gameObject;
+            }
         }
     }
 
-    void MoveToPosition()
+    public void MoveToPosition()
     {
-        if (Vector3.Distance(position, transform.position) > 1f)
+        animator.SetBool("moving", true);
+        
+        if (Vector3.Distance(new Vector3(position.x, 0, position.z), 
+            new Vector3(transform.position.x, 0, transform.position.z)) > 1f)
         {
-            Quaternion newRotation = Quaternion.LookRotation(position - transform.position);
-            newRotation.x = 0;
-            newRotation.z = 0;
+            Vector3 lookPosition = new Vector3(position.x, transform.position.y, position.z);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * turnSpeed);
+            transform.LookAt(lookPosition);
+            
             controller.SimpleMove(transform.forward * moveSpeed);
         }
+        else {
+            animator.SetBool("moving", false);
+        }
+    }
+
+    public void SetPosition(Vector3 target)
+    {
+        position = target;
+    }
+
+    void CheckIfExistObject()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            if (!hit.collider.CompareTag("Enemy"))
+            {
+                GetComponent<CharacterCombat>().opponent = null;
+            }
+        }        
     }
 }
