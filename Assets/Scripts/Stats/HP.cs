@@ -39,9 +39,15 @@ public class HP : MonoBehaviour
         if (!isInvul)
         {
             // Limit current HP to 0 -> maximum
-            _dmg = _dmg * 100 / ((float) 100 + GetComponent<Stat>().def);
+            _dmg = _dmg * 100 / (100 + GetComponent<Stat>().def*1.0f);
 
             currentHP = Mathf.Clamp(currentHP - _dmg, 0, startingHP);
+
+            if (gameObject.CompareTag("Player"))
+            {
+                Skills.isUsingSkill = false;
+                CharacterMovement.isAttacking = false;
+            }
 
             if (currentHP > 0)
             {
@@ -67,7 +73,6 @@ public class HP : MonoBehaviour
                     comp.enabled = false;
             }
 
-            animator.SetBool("meleeAttack", false);
             animator.SetTrigger("dead");
 
             // Deactivate();

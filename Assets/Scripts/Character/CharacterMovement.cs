@@ -23,9 +23,18 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((Skills.isUsingSkill && !GetComponent<Skills>().unstoppable)
+            || animator.GetBool("hurt")
+            || animator.GetBool("dead"))
+        {
+            position = transform.position;
+            animator.SetBool("moving", false);
+            return;
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
-            // Locate the location of the click
+            // Locate the location of the click -> move or attack
             LocatePosition();
         }      
 
@@ -47,6 +56,7 @@ public class CharacterMovement : MonoBehaviour
         {
             if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy"))
             {
+                animator.SetBool("moving", true);
                 isAttacking = false;
                 CharacterCombat.normalAtk = false;
                 position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
@@ -63,8 +73,6 @@ public class CharacterMovement : MonoBehaviour
 
     public void MoveToPosition()
     {
-        animator.SetBool("moving", true);
-        
         if (Vector3.Distance(new Vector3(position.x, 0, position.z), 
             new Vector3(transform.position.x, 0, transform.position.z)) > 1f)
         {

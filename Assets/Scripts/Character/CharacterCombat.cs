@@ -29,6 +29,7 @@ public class CharacterCombat : MonoBehaviour
                 if (!InRange())
                 {
                     movement.SetPosition(opponent.transform.position);
+                    animator.SetBool("moving", true);
                     movement.MoveToPosition();
                 }
                 else
@@ -60,6 +61,6 @@ public class CharacterCombat : MonoBehaviour
 
     float DamageCalculator()
     {
-        return GetComponent<Stat>().str;
+        return GetComponent<Stat>().str*1.0f;
     }
 }

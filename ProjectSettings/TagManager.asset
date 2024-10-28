@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - FxTemporaire
+  - RangeCollider
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Enemy
