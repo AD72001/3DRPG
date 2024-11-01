@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public static bool isAttacking = false;
 
     //Component
+    [SerializeField] private Camera cam;
     [SerializeField] private CharacterController controller;
     private Animator animator;
 
@@ -23,6 +24,12 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle_Normal_SwordAndShield")
+        // {
+        //     Skills.isUsingSkill = false;
+        //     // CharacterMovement.isAttacking = false;
+        // }
+
         if ((Skills.isUsingSkill && !GetComponent<Skills>().unstoppable)
             || animator.GetBool("hurt")
             || animator.GetBool("dead"))
@@ -64,6 +71,9 @@ public class CharacterMovement : MonoBehaviour
 
             if (hit.collider.CompareTag("Enemy"))
             {
+                if (hit.collider.gameObject.GetComponent<Enemy>().getDeadStatus())
+                    return;
+
                 isAttacking = true;
                 CharacterCombat.normalAtk = true;
                 GetComponent<CharacterCombat>().opponent = hit.collider.gameObject;

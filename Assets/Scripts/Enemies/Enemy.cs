@@ -144,7 +144,13 @@ public class Enemy : MonoBehaviour
         CharacterMovement.isAttacking = false;
     }
 
+    public bool getDeadStatus()
+    {
+        return isDead;
+    }
+
     private void OnMouseDown() {
-        player.GetComponent<CharacterCombat>().opponent = gameObject;
+        if (!isDead)
+            player.GetComponent<CharacterCombat>().opponent = gameObject;
     }
 }

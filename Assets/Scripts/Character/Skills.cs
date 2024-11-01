@@ -21,6 +21,7 @@ public class Skills : MonoBehaviour
     [SerializeField] private Collider first_range;
     [SerializeField] private float first_mod;
     [SerializeField] private float first_stun_dur;
+    [SerializeField] private float first_cost; // energy cost
     [SerializeField] public float first_CD;
     public float first_timer;
 
@@ -30,6 +31,7 @@ public class Skills : MonoBehaviour
     [SerializeField] private float second_mod_def;
     [SerializeField] private float second_mod_str;
     [SerializeField] private float second_duration;
+    [SerializeField] private float second_cost; // energy cost
     [SerializeField] public float second_CD;
     public float second_timer;
 
@@ -38,6 +40,7 @@ public class Skills : MonoBehaviour
     [SerializeField] private Collider third_range;
     [SerializeField] private float third_mod_str;
     [SerializeField] private float third_stun_dur;
+    [SerializeField] private float third_cost; // energy cost
     [SerializeField] public float third_CD;
     public float third_timer;
 
@@ -46,9 +49,10 @@ public class Skills : MonoBehaviour
     [SerializeField] private Collider fourth_range;
     [SerializeField] private float fourth_mod_str;
     [SerializeField] private float fourth_dur;
+    [SerializeField] private float fourth_cost; // energy cost
     [SerializeField] public float fourth_CD;
     public float fourth_timer;
-    public bool unstoppable;
+    public bool unstoppable = false;
 
 
     void Awake() {
@@ -64,25 +68,27 @@ public class Skills : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle")
-        {
-            isUsingSkill = false;
-            CharacterMovement.isAttacking = false;
-        }
-
         if (isUsingSkill)
         {
             Debug.Log("Can't use skill right now");
+            return;
+        }
+
+        if  (GetComponent<Energy>().GetEnergy() <= 0)
+        {
+            Debug.Log("Out of energy");
+            return;
         }
 
         // First skill key
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (first_timer <= 0)
+            if (first_timer <= 0 && GetComponent<Energy>().GetEnergy() >= first_cost)
             {
                 CharacterCombat.normalAtk = false;
                 FirstSkill();
                 first_timer = first_CD;
+                GetComponent<Energy>().AddEnergy(-first_cost);
             }
             else
             {
@@ -93,11 +99,12 @@ public class Skills : MonoBehaviour
         // Second skill key
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if (second_timer <= 0)
+            if (second_timer <= 0 && GetComponent<Energy>().GetEnergy() >= second_cost)
             {
                 CharacterCombat.normalAtk = false;
                 SecondSkill();
                 second_timer = second_CD;
+                GetComponent<Energy>().AddEnergy(-second_cost);
             }
             else
             {
@@ -108,11 +115,12 @@ public class Skills : MonoBehaviour
         // Third skill key
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (third_timer <= 0)
+            if (third_timer <= 0 && GetComponent<Energy>().GetEnergy() >= third_cost)
             {
                 CharacterCombat.normalAtk = false;
                 ThirdSkill();
                 third_timer = third_CD;
+                GetComponent<Energy>().AddEnergy(-third_cost);
             }
             else
             {
@@ -123,11 +131,12 @@ public class Skills : MonoBehaviour
         // Fourth skill key
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (fourth_timer <= 0)
+            if (fourth_timer <= 0 && GetComponent<Energy>().GetEnergy() >= fourth_cost)
             {
                 CharacterCombat.normalAtk = false;
                 StartCoroutine(FourthSkill());
                 fourth_timer = fourth_CD;
+                GetComponent<Energy>().AddEnergy(-fourth_cost);
             }
             else
             {
@@ -141,6 +150,17 @@ public class Skills : MonoBehaviour
         fourth_timer = Mathf.Clamp(fourth_timer - Time.deltaTime, 0, fourth_CD);
     }
 
+    void LookAtPosition()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 2000))
+        {
+            transform.LookAt(new Vector3(hit.point.x, 0, hit.point.z));
+        }
+    }
+
 
     /* First Skill: Melee Attack to stun, 
         Modifier: 1.5 str
@@ -151,6 +171,8 @@ public class Skills : MonoBehaviour
     {
         isUsingSkill = true;
         CharacterMovement.isAttacking = true;
+
+        LookAtPosition();
 
         Instantiate(first_effect[0], first_range.transform.position, Quaternion.LookRotation(transform.forward));
         animator.SetTrigger("skill_1");
@@ -169,6 +191,8 @@ public class Skills : MonoBehaviour
                 enemy.GetComponent<Enemy>().getStun(first_stun_dur);
             }
         }
+
+        FinishSkill();
     }
 
     /* 
@@ -196,17 +220,17 @@ public class Skills : MonoBehaviour
 
     IEnumerator SecondSkillBuff()
     {
-        int initStr = GetComponent<Stat>().str;
-        int initDef = GetComponent<Stat>().def;
+        int amountStr = (int) (GetComponent<Stat>().str * second_mod_str - GetComponent<Stat>().str);
+        int amountDef = (int) (GetComponent<Stat>().def * second_mod_def - GetComponent<Stat>().def);
 
-        GetComponent<Stat>().str = (int)(GetComponent<Stat>().str * second_mod_str);
-        GetComponent<Stat>().def = (int)(GetComponent<Stat>().def * second_mod_def);
+        GetComponent<Stat>().AddStr(amountStr);
+        GetComponent<Stat>().AddStr(amountDef);
         GetComponent<HP>().AddHP(second_mod_vit);
 
         yield return new WaitForSeconds(second_duration);
 
-        GetComponent<Stat>().str = initStr;
-        GetComponent<Stat>().def = initDef;
+        GetComponent<Stat>().AddStr(-amountStr);
+        GetComponent<Stat>().AddStr(-amountDef);
     }
 
     /*
@@ -238,6 +262,8 @@ public class Skills : MonoBehaviour
                 enemy.GetComponent<HP>().TakeDamage(GetComponent<Stat>().str*third_mod_str);
             }
         }
+
+        FinishSkill();
     }
 
     /*
@@ -290,9 +316,5 @@ public class Skills : MonoBehaviour
         isUsingSkill = false;
 
         unstoppable = false;
-
-        first_enemies.Clear();
-        third_enemies.Clear();
-        fourth_enemies.Clear();
     }
 }

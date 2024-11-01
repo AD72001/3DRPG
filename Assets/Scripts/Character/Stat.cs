@@ -9,7 +9,7 @@ public class Stat : MonoBehaviour
 
     // Exp statistics
     public int totalExp; // Player's total exp
-    public int threshold;
+    public int threshold; // Next level's exp
     private int expGap;
 
     private void Awake() {
@@ -59,5 +59,8 @@ public class Stat : MonoBehaviour
         
         GetComponent<HP>().AddHP(value*2);
         GetComponent<HP>().AddHPMax(value*2);
+
+        GetComponent<Energy>().AddEnergy(value*10 + 5);
+        GetComponent<Energy>().AddEnergyMax(value*10 + 5);
     }
 }

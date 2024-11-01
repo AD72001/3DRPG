@@ -10,9 +10,10 @@ public class RangeSkill_3 : MonoBehaviour
     }
 
     private void OnTriggerStay(Collider other) {
-        if (other.CompareTag("Enemy") && !GetComponentInParent<Skills>().third_enemies.Contains(other.gameObject))
+        if (GetComponentInParent<Skills>().third_enemies.Contains(other.gameObject) && 
+            other.gameObject.GetComponent<Enemy>().getDeadStatus())
         {
-            GetComponentInParent<Skills>().third_enemies.Add(other.gameObject);
+            GetComponentInParent<Skills>().third_enemies.Remove(other.gameObject);
         }
     }
 
