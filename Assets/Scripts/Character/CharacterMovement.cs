@@ -24,13 +24,8 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle_Normal_SwordAndShield")
-        // {
-        //     Skills.isUsingSkill = false;
-        //     // CharacterMovement.isAttacking = false;
-        // }
 
-        if ((Skills.isUsingSkill && !GetComponent<Skills>().unstoppable)
+        if ((Skill.isUsingSkill && !Skill.unstoppable)
             || animator.GetBool("hurt")
             || animator.GetBool("dead"))
         {
@@ -114,5 +109,9 @@ public class CharacterMovement : MonoBehaviour
                 GetComponent<CharacterCombat>().opponent = null;
             }
         }        
+    }
+
+    private void OnApplicationQuit() {
+        GetComponent<Inventory>().inventory.container.Clear();
     }
 }

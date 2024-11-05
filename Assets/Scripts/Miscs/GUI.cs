@@ -59,14 +59,14 @@ public class GUI : MonoBehaviour
         playerExp_text.text = $"{player.GetComponent<Stat>().totalExp} / {player.GetComponent<Stat>().threshold}";
 
         // Skills CD
-        skill_1.fillAmount = (player.GetComponent<Skills>().first_CD - player.GetComponent<Skills>().first_timer) 
-            / player.GetComponent<Skills>().first_CD;
-        skill_2.fillAmount = (player.GetComponent<Skills>().second_CD - player.GetComponent<Skills>().second_timer) 
-            / player.GetComponent<Skills>().second_CD;        
-        skill_3.fillAmount = (player.GetComponent<Skills>().third_CD - player.GetComponent<Skills>().third_timer) 
-            / player.GetComponent<Skills>().third_CD;
-        skill_4.fillAmount = (player.GetComponent<Skills>().fourth_CD - player.GetComponent<Skills>().fourth_timer) 
-            / player.GetComponent<Skills>().fourth_CD;
+        skill_1.fillAmount = (player.GetComponent<First_Skill>().CD - player.GetComponent<First_Skill>().timer) 
+            / player.GetComponent<First_Skill>().CD;
+        skill_2.fillAmount = (player.GetComponent<Second_Skill>().CD - player.GetComponent<Second_Skill>().timer) 
+            / player.GetComponent<Second_Skill>().CD;
+        skill_3.fillAmount = (player.GetComponent<Third_Skill>().CD - player.GetComponent<Third_Skill>().timer) 
+            / player.GetComponent<Third_Skill>().CD;
+        skill_4.fillAmount = (player.GetComponent<Fourth_Skill>().CD - player.GetComponent<Fourth_Skill>().timer) 
+            / player.GetComponent<Fourth_Skill>().CD;
 
         enemy = player.GetComponent<CharacterCombat>().opponent;
 

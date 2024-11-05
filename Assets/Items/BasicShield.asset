@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946e3d1a1c21301478b532102ba192bd, type: 3}
+  m_Name: BasicShield
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7065902975324731773, guid: af0925471f752984ebdd5c9d4fdbdb06, type: 3}
+  type: 1
+  description: A basic shield for beginner.
+  str: 2
+  def: 8
+  vit: 2

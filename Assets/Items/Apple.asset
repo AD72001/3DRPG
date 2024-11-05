@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab5f8c074204e34a867bc2a574a847e, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7065902975324731773, guid: 93a483d7c55b5b54183e066e8b005f07, type: 3}
+  type: 0
+  description: An apple that regains HP when eaten.
+  HP_value: 0
+  MP_value: 0

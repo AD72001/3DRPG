@@ -2,18 +2,16 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] private int str;
-    [SerializeField] private int def;
-    [SerializeField] private int vit;
+    [SerializeField] private ItemObject item;
+    [SerializeField] private int amount = 1;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) 
+    {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Stat>().AddStr(str);
-            other.GetComponent<Stat>().AddDef(def);
-            other.GetComponent<Stat>().AddVit(vit);
-
+            other.GetComponent<Inventory>().inventory.AddItem(item, amount);
             gameObject.SetActive(false);
         }
     }
+
 }

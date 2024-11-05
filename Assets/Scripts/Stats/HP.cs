@@ -45,7 +45,7 @@ public class HP : MonoBehaviour
 
             if (gameObject.CompareTag("Player"))
             {
-                Skills.isUsingSkill = false;
+                Skill.isUsingSkill = false;
                 CharacterMovement.isAttacking = false;
             }
 

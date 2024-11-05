@@ -119,7 +119,7 @@ public class Enemy : MonoBehaviour
 
     void DamagePlayer()
     {
-        if (PlayerInAttackRange())
+        if (PlayerInAttackRange() && !Skill.unstoppable)
         {
             player.GetComponent<HP>().TakeDamage(DamageCalculator());
         }
