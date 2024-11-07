@@ -4,6 +4,7 @@ using UnityEngine;
 public class DefaultObject : ItemObject
 {
     private void Awake() {
+        stackable = true;
         type = ItemType.Default;
     }
 }

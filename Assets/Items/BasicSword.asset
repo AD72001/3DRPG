@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946e3d1a1c21301478b532102ba192bd, type: 3}
   m_Name: BasicSword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7065902975324731773, guid: 779a2d0702f87ea48a4a0638ded3c0e6, type: 3}
-  type: 1
+  iconDisplay: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  type: 4
+  stackable: 0
   description: A basic sword that is sold everywhere in town.
-  str: 10
-  def: 2
-  vit: 0
+  data:
+    name: Straight Sword
+    Id: 8
+    statBonus:
+    - attribute: 0
+      value: 0
+      min: 5
+      max: 8
+    - attribute: 1
+      value: 0
+      min: 2
+      max: 5

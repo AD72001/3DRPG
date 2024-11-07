@@ -13,4 +13,150 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   saveLocation: /Inventory.sav
-  container: []
+  container:
+    items:
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        statBonus: []
+      amount: 0
+  database: {fileID: 11400000, guid: 883859e6efdb08a43a6976929187c58a, type: 2}

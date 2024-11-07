@@ -12,9 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946e3d1a1c21301478b532102ba192bd, type: 3}
   m_Name: BasicShield
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7065902975324731773, guid: af0925471f752984ebdd5c9d4fdbdb06, type: 3}
-  type: 1
+  iconDisplay: {fileID: 21300000, guid: b97c91e8b348f3f4ebdc11f5c82182cd, type: 3}
+  type: 4
+  stackable: 0
   description: A basic shield for beginner.
-  str: 2
-  def: 8
-  vit: 2
+  data:
+    name: Beginner's Shield
+    Id: 7
+    statBonus:
+    - attribute: 0
+      value: 0
+      min: 1
+      max: 4
+    - attribute: 1
+      value: 0
+      min: 8
+      max: 12
+    - attribute: 2
+      value: 0
+      min: 2
+      max: 4

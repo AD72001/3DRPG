@@ -24,7 +24,6 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if ((Skill.isUsingSkill && !Skill.unstoppable)
             || animator.GetBool("hurt")
             || animator.GetBool("dead"))
@@ -112,6 +111,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void OnApplicationQuit() {
-        GetComponent<Inventory>().inventory.container.Clear();
+        GetComponent<CharacterInventory>().inventory.container.Clear();
+        GetComponent<CharacterInventory>().equipment.container.Clear();
     }
 }

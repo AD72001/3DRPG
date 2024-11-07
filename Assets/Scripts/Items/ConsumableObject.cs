@@ -7,6 +7,7 @@ public class ConsumableObject : ItemObject
     public float MP_value;
 
     private void Awake() {
+        stackable = true;
         type = ItemType.Consumable;
     }
 }
