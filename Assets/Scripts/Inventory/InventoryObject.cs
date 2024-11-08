@@ -16,12 +16,12 @@ public class InventoryObject : ScriptableObject
     {
         InventorySlot slot = ItemInInventory(_item);
 
-        if (!CheckEmptySlot() && !slot.ItemObject.stackable)
+        if (!CheckEmptySlot() && !database.Items[_item.Id].stackable)
         {
             return false;
         }
 
-        if (slot == null || !database.GetItem[_item.Id].stackable)
+        if (slot == null || !database.Items[_item.Id].stackable)
         {
             SetItemInEmptySlot(_item, _amount);
             return true;
@@ -141,17 +141,19 @@ public class Inventory
 [Serializable]
 public class InventorySlot
 {
+    public ItemType[] allowedTypes = new ItemType[0];
+    [NonSerialized]
     public UserInterface parent;
     public Item item;
     public int amount;
-    public ItemType[] allowedTypes = new ItemType[0];
+
 
     public ItemObject ItemObject
     {
         get {
             if (item.Id >= 0)
             {
-                return parent.inventory.database.GetItem[item.Id];
+                return parent.inventory.database.Items[item.Id];
             }
             return null;
         }

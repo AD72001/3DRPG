@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: a53ebb677db222a4393f8daf5283a579, type: 2}
-  amount: 2
+  amount: 1
 --- !u!1 &6061521250692588650
 GameObject:
   m_ObjectHideFlags: 0

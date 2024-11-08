@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946e3d1a1c21301478b532102ba192bd, type: 3}
+  m_Script: {fileID: 11500000, guid: bd9e44a2fe1b4e94b859ac1b654e17e9, type: 3}
   m_Name: BasicSword
   m_EditorClassIdentifier: 
   iconDisplay: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
   type: 4
   stackable: 0
-  description: A basic sword that is sold everywhere in town.
+  description: Common low-price straight sword for beginners. Provides little offense
+    for the user.
   data:
-    name: Straight Sword
+    name: 
     Id: 8
     statBonus:
     - attribute: 0
@@ -27,4 +28,4 @@ MonoBehaviour:
     - attribute: 1
       value: 0
       min: 2
-      max: 5
+      max: 4

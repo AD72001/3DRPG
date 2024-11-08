@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab5f8c074204e34a867bc2a574a847e, type: 3}
+  m_Script: {fileID: 11500000, guid: bd9e44a2fe1b4e94b859ac1b654e17e9, type: 3}
   m_Name: BasicRedPotion
   m_EditorClassIdentifier: 
-  iconDisplay: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
+  iconDisplay: {fileID: 21300000, guid: 3c1a17a61142d69568169110d9b82a9e, type: 3}
   type: 0
   stackable: 1
-  description: A low-price basic red potion that is commonly found everywhere. Regains
-    some HP when consumed.
+  description: A basic red potion used commonly in infimaries. Regains a little HP
+    when consumed.
   data:
-    name: Basic Red Potion
-    Id: 6
+    name: 
+    Id: -1
     statBonus: []
-  HP_value: 10
-  MP_value: 0

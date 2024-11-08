@@ -9,17 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab5f8c074204e34a867bc2a574a847e, type: 3}
+  m_Script: {fileID: 11500000, guid: bd9e44a2fe1b4e94b859ac1b654e17e9, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
   iconDisplay: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
   type: 0
   stackable: 1
-  description: An ordinary apple. Can be found anywhere, regains a little HP when
-    eaten.
+  description: An ordinary apple. Regains a little HP when consumed.
   data:
-    name: Apple
-    Id: 0
+    name: 
+    Id: -1
     statBonus: []
-  HP_value: 2
-  MP_value: 0

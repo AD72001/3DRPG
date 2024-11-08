@@ -21,7 +21,8 @@ public enum Attribute
     Intelligent
 }
 
-public abstract class ItemObject : ScriptableObject
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Items/Item")]
+public class ItemObject : ScriptableObject
 {
     public Sprite iconDisplay;
     public ItemType type;

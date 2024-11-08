@@ -9,26 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946e3d1a1c21301478b532102ba192bd, type: 3}
+  m_Script: {fileID: 11500000, guid: bd9e44a2fe1b4e94b859ac1b654e17e9, type: 3}
   m_Name: BasicBoots
   m_EditorClassIdentifier: 
   iconDisplay: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
   type: 3
   stackable: 0
-  description: Basic traveller's boots. Low-price but provide decent defense.
+  description: Common boots for traveller. Provides little defense for the user.
   data:
-    name: Basic Boots
+    name: 
     Id: 3
     statBonus:
-    - attribute: 0
-      value: 0
-      min: 1
-      max: 3
     - attribute: 1
       value: 0
       min: 2
-      max: 4
+      max: 3
     - attribute: 2
       value: 0
       min: 1
       max: 3
+    - attribute: 0
+      value: 0
+      min: 1
+      max: 2

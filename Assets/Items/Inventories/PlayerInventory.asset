@@ -15,148 +15,148 @@ MonoBehaviour:
   saveLocation: /Inventory.sav
   container:
     items:
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
-    - ID: -1
+    - allowedTypes: 
       item:
         name: 
-        Id: 0
+        Id: -1
         statBonus: []
       amount: 0
   database: {fileID: 11400000, guid: 883859e6efdb08a43a6976929187c58a, type: 2}
