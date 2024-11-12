@@ -26,4 +26,21 @@ public class StaticInterface : UserInterface
             slotDisplayed.Add(obj, inventory.GetSlots[i]);
         }
     }
+
+    public override void OnClick(GameObject obj)
+    {        
+        Debug.Log("Clicked on " + obj);
+        switch (slotDisplayed[obj].ItemObject.type)
+        {
+            case ItemType.Consumable:
+                Debug.Log("Use the item");
+                break;
+            case ItemType.Default:
+                break;
+            default:
+                Debug.Log("Equip the item");
+                inventory.SwapItem(slotDisplayed[obj], inventory.GetSlots[0]);
+                break;
+        }
+    }
 }

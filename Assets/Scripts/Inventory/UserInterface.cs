@@ -10,7 +10,7 @@ public abstract class UserInterface : MonoBehaviour
 {
     public GameObject inventoryPrefab;
     public InventoryObject inventory;
-    protected Dictionary<GameObject, InventorySlot> slotDisplayed = new Dictionary<GameObject, InventorySlot>();
+    public Dictionary<GameObject, InventorySlot> slotDisplayed = new Dictionary<GameObject, InventorySlot>();
 
     private void Awake() {
 
@@ -75,6 +75,9 @@ public abstract class UserInterface : MonoBehaviour
     {
         MouseData.slotHoveredObj = null;
     }
+
+    public abstract void OnClick(GameObject obj);
+
 
     public void OnDragStart(GameObject obj)
     {

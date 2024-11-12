@@ -2194,6 +2194,7 @@ MonoBehaviour:
   x_space_between_items: 120
   y_space_between_items: 120
   columnNumber: 4
+  equipmentUI: {fileID: 1025315704}
 --- !u!114 &746836784
 MonoBehaviour:
   m_ObjectHideFlags: 0
