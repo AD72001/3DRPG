@@ -28,6 +28,10 @@ public class GUI : MonoBehaviour
     [SerializeField] private Image skill_3;
     [SerializeField] private Image skill_4;
 
+    [Header("Inventory UI")]
+    [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private GameObject equipmentUI;
+
     [Header("Enemy UI")]
     [SerializeField] private GameObject enemyUI;
     [SerializeField] private Image enemyHP;
@@ -37,6 +41,9 @@ public class GUI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         playerHP.fillAmount = player.GetComponent<HP>().currentHP / player.GetComponent<HP>().startingHP;
+
+        inventoryUI.SetActive(false);
+        equipmentUI.SetActive(false);
     }
 
     void Update()
@@ -49,9 +56,26 @@ public class GUI : MonoBehaviour
         playerEnergy_text.text = $"{(int)player.GetComponent<Energy>().GetEnergy()} / {player.GetComponent<Energy>().GetEnergyMax()}";
 
         // Stat UI
-        player_Str.text = "STR: " + player.GetComponent<Stat>().str;
-        player_Def.text = "DEF: " + player.GetComponent<Stat>().def;
-        player_Vit.text = "VIT: " + player.GetComponent<Stat>().vit;
+        player_Str.text = "STR: " + player.GetComponent<Stat>().GetStr();
+        player_Def.text = "DEF: " + player.GetComponent<Stat>().GetDef();
+        player_Vit.text = "VIT: " + player.GetComponent<Stat>().GetVit();
+
+        // Inventory UI
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventoryUI.activeSelf)
+                inventoryUI.SetActive(false);
+            else
+                inventoryUI.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (equipmentUI.activeSelf)
+                equipmentUI.SetActive(false);
+            else
+                equipmentUI.SetActive(true);
+        }
 
         // Exp UI
         playerLevel_text.text = $"{player.GetComponent<Stat>().lvl}";

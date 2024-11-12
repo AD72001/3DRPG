@@ -38,8 +38,8 @@ public class Second_Skill : Skill
 
     IEnumerator BuffEffect()
     {
-        int amountStr = (int) (GetComponent<Stat>().str * mod_str - GetComponent<Stat>().str);
-        int amountDef = (int) (GetComponent<Stat>().def * mod_def - GetComponent<Stat>().def);
+        int amountStr = (int) (GetComponent<Stat>().GetStr() * mod_str - GetComponent<Stat>().GetStr());
+        int amountDef = (int) (GetComponent<Stat>().GetDef() * mod_def - GetComponent<Stat>().GetDef());
 
         GetComponent<Stat>().AddStr(amountStr);
         GetComponent<Stat>().AddDef(amountDef);

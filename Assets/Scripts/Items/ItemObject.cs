@@ -13,7 +13,7 @@ public enum ItemType
     Default
 }
 
-public enum Attribute
+public enum Attributes
 {
     Strength,
     Defense,
@@ -43,7 +43,7 @@ public class Item
 {
     public string name;
     public int Id = -1;
-    public ItemBonus[] statBonus;
+    public ItemBonusAttribute[] statBonus;
 
     public Item()
     {
@@ -55,27 +55,32 @@ public class Item
     {
         name = _item.name;
         Id = _item.data.Id;
-        statBonus = new ItemBonus[_item.data.statBonus.Length];
+        statBonus = new ItemBonusAttribute[_item.data.statBonus.Length];
         for (int i = 0; i < statBonus.Length; i++)
         {
-            statBonus[i] = new ItemBonus(_item.data.statBonus[i].min, _item.data.statBonus[i].max);
+            statBonus[i] = new ItemBonusAttribute(_item.data.statBonus[i].min, _item.data.statBonus[i].max);
             statBonus[i].attribute = _item.data.statBonus[i].attribute;
         }
     }
 }
 
 [Serializable]
-public class ItemBonus
+public class ItemBonusAttribute: IModifier
 {
-    public Attribute attribute;
+    public Attributes attribute;
     public int value;
     public int min, max;
 
-    public ItemBonus(int _min, int _max)
+    public ItemBonusAttribute(int _min, int _max)
     {
         min = _min;
         max = _max;
         SetRandomValue();
+    }
+
+    public void AddValue(ref int _value)
+    {
+        _value += value;
     }
 
     public void SetRandomValue()

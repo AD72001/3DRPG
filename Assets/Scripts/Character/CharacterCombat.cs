@@ -61,6 +61,6 @@ public class CharacterCombat : MonoBehaviour
 
     float DamageCalculator()
     {
-        return GetComponent<Stat>().str*1.0f;
+        return GetComponent<Stat>().GetStr()*1.0f;
     }
 }

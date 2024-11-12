@@ -30,7 +30,7 @@ public class First_Skill : Skill
                 Instantiate(effects[1], 
                     new Vector3(enemy.transform.position.x, enemy.transform.position.y + 2f, enemy.transform.position.z),
                     Quaternion.identity);
-                enemy.GetComponent<HP>().TakeDamage(GetComponent<Stat>().str * mod);
+                enemy.GetComponent<HP>().TakeDamage(GetComponent<Stat>().GetStr() * mod);
                 enemy.GetComponent<Enemy>().getStun(first_stun_dur);
             }
         }

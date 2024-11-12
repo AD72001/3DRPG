@@ -127,14 +127,14 @@ public class Enemy : MonoBehaviour
 
     float DamageCalculator()
     {
-        return GetComponent<Stat>().str;
+        return GetComponent<Stat>().GetStr();
     }
 
     void Dead()
     {
         isDead = true;
 
-        player.GetComponent<Stat>().totalExp += exp;
+        player.GetComponent<Stat>().AddExp(exp);
         exp = 0;
 
         player.GetComponent<CharacterCombat>().opponent = null;

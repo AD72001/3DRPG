@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveLocation: /equipment.sav
   container:
-    items:
+    slots:
     - allowedTypes: 01000000
       item:
         name: 
@@ -58,3 +58,4 @@ MonoBehaviour:
         statBonus: []
       amount: 0
   database: {fileID: 11400000, guid: 883859e6efdb08a43a6976929187c58a, type: 2}
+  type: 1

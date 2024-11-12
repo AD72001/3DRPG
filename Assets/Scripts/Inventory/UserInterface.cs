@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,22 +12,48 @@ public abstract class UserInterface : MonoBehaviour
     public InventoryObject inventory;
     protected Dictionary<GameObject, InventorySlot> slotDisplayed = new Dictionary<GameObject, InventorySlot>();
 
-    private void Start() {
+    private void Awake() {
 
-        for (int i=0; i < inventory.container.items.Length; i++) 
+        for (int i=0; i < inventory.GetSlots.Length; i++) 
         {
-            inventory.container.items[i].parent = this;
+            inventory.GetSlots[i].parent = this;
+            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
 
+        CreateSlots();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate{ OnEnterInventory(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate{ OnExitInventory(gameObject); });
-
-        CreateSlots();
     }
 
-    private void Update() {
+    private void OnEnable() {
+        Debug.Log("OnEnable");
         slotDisplayed.UpdateSlotOnDisplay();
     }
+
+    private void OnSlotUpdate(InventorySlot _slot)
+    {
+        if (_slot.item.Id >= 0)
+        {
+            _slot.slotDisplayed.transform.GetChild(0).GetComponentInChildren<Image>().sprite 
+                = _slot.ItemObject.iconDisplay;
+            _slot.slotDisplayed.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+
+            if (_slot.slotDisplayed.GetComponentInChildren<TextMeshProUGUI>())
+                _slot.slotDisplayed.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amount == 1 ? "" : _slot.amount.ToString("n0");
+        }
+        else
+        {
+            _slot.slotDisplayed.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+            _slot.slotDisplayed.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+
+            if (_slot.slotDisplayed.GetComponentInChildren<TextMeshProUGUI>())
+                _slot.slotDisplayed.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        }        
+    }
+
+    // private void Update() {
+    //     slotDisplayed.UpdateSlotOnDisplay();
+    // }
 
     public abstract void CreateSlots();
 

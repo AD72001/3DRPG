@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class HP : MonoBehaviour
 {
     // HP
     [SerializeField] public float startingHP;
-    public float currentHP { get; private set; }
+    [NonSerialized] public float currentHP;
 
     // IFrames
     [SerializeField] private float iFramesDuration;
@@ -25,7 +26,7 @@ public class HP : MonoBehaviour
     private void Awake()
     {
         if (GetComponent<Stat>())
-            startingHP = GetComponent<Stat>().vit * 2;
+            startingHP = GetComponent<Stat>().GetVit() * 2;
 
         currentHP = startingHP;
 
@@ -39,7 +40,7 @@ public class HP : MonoBehaviour
         if (!isInvul)
         {
             // Limit current HP to 0 -> maximum
-            _dmg = _dmg * 100 / (100 + GetComponent<Stat>().def*1.0f);
+            _dmg = _dmg * 100 / (100 + GetComponent<Stat>().GetDef()*1.0f);
 
             currentHP = Mathf.Clamp(currentHP - _dmg, 0, startingHP);
 
@@ -84,10 +85,20 @@ public class HP : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP + _addHP, 0, startingHP);
     }
 
+    public float GetHP()
+    {
+        return currentHP;
+    }
+
     public void AddHPMax(float _addHPMax)
     {
         startingHP += _addHPMax;
         currentHP = Mathf.Clamp(currentHP + _addHPMax, 0, startingHP);
+    }
+
+    public float GetHPMax()
+    {
+        return startingHP;
     }
 
     public void Respawn()

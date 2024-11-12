@@ -110,8 +110,10 @@ public class CharacterMovement : MonoBehaviour
         }        
     }
 
+    // Change Later
+
     private void OnApplicationQuit() {
-        GetComponent<CharacterInventory>().inventory.container.Clear();
-        GetComponent<CharacterInventory>().equipment.container.Clear();
+        GetComponent<CharacterInventory>().inventory.Clear();
+        GetComponent<CharacterInventory>().equipment.Clear();
     }
 }
