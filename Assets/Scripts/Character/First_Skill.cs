@@ -30,12 +30,17 @@ public class First_Skill : Skill
                 Instantiate(effects[1], 
                     new Vector3(enemy.transform.position.x, enemy.transform.position.y + 2f, enemy.transform.position.z),
                     Quaternion.identity);
-                enemy.GetComponent<HP>().TakeDamage(GetComponent<Stat>().GetStr() * mod);
+                enemy.GetComponent<HP>().TakeDamage(DamageCalculator());
                 enemy.GetComponent<Enemy>().getStun(first_stun_dur);
             }
         }
 
         FinishSkill();
+    }
+
+    private float DamageCalculator()
+    {
+        return GetComponent<Stat>().GetStr() * mod_str + GetComponent<Stat>().GetInt() * mod_int;
     }
 
     void LookAtPosition()

@@ -4,15 +4,11 @@ using UnityEngine;
 public class Second_Skill : Skill
 {
     [SerializeField] private float duration;
-    [SerializeField] private float mod_str;
-    [SerializeField] private float mod_def;
-    [SerializeField] private float mod_vit;
 
-    
-    /* First Skill: Melee Attack to stun, 
-        Modifier: 1.5 str
-        Stun Duration: 1 seconds
-        CD: 5 seconds
+    /* Second Skill: Buff user's stats, 
+        Modifier: def, str, vit
+        Duration: 10 seconds
+        CD: 20 seconds
     */
     protected override void UseSkill()
     {

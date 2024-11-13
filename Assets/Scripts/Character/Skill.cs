@@ -9,7 +9,10 @@ public class Skill : MonoBehaviour
     // Stats related to the skill
     [SerializeField] protected GameObject[] effects;
     [SerializeField] protected Collider range;
-    [SerializeField] protected float mod;
+    [SerializeField] protected float mod_str;
+    [SerializeField] protected float mod_int;
+    [SerializeField] protected float mod_def;
+    [SerializeField] protected float mod_vit;
     [SerializeField] protected float cost; // energy cost
     public float CD;
     public float timer;

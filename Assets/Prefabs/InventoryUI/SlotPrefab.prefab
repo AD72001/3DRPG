@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 8132958955987453934}
   - component: {fileID: 4396914374636740262}
   - component: {fileID: 3095149707857280856}
+  - component: {fileID: -7165889522167618660}
   m_Layer: 5
   m_Name: SlotPrefab
   m_TagString: Untagged
@@ -345,3 +346,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!114 &-7165889522167618660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854533983867372167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ebd7f38db5b3243a0ef5b82f73d118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

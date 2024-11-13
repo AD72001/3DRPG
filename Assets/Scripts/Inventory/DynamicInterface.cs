@@ -12,6 +12,7 @@ public class DynamicInterface : UserInterface
     public int columnNumber;
 
     public StaticInterface equipmentUI;
+    public GameObject player;
 
     public override void CreateSlots() 
     {
@@ -22,7 +23,7 @@ public class DynamicInterface : UserInterface
             var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
 
-            AddEvent(obj, EventTriggerType.PointerClick, delegate{ OnClick(obj); });
+            // AddEvent(obj, EventTriggerType.PointerClick, delegate{ OnClick(obj); });
             AddEvent(obj, EventTriggerType.PointerEnter, delegate{ OnEnter(obj); });
             AddEvent(obj, EventTriggerType.PointerExit, delegate{ OnExit(obj); });
             AddEvent(obj, EventTriggerType.BeginDrag, delegate{ OnDragStart(obj); });
@@ -36,6 +37,44 @@ public class DynamicInterface : UserInterface
     }
 
     public override void OnClick(GameObject obj)
+    {
+        if (slotDisplayed[obj].ItemObject == null) return;
+
+        switch (slotDisplayed[obj].ItemObject.type)
+        {
+            case ItemType.Consumable:
+                UseItem(obj);
+                break;
+            case ItemType.Default:
+                break;
+            default:
+                EquipItem(obj);
+                break;
+        }
+    }
+
+    public void UseItem(GameObject obj)
+    {
+        for (int i = 0; i < slotDisplayed[obj].item.regenValues.Length; i++)
+        {
+            if (slotDisplayed[obj].item.regenValues[i].regenType == RegenValues.Health)
+            {
+                player.GetComponent<HP>().AddHP(slotDisplayed[obj].item.regenValues[i].value);
+            }
+            else {
+                player.GetComponent<Energy>().AddEnergy(slotDisplayed[obj].item.regenValues[i].value);
+            }
+        }
+
+        slotDisplayed[obj].AddAmount(-1);
+
+        if (slotDisplayed[obj].amount <= 0)
+        {
+            slotDisplayed[obj].RemoveItem();
+        }
+    }
+
+    public void EquipItem(GameObject obj)
     {
         for (int i = 0; i < equipmentUI.inventory.GetSlots.Length; i++)
         {

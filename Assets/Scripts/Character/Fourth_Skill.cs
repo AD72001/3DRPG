@@ -50,9 +50,14 @@ public class Fourth_Skill : Skill {
                     new Vector3(enemy.transform.position.x, enemy.transform.position.y + 2f, enemy.transform.position.z), 
                     Quaternion.identity);
 
-                enemy.GetComponent<HP>().TakeDamage(GetComponent<Stat>().GetStr()*mod);
+                enemy.GetComponent<HP>().TakeDamage(DamageCalculator());
             }
         }
+    }
+
+    private float DamageCalculator()
+    {
+        return GetComponent<Stat>().GetStr()*mod_str + GetComponent<Stat>().GetInt()*mod_int;
     }
 
 }

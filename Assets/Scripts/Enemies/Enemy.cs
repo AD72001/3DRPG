@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     private CharacterController controller;
     private Animator animator;
 
+    private MouseUI mouseUI;
+
     
     void Awake()
     {
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        mouseUI = GameObject.FindGameObjectWithTag("CursorUI").GetComponent<MouseUI>();
     }
 
     void Update()
@@ -147,6 +150,16 @@ public class Enemy : MonoBehaviour
     public bool getDeadStatus()
     {
         return isDead;
+    }
+
+    private void OnMouseOver()
+    {
+        Cursor.SetCursor(mouseUI.mouseOnEnemy, Vector3.zero, CursorMode.Auto);
+    }
+
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
     }
 
     private void OnMouseDown() {

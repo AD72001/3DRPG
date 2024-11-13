@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum InventoryType
 {
@@ -40,8 +41,6 @@ public class InventoryObject : ScriptableObject
             SetItemInEmptySlot(_item, _amount);
             return true;
         }
-
-        Debug.Log("Stackable");
 
         slot.AddAmount(_amount);
 

@@ -1,8 +1,11 @@
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class Stat : MonoBehaviour
 {
     public int lvl;
+    public string saveLocation = "/stats.sav";
 
     // Exp statistics
     public int totalExp; // Player's total exp
@@ -36,6 +39,41 @@ public class Stat : MonoBehaviour
         {
             GetComponent<CharacterInventory>().equipment.GetSlots[i].OnBeforeUpdate += OnBeforeUpdateSlot;
             GetComponent<CharacterInventory>().equipment.GetSlots[i].OnAfterUpdate += OnAfterUpdateSlot;
+        }
+    }
+
+    [ContextMenu("Save")]
+    public void Save()
+    {
+        string saveData = JsonUtility.ToJson(this, true);
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(string.Concat(Application.persistentDataPath, saveLocation));
+        bf.Serialize(file, saveData);
+        file.Close();
+        
+    }
+
+    [ContextMenu("Load")]
+    public void Load()
+    {
+        if (File.Exists(string.Concat(Application.persistentDataPath, saveLocation)))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(string.Concat(Application.persistentDataPath, saveLocation), FileMode.Open);
+            JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+
+            file.Close();
+        }
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Save();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Load();
         }
     }
 
@@ -123,7 +161,7 @@ public class Stat : MonoBehaviour
     {
         if (_slot == null) return;
 
-        if (_slot.parent.inventory == null) return;
+        if (_slot.parent == null || _slot.parent.inventory == null) return;
 
         switch (_slot.parent.inventory.type)
         {
@@ -157,6 +195,8 @@ public class Stat : MonoBehaviour
     public void OnAfterUpdateSlot(InventorySlot _slot)
     {
         if (_slot == null) return;
+
+        if (_slot.parent == null || _slot.parent.inventory == null) return;
 
         switch (_slot.parent.inventory.type)
         {

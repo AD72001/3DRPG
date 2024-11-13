@@ -7,6 +7,8 @@ public class StaticInterface : UserInterface
 {
     public GameObject[] slots;
 
+    public DynamicInterface inventoryUI;
+
     public override void CreateSlots()
     {
         slotDisplayed = new Dictionary<GameObject, InventorySlot>();
@@ -15,6 +17,7 @@ public class StaticInterface : UserInterface
         {
             var obj = slots[i];
 
+            // AddEvent(obj, EventTriggerType.PointerClick, delegate {OnClick(obj); });
             AddEvent(obj, EventTriggerType.PointerEnter, delegate{ OnEnter(obj); });
             AddEvent(obj, EventTriggerType.PointerExit, delegate{ OnExit(obj); });
             AddEvent(obj, EventTriggerType.BeginDrag, delegate{ OnDragStart(obj); });
@@ -29,18 +32,19 @@ public class StaticInterface : UserInterface
 
     public override void OnClick(GameObject obj)
     {        
-        Debug.Log("Clicked on " + obj);
-        switch (slotDisplayed[obj].ItemObject.type)
+        if (slotDisplayed[obj].ItemObject == null) return;
+        DeEquipItem(obj);
+    }
+
+    public void DeEquipItem(GameObject obj)
+    {
+        for (int i = 0; i < inventoryUI.inventory.GetSlots.Length; i++)
         {
-            case ItemType.Consumable:
-                Debug.Log("Use the item");
-                break;
-            case ItemType.Default:
-                break;
-            default:
-                Debug.Log("Equip the item");
-                inventory.SwapItem(slotDisplayed[obj], inventory.GetSlots[0]);
-                break;
+            if (inventoryUI.inventory.GetSlots[i].ItemObject == null) 
+            {
+                inventory.SwapItem(slotDisplayed[obj], inventoryUI.inventory.GetSlots[i]);
+                return;
+            }
         }
     }
 }

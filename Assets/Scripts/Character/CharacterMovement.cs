@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
     // Player Movement
+    private MouseUI mouseUI;
     public float moveSpeed;
     public float turnSpeed;
     Vector3 position;
@@ -14,14 +16,17 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private CharacterController controller;
     private Animator animator;
 
+    // Effect on click
+    [SerializeField] private GameObject effectOnClick;
+
     // Start is called before the first frame update
     void Start()
     {
         position = transform.position;
         animator = GetComponent<Animator>();
+        mouseUI = GameObject.FindGameObjectWithTag("CursorUI").GetComponent<MouseUI>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if ((Skill.isUsingSkill && !Skill.unstoppable)
@@ -55,6 +60,12 @@ public class CharacterMovement : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 2000))
         {
+            Instantiate(effectOnClick, 
+                new Vector3(hit.point.x, transform.position.y, hit.point.z), 
+                Quaternion.identity);
+            if (hit.collider.CompareTag("Inventory"))
+                return;
+
             if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy"))
             {
                 animator.SetBool("moving", true);
@@ -111,6 +122,14 @@ public class CharacterMovement : MonoBehaviour
     }
 
     // Change Later
+    private void OnMouseOver() {
+        Cursor.SetCursor(mouseUI.mouseOnCharacter, Vector3.zero, CursorMode.Auto);
+    }
+
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
+    }
 
     private void OnApplicationQuit() {
         GetComponent<CharacterInventory>().inventory.Clear();
