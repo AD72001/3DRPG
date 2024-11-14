@@ -17,7 +17,7 @@ MonoBehaviour:
   stackable: 1
   description: An ordinary apple. Regains a little HP when consumed.
   data:
-    name: 
+    name: Apple
     Id: 0
     statBonus: []
     regenValues:

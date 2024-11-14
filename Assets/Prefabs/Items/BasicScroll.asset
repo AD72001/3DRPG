@@ -18,7 +18,7 @@ MonoBehaviour:
   description: "Common low-price scrolls used by low-rank mages. \n\nProvides little
     magic offense for the user."
   data:
-    name: 
+    name: Common Rank
     Id: 8
     statBonus:
     - attribute: 2

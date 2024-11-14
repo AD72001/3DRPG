@@ -21,8 +21,8 @@ MonoBehaviour:
     Provides
     great defense and average offense for the user.'
   data:
-    name: 
-    Id: 3
+    name: Golden Boots
+    Id: 13
     statBonus:
     - attribute: 1
       value: 0

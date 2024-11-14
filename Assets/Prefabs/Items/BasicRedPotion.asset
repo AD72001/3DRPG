@@ -18,8 +18,8 @@ MonoBehaviour:
   description: A basic red potion used commonly in infimaries. Regains a little HP
     when consumed.
   data:
-    name: 
-    Id: 6
+    name: Red Potion
+    Id: 7
     statBonus: []
     regenValues:
     - regenType: 0

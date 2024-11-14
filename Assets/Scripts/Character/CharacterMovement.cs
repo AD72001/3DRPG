@@ -60,11 +60,9 @@ public class CharacterMovement : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 2000))
         {
-            Instantiate(effectOnClick, 
-                new Vector3(hit.point.x, transform.position.y, hit.point.z), 
-                Quaternion.identity);
-            if (hit.collider.CompareTag("Inventory"))
-                return;
+            // Instantiate(effectOnClick, 
+            //     new Vector3(hit.point.x, hit.point.y, hit.point.z), 
+            //     Quaternion.identity);
 
             if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy"))
             {

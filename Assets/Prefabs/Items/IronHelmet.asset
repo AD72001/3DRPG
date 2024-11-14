@@ -17,8 +17,8 @@ MonoBehaviour:
   stackable: 0
   description: "A low-price iron helmet. \n\nProvides little defense for the user."
   data:
-    name: IronHelmet
-    Id: 5
+    name: Iron Helmet
+    Id: 22
     statBonus:
     - attribute: 1
       value: 0

@@ -18,8 +18,8 @@ MonoBehaviour:
   description: Common low-price wood shield for beginners. Provides little defense
     for the user.
   data:
-    name: 
-    Id: 7
+    name: Wooden Shield
+    Id: 9
     statBonus:
     - attribute: 0
       value: 0
@@ -33,3 +33,4 @@ MonoBehaviour:
       value: 0
       min: 2
       max: 3
+    regenValues: []

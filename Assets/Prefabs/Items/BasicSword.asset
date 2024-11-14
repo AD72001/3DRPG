@@ -18,8 +18,8 @@ MonoBehaviour:
   description: Common low-price straight sword for beginners. Provides little offense
     for the user.
   data:
-    name: 
-    Id: 8
+    name: Straight Sword
+    Id: 10
     statBonus:
     - attribute: 0
       value: 0
@@ -29,3 +29,4 @@ MonoBehaviour:
       value: 0
       min: 2
       max: 4
+    regenValues: []

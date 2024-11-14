@@ -21,8 +21,8 @@ MonoBehaviour:
     Provides
     great defense for the user.'
   data:
-    name: Gold Armor
-    Id: 2
+    name: Golden Armor
+    Id: 12
     statBonus:
     - attribute: 1
       value: 0

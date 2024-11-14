@@ -17,7 +17,7 @@ MonoBehaviour:
   stackable: 0
   description: A common cloak. Provides little defense for the user.
   data:
-    name: 
+    name: Cloak
     Id: 2
     statBonus:
     - attribute: 1
@@ -28,3 +28,4 @@ MonoBehaviour:
       value: 0
       min: 1
       max: 2
+    regenValues: []

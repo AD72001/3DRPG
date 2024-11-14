@@ -18,8 +18,8 @@ MonoBehaviour:
   description: "Common low-price iron rings worn by low-rank mages. \n\nProvides
     little defense and defense for the user."
   data:
-    name: 
-    Id: 1
+    name: Iron Ring
+    Id: 23
     statBonus:
     - attribute: 1
       value: 0

@@ -17,8 +17,8 @@ MonoBehaviour:
   stackable: 0
   description: Common boots for traveller. Provides little defense for the user.
   data:
-    name: 
-    Id: 3
+    name: Common Boots
+    Id: 4
     statBonus:
     - attribute: 1
       value: 0
@@ -32,3 +32,4 @@ MonoBehaviour:
       value: 0
       min: 1
       max: 2
+    regenValues: []

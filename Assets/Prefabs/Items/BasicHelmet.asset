@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9e44a2fe1b4e94b859ac1b654e17e9, type: 3}
   m_Name: BasicHelmet
   m_EditorClassIdentifier: 
-  iconDisplay: {fileID: 21300000, guid: 374ebe0ed57485383aa9263f087830dd, type: 3}
+  iconDisplay: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}
   type: 1
   stackable: 0
   description: A basic low-price helmet. Provides little defense for the user.
   data:
-    name: 
-    Id: 5
+    name: Common Helmet
+    Id: 6
     statBonus:
     - attribute: 1
       value: 0
@@ -28,3 +28,4 @@ MonoBehaviour:
       value: 0
       min: 2
       max: 3
+    regenValues: []

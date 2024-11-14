@@ -10,7 +10,6 @@ public class HP : MonoBehaviour
 
     // IFrames
     [SerializeField] private float iFramesDuration;
-    [SerializeField] private int numberOfFlashes;
 
     // Audio
     // [SerializeField] private AudioClip hurtSound;
@@ -52,7 +51,6 @@ public class HP : MonoBehaviour
 
             if (currentHP > 0)
             {
-                animator.SetTrigger("hurt");
                 StartCoroutine(Invulnerable());
             }
             else

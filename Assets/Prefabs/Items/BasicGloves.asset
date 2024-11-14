@@ -17,8 +17,8 @@ MonoBehaviour:
   stackable: 0
   description: A common pair of gloves. Provides little defense for the user.
   data:
-    name: 
-    Id: 4
+    name: Common Gloves
+    Id: 5
     statBonus:
     - attribute: 1
       value: 0
@@ -32,3 +32,4 @@ MonoBehaviour:
       value: 0
       min: 2
       max: 3
+    regenValues: []

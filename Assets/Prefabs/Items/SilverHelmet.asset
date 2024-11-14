@@ -21,8 +21,8 @@ MonoBehaviour:
     Provides
     average defense for the user.'
   data:
-    name: SilverHelmet
-    Id: 5
+    name: Silver Helmet
+    Id: 31
     statBonus:
     - attribute: 1
       value: 0
