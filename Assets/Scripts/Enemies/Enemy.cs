@@ -3,13 +3,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // Player Component
-    private GameObject player;
+    protected GameObject player;
 
     // Enemy Stat
+    public string enemyName;
     [SerializeField] private float detectRange;
     [SerializeField] private float attackRange;
     [SerializeField] private float speed;
     [SerializeField] private int exp;
+
+    // Player In Range
+    public GameObject playerInAttackRange;
 
     private float stunTime = 0;
 
@@ -17,18 +21,19 @@ public class Enemy : MonoBehaviour
     private float attackTimer = Mathf.Infinity;
 
     bool isChasing = false;
+    protected bool isAttacking = false;
     bool isDead = false;
 
     // Component
     private CharacterController controller;
-    private Animator animator;
+    protected Animator animator;
 
     private MouseUI mouseUI;
 
     
     void Awake()
     {
-        exp = GetComponent<Stat>().lvl * 20;
+        exp = GetComponent<Stat>().level * 20;
         player = GameObject.FindGameObjectWithTag("Player");
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -37,14 +42,17 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        // Hurt and Defeated
-        if (animator.GetBool("hurt") || animator.GetBool("meleeAttack"))
-            return;
-
         if (GetComponent<HP>().defeat)
         {
             if (!isDead) 
                 Dead();
+            return;
+        }
+
+        if (InAttackAnimation() || isAttacking)
+        {
+            isChasing = false;
+            animator.SetBool("moving", false);
             return;
         }
 
@@ -62,6 +70,8 @@ public class Enemy : MonoBehaviour
         else if (!PlayerInRange())
         {
             isChasing = false;
+            isAttacking = false;
+
             animator.SetBool("moving", false);
         }
         
@@ -70,7 +80,11 @@ public class Enemy : MonoBehaviour
             attackTimer = 0;
             isChasing = false;
             animator.SetBool("moving", false);
-            MeleeAttack();
+            Attack();
+        }
+        else if (!PlayerInAttackRange())
+        {
+            isAttacking = false;
         }
 
         if (isChasing)
@@ -84,8 +98,12 @@ public class Enemy : MonoBehaviour
     // Stun effect
     public void getStun(float time)
     {
+        if (GetComponent<HP>().defeat)
+            return;
+        
         stunTime = time;
         animator.SetBool("stun", true);
+        isAttacking = false;
     }
 
     private void Stun()
@@ -98,12 +116,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    bool PlayerInRange()
+    protected virtual bool InAttackAnimation()
+    {
+        return animator.GetBool("meleeAttack");
+    }
+
+    protected bool PlayerInRange()
     {
         return Vector3.Distance(transform.position, player.transform.position) <= detectRange;
     }
 
-    bool PlayerInAttackRange()
+    protected bool PlayerInAttackRange()
     {
         return Vector3.Distance(transform.position, player.transform.position) <= attackRange;
     }
@@ -115,20 +138,21 @@ public class Enemy : MonoBehaviour
         controller.SimpleMove(transform.forward * speed);
     }
 
-    void MeleeAttack()
+    public virtual void Attack()
     {
+        isAttacking = true;
         animator.SetTrigger("meleeAttack");
     }
 
     void DamagePlayer()
     {
-        if (PlayerInAttackRange() && !Skill.unstoppable)
+        if (PlayerInAttackRange() /* && !Skill.unstoppable */)
         {
             player.GetComponent<HP>().TakeDamage(DamageCalculator());
         }
     }
 
-    float DamageCalculator()
+    public virtual float DamageCalculator()
     {
         return GetComponent<Stat>().GetStr();
     }
@@ -165,5 +189,10 @@ public class Enemy : MonoBehaviour
     private void OnMouseDown() {
         if (!isDead)
             player.GetComponent<CharacterCombat>().opponent = gameObject;
+    }
+
+    public void FinishAttack()
+    {
+        isAttacking = false;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stat : MonoBehaviour
 {
-    public int lvl;
+    public int level;
     public string saveLocation = "/stats.sav";
 
     // Exp statistics
@@ -79,7 +79,7 @@ public class Stat : MonoBehaviour
 
     void LevelUp()
     {
-        lvl += 1;
+        level += 1;
         threshold += expGap;
         expGap = expGap * 3 / 2;
 
@@ -87,13 +87,36 @@ public class Stat : MonoBehaviour
         AddStr(2);
         AddDef(5);
         AddInt(5);
+
+        UnlockSkill();
+    }
+
+    void UnlockSkill()
+    {
+        if (level >= GetComponent<Second_Skill>().unlockLevel 
+            && GetComponent<Second_Skill>().enabled == false)
+        {
+            GetComponent<Second_Skill>().UnlockSkill();
+        }
+
+        if (level >= GetComponent<Third_Skill>().unlockLevel 
+            && GetComponent<Third_Skill>().enabled == false)
+        {
+            GetComponent<Third_Skill>().UnlockSkill();
+        }
+
+        if (level >= GetComponent<Fourth_Skill>().unlockLevel 
+            && GetComponent<Fourth_Skill>().enabled == false)
+        {
+            GetComponent<Fourth_Skill>().UnlockSkill();
+        }
     }
 
     public void AddExp(int _value)
     {
         totalExp += _value;
 
-        if (totalExp >= threshold)
+        while (totalExp >= threshold)
         {
             LevelUp();
         }

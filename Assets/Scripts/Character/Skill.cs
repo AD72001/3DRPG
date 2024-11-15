@@ -7,6 +7,7 @@ public class Skill : MonoBehaviour
     public static bool unstoppable;
 
     // Stats related to the skill
+    public int unlockLevel;
     [SerializeField] protected GameObject[] effects;
     [SerializeField] protected Collider range;
     [SerializeField] protected float mod_str;
@@ -25,9 +26,16 @@ public class Skill : MonoBehaviour
 
     // Components
     [SerializeField] protected Animator animator;
+    [SerializeField] protected GameObject skillUI;
 
-    private void Awake() {
+    private void Start() {
         animator = GetComponent<Animator>();
+        
+        if (GetComponent<Stat>().level < unlockLevel)
+        {
+            enabled = false;
+            skillUI.SetActive(false);
+        }
     }
 
     private void Update() {
@@ -37,22 +45,25 @@ public class Skill : MonoBehaviour
         }
         
         if (Input.GetKeyDown(keyCode)) {
-
-            if (timer <= 0 && GetComponent<Energy>().GetEnergy() >= cost)
-            {
-                CharacterCombat.normalAtk = false;
-                UseSkill();
-                timer = CD;
-                GetComponent<Energy>().AddEnergy(-cost);
-            }
-            else
-            {
-                Debug.Log("Skill not available");
-            }
-
+            KeyPressed();
         }
 
         timer = Mathf.Clamp(timer - Time.deltaTime, 0, CD);
+    }
+
+    public void KeyPressed()
+    {
+        if (timer <= 0 && GetComponent<Energy>().GetEnergy() >= cost)
+        {
+            CharacterCombat.normalAtk = false;
+            UseSkill();
+            timer = CD;
+            GetComponent<Energy>().AddEnergy(-cost);
+        }
+        else
+        {
+            Debug.Log("Skill not available");
+        }
     }
 
     protected virtual void UseSkill() {}
@@ -64,5 +75,11 @@ public class Skill : MonoBehaviour
         isUsingSkill = false;
 
         unstoppable = false;
+    }
+
+    public void UnlockSkill()
+    {
+        this.enabled = true;
+        skillUI.SetActive(true);
     }
 }

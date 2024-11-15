@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 513096579959544907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 28.532158, y: 0.00000023841858, z: 21.520012}
+  m_LocalPosition: {x: 28.532158, y: 0, z: 21.520012}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60147133b7f0c94e972d1230ba1c31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: Skeleton
   detectRange: 10
   attackRange: 2
   speed: 2
@@ -132,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f940d6de147d1744aeb9b9d5a12a3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvl: 1
+  level: 2
   saveLocation: /enemy_stats.sav
   totalExp: 0
   threshold: 0

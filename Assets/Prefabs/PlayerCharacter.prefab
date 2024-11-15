@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f940d6de147d1744aeb9b9d5a12a3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvl: 1
+  level: 0
   saveLocation: /stats.sav
   totalExp: 0
   threshold: 0
@@ -1082,6 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c999b2d5652444d8c5ba8d740a0988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockLevel: 0
   effects:
   - {fileID: 3367314013316085171, guid: 8b20002c2b69a9d44ab5bae8e1d923cd, type: 3}
   - {fileID: 1429954232896169633, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
@@ -1096,6 +1097,7 @@ MonoBehaviour:
   keyCode: 113
   enemies: []
   animator: {fileID: 0}
+  skillUI: {fileID: 0}
   first_stun_dur: 2
 --- !u!114 &5354303346417441685
 MonoBehaviour:
@@ -1109,6 +1111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b3d9f3832cbb8468fab835e0ac9bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockLevel: 2
   effects:
   - {fileID: 3744133877081091469, guid: a2a060732547fe64581bb0cb3c2bdf1d, type: 3}
   - {fileID: 1289543790355709915, guid: b99922c2f59b1a542bdd06ae8bee47ae, type: 3}
@@ -1123,6 +1126,7 @@ MonoBehaviour:
   keyCode: 119
   enemies: []
   animator: {fileID: 0}
+  skillUI: {fileID: 0}
   duration: 10
 --- !u!114 &3440014396534604000
 MonoBehaviour:
@@ -1136,6 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5664e868dc39a643950baf805e99dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockLevel: 3
   effects:
   - {fileID: 1429954232896169633, guid: 1468905adf8512d42b5a628870d855ba, type: 3}
   - {fileID: 1429954232896169633, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
@@ -1150,6 +1155,7 @@ MonoBehaviour:
   keyCode: 101
   enemies: []
   animator: {fileID: 0}
+  skillUI: {fileID: 0}
   stun_dur: 1
 --- !u!114 &2859372267514464702
 MonoBehaviour:
@@ -1163,6 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d36b298743edf488f061427fc524f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockLevel: 6
   effects:
   - {fileID: 1429954232896169633, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
   range: {fileID: 367060433977171728}
@@ -1176,6 +1183,7 @@ MonoBehaviour:
   keyCode: 114
   enemies: []
   animator: {fileID: 0}
+  skillUI: {fileID: 0}
   duration: 7
 --- !u!114 &4153092138461086559
 MonoBehaviour:

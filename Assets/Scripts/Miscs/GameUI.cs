@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
@@ -35,6 +36,7 @@ public class GameUI : MonoBehaviour
 
     [Header("Enemy UI")]
     [SerializeField] private GameObject enemyUI;
+    [SerializeField] private TMP_Text enemyInfo;
     [SerializeField] private Image enemyHP;
 
     void Awake()
@@ -47,11 +49,11 @@ public class GameUI : MonoBehaviour
         equipmentUI.SetActive(false);
     }
 
-    void Update()
+    void LateUpdate()
     {
         // HP and Energy UI
         playerHP.fillAmount = player.GetComponent<HP>().currentHP / player.GetComponent<HP>().startingHP;
-        playerHP_text.text = $"{(int)player.GetComponent<HP>().currentHP} / {player.GetComponent<HP>().startingHP}";
+        playerHP_text.text = $"{(int)Math.Ceiling(player.GetComponent<HP>().currentHP)} / {player.GetComponent<HP>().startingHP}";
 
         playerEnergy.fillAmount = player.GetComponent<Energy>().GetEnergy() / player.GetComponent<Energy>().GetEnergyMax();
         playerEnergy_text.text = $"{(int)player.GetComponent<Energy>().GetEnergy()} / {player.GetComponent<Energy>().GetEnergyMax()}";
@@ -80,7 +82,7 @@ public class GameUI : MonoBehaviour
         }
 
         // Exp UI
-        playerLevel_text.text = $"{player.GetComponent<Stat>().lvl}";
+        playerLevel_text.text = $"{player.GetComponent<Stat>().level}";
         playerExp.fillAmount = (float) player.GetComponent<Stat>().totalExp / player.GetComponent<Stat>().threshold;
         playerExp_text.text = $"{player.GetComponent<Stat>().totalExp} / {player.GetComponent<Stat>().threshold}";
 
@@ -100,6 +102,7 @@ public class GameUI : MonoBehaviour
         {
             enemyUI.SetActive(true);
             enemyHP.fillAmount = enemy.GetComponent<HP>().currentHP / enemy.GetComponent<HP>().startingHP;
+            enemyInfo.text = $"{enemy.GetComponent<Enemy>().enemyName} - {enemy.GetComponent<Stat>().level}";
         }
         else enemyUI.SetActive(false);
     }

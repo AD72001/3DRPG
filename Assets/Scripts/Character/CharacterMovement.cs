@@ -9,6 +9,9 @@ public class CharacterMovement : MonoBehaviour
     public float turnSpeed;
     Vector3 position;
 
+    // Player Status
+    private float stunTime;
+
     public static bool isAttacking = false;
 
     //Component
@@ -30,9 +33,19 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         if ((Skill.isUsingSkill && !Skill.unstoppable)
-            || animator.GetBool("hurt")
+            || animator.GetBool("stun")
             || animator.GetBool("dead"))
         {
+            if (GetComponent<HP>().defeat)
+            {
+                return;
+            }
+
+            if (stunTime > 0)
+            {
+                Stun();
+            }
+
             position = transform.position;
             animator.SetBool("moving", false);
             return;
@@ -103,6 +116,25 @@ public class CharacterMovement : MonoBehaviour
     public void SetPosition(Vector3 target)
     {
         position = target;
+    }
+
+    // Stun effect
+    public void getStun(float time)
+    {
+        if (GetComponent<HP>().defeat) return;
+        
+        stunTime = time;
+        animator.SetBool("stun", true);
+    }
+
+    private void Stun()
+    {
+        stunTime -= Time.deltaTime;
+
+        if (stunTime <= 0)
+        {
+            animator.SetBool("stun", false);
+        }
     }
 
     void CheckIfExistObject()
