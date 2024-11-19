@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 4706055280025235553}
   - component: {fileID: 2030836844958930797}
   m_Layer: 0
-  m_Name: Slime_01_Viking
+  m_Name: SlimeViking
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Slime
+  activeRange: 40
   detectRange: 20
   attackRange: 2
   speed: 5

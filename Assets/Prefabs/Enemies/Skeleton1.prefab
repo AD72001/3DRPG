@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2458008892113490878}
   - component: {fileID: 4269049387558743114}
   m_Layer: 6
-  m_Name: Skeleton_01
+  m_Name: Skeleton1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,10 +75,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Skeleton
+  activeRange: 40
   detectRange: 10
   attackRange: 2
   speed: 2
   exp: 0
+  playerInAttackRange: {fileID: 0}
   attackCD: 1
 --- !u!143 &7598950407301015617
 CharacterController:

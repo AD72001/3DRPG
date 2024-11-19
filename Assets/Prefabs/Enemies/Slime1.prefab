@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 2151167906540881281}
   - component: {fileID: 2606116031059616229}
   m_Layer: 0
-  m_Name: Slime_01
+  m_Name: Slime1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Slime
+  activeRange: 40
   detectRange: 20
   attackRange: 2
   speed: 5

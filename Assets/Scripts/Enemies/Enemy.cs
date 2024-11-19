@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     // Enemy Stat
     public string enemyName;
+    [SerializeField] private float activeRange = 40;
     [SerializeField] private float detectRange;
     [SerializeField] private float attackRange;
     [SerializeField] private float speed;
@@ -31,7 +32,7 @@ public class Enemy : MonoBehaviour
     private MouseUI mouseUI;
 
     
-    void Awake()
+    void Start()
     {
         exp = GetComponent<Stat>().level * 20;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -40,12 +41,24 @@ public class Enemy : MonoBehaviour
         mouseUI = GameObject.FindGameObjectWithTag("CursorUI").GetComponent<MouseUI>();
     }
 
+    private void OnEnable() {
+        isDead = false;
+        FinishAttack();
+        exp = GetComponent<Stat>().level * 20;
+    }
+
     void Update()
     {
         if (GetComponent<HP>().defeat)
         {
             if (!isDead) 
                 Dead();
+            return;
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) >= activeRange)
+        {
+            this.gameObject.SetActive(false);
             return;
         }
 

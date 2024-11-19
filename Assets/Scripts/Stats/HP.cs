@@ -22,16 +22,18 @@ public class HP : MonoBehaviour
 
     [SerializeField] private Behaviour[] components;
 
-    private void Awake()
+    private void Start()
     {
+        animator = gameObject.GetComponent<Animator>();
+    }
+
+    private void OnEnable() {
         if (GetComponent<Stat>())
             startingHP = GetComponent<Stat>().GetVit() * 2;
 
         currentHP = startingHP;
 
         defeat = false;
-
-        animator = gameObject.GetComponent<Animator>();
     }
     
     public void TakeDamage(float _dmg)

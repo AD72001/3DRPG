@@ -1263,6 +1263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Bear Man
+  activeRange: 50
   detectRange: 30
   attackRange: 7
   speed: 4
