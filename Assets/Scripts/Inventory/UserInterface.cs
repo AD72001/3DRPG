@@ -77,6 +77,11 @@ public abstract class UserInterface : MonoBehaviour
 
     public abstract void OnClick(GameObject obj);
 
+    public void GetItemInfo(GameObject obj)
+    {
+        ItemInfoUI.instance.SetInfo(slotDisplayed[obj].ItemObject);
+    }
+
 
     public void OnDragStart(GameObject obj)
     {

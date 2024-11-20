@@ -31,6 +31,17 @@ public class SlotInterface : MonoBehaviour, IPointerClickHandler
 
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
+            switch (_inventoryType)
+            {
+                case InventoryType.Inventory:
+                    transform.GetComponentInParent<DynamicInterface>().GetItemInfo(gameObject);
+                    break;
+                case InventoryType.Equipment:
+                    transform.GetComponentInParent<StaticInterface>().GetItemInfo(gameObject);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

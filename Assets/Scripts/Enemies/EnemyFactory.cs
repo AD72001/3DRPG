@@ -4,6 +4,12 @@ public class EnemyFactory: MonoBehaviour
 {
     public GameObject[] enemyList;
 
+    public static EnemyFactory instance {get; private set;}
+
+    private void Awake() {
+        if (instance == null) instance = this;
+    }
+
     public void SpawnEnemy(string name, Vector3 position)
     {
         foreach (GameObject enemy in enemyList)

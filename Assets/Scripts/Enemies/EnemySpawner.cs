@@ -5,7 +5,6 @@ public class EnemySpawner : MonoBehaviour
     public GameObject monsterPrefab;
     private GameObject player;
 
-    public EnemyFactory factory;
     public float spawnRate;
     private float spawnTimer = Mathf.Infinity;
     public float spawnDistance;
@@ -26,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
         if (RightCondition())
         {
             spawnTimer = 0;
-            factory.SpawnEnemy(monsterPrefab.name, transform.position);
+            EnemyFactory.instance.SpawnEnemy(monsterPrefab.name, transform.position);
         }
 
         spawnTimer += Time.deltaTime;
