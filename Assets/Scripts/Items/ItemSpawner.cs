@@ -3,25 +3,37 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     public GameObject itemPrefab;
+    [SerializeField] private GameObject item;
     [SerializeField] private float activeRange;
     private GameObject player;
-    public bool active = true;
+    public bool pickedUp = false;
 
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update() {
-        if (!active) 
+        if (pickedUp)
         {
             gameObject.SetActive(false);
         }
-
-        if (active && Vector3.Distance(transform.position, player.transform.position) < activeRange)
+        else
         {
-            ItemFactory.instance.SpawnItem(itemPrefab.name, transform.position);
-            active = false;
-            gameObject.SetActive(false);
+            if (Vector3.Distance(transform.position, player.transform.position) < activeRange)
+            {
+                item = ItemFactory.instance.SpawnItem(itemPrefab.name, transform.position);        
+            }
+            else
+            {
+                item.SetActive(false);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player"))
+        {
+            pickedUp = true;
         }
     }
 }

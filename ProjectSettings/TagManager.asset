@@ -11,6 +11,8 @@ TagManager:
   - Terrain
   - CursorUI
   - Item
+  - PlayerCollision
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

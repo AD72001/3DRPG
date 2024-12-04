@@ -1,3 +1,5 @@
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public float moveSpeed;
     public float turnSpeed;
     Vector3 position;
+    public string[] savePosition;
 
     // Player Status
     private float stunTime;
@@ -16,16 +19,24 @@ public class CharacterMovement : MonoBehaviour
 
     //Component
     [SerializeField] private Camera cam;
-    [SerializeField] private CharacterController controller;
+    private CharacterController controller;
     private Animator animator;
 
     // Effect on click
     [SerializeField] private GameObject effectOnClick;
 
+    public string saveLocation = "/position.sav";
+
     // Start is called before the first frame update
     void Start()
     {
-        position = transform.position;
+        controller = GetComponent<CharacterController>();
+
+        savePosition = new string[3] {"0", "0", "0"};
+
+        if (position == Vector3.zero) 
+            position = transform.position;
+        
         animator = GetComponent<Animator>();
         mouseUI = GameObject.FindGameObjectWithTag("CursorUI").GetComponent<MouseUI>();
     }
@@ -149,6 +160,33 @@ public class CharacterMovement : MonoBehaviour
                 GetComponent<CharacterCombat>().opponent = null;
             }
         }        
+    }
+    public void SaveData()
+    {
+        savePosition = new string[] {transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString()};
+
+        string saveData = JsonUtility.ToJson(this, true);
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(string.Concat(Application.persistentDataPath, saveLocation));
+        bf.Serialize(file, saveData);
+        file.Close();
+    }
+
+    public void LoadData()
+    {
+        if (File.Exists(string.Concat(Application.persistentDataPath, saveLocation)))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(string.Concat(Application.persistentDataPath, saveLocation), FileMode.Open);
+            JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+            file.Close();
+        }
+
+        transform.position = new Vector3(float.Parse(savePosition[0]),
+            float.Parse(savePosition[1]),
+            float.Parse(savePosition[2]));
+
+        SetPosition(transform.position);
     }
 
     // Change Later

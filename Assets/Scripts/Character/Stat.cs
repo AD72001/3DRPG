@@ -61,19 +61,7 @@ public class Stat : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(string.Concat(Application.persistentDataPath, saveLocation), FileMode.Open);
             JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
-
             file.Close();
-        }
-    }
-
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Load();
         }
     }
 

@@ -375,7 +375,7 @@ MonoBehaviour:
   enemyName: Skeleton
   activeRange: 40
   detectRange: 10
-  attackRange: 2
+  attackRange: 4
   speed: 6
   exp: 0
   playerInAttackRange: {fileID: 0}

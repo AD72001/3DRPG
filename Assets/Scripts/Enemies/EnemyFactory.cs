@@ -10,7 +10,7 @@ public class EnemyFactory: MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public void SpawnEnemy(string name, Vector3 position)
+    public GameObject SpawnEnemy(string name, Vector3 position)
     {
         foreach (GameObject enemy in enemyList)
         {
@@ -19,8 +19,10 @@ public class EnemyFactory: MonoBehaviour
                 enemy.transform.position = position;
                 enemy.SetActive(true);
 
-                return;
+                return enemy;
             }
         }
+
+        return null;
     }
 }

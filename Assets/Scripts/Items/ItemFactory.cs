@@ -11,7 +11,7 @@ public class ItemFactory: MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public void SpawnItem(string name, Vector3 position)
+    public GameObject SpawnItem(string name, Vector3 position)
     {
         foreach (GameObject item in itemList)
         {
@@ -20,8 +20,10 @@ public class ItemFactory: MonoBehaviour
                 item.transform.position = position;
                 item.SetActive(true);
 
-                return;
+                return item;
             }
         }
+
+        return null;
     }
 }

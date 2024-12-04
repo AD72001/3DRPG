@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public enum InventoryType
 {
@@ -25,6 +21,10 @@ public class InventoryObject : ScriptableObject
         get {
             return container.slots;
         }
+    }
+
+    private void OnEnable() {
+        database = Resources.Load<ItemDatabase>("ItemDatabase");
     }
 
     public bool AddItem(Item _item, int _amount)

@@ -4,12 +4,16 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject monsterPrefab;
     private GameObject player;
+    private GameObject enemy;
 
     public float spawnRate;
     private float spawnTimer = Mathf.Infinity;
     public float spawnDistance;
 
-    private bool active = true;
+    [SerializeField] private bool active = true;
+    [SerializeField] private bool unique = false;
+    [SerializeField] private bool spawned = false;
+    private bool defeat = false;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -19,13 +23,21 @@ public class EnemySpawner : MonoBehaviour
         if (!active) 
         {
             gameObject.SetActive(false);
+        }
+
+        if (enemy != null) defeat = enemy.GetComponent<HP>().defeat;
+
+        if (unique && defeat)
+        {
+            active = false;
             return;
         }
 
         if (RightCondition())
         {
             spawnTimer = 0;
-            EnemyFactory.instance.SpawnEnemy(monsterPrefab.name, transform.position);
+            spawned = true;
+            enemy = EnemyFactory.instance.SpawnEnemy(monsterPrefab.name, transform.position);
         }
 
         spawnTimer += Time.deltaTime;
@@ -33,6 +45,14 @@ public class EnemySpawner : MonoBehaviour
 
     private bool RightCondition()
     {
+        if (unique && spawned)
+            return false;
+
         return (spawnTimer >= spawnRate) && (Vector3.Distance(transform.position, player.transform.position) <= spawnDistance);
+    }
+
+    public bool ReActiveCondition()
+    {
+        return unique && defeat;
     }
 }
