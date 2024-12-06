@@ -1366,6 +1366,7 @@ GameObject:
   - component: {fileID: 6103864307340961037}
   - component: {fileID: 147989216733154189}
   - component: {fileID: 7781549165912034243}
+  - component: {fileID: 5809255644979365925}
   m_Layer: 0
   m_Name: Skeleton3LR
   m_TagString: Enemy
@@ -1513,6 +1514,28 @@ MonoBehaviour:
   iFramesDuration: 0
   components:
   - {fileID: 6103864307340961037}
+--- !u!195 &5809255644979365925
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703207728445853680}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &9050738622538532924
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     public float turnSpeed;
     Vector3 position;
     public string[] savePosition;
+    private NavMeshAgent agent;
 
     // Player Status
     private float stunTime;
@@ -31,6 +32,8 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        agent = GetComponent<NavMeshAgent>();
 
         savePosition = new string[3] {"0", "0", "0"};
 
@@ -57,7 +60,7 @@ public class CharacterMovement : MonoBehaviour
                 Stun();
             }
 
-            position = transform.position;
+            SetPosition(transform.position);
             animator.SetBool("moving", false);
             return;
         }
@@ -117,7 +120,8 @@ public class CharacterMovement : MonoBehaviour
 
             transform.LookAt(lookPosition);
             
-            controller.SimpleMove(transform.forward * moveSpeed);
+            //controller.SimpleMove(transform.forward * moveSpeed);
+            agent.destination = position;
         }
         else {
             animator.SetBool("moving", false);
@@ -127,6 +131,7 @@ public class CharacterMovement : MonoBehaviour
     public void SetPosition(Vector3 target)
     {
         position = target;
+        agent.destination = position;
     }
 
     // Stun effect

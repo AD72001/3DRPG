@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class OnTerrainItem : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] private ItemObject item;
+    [SerializeField] private ItemObject itemObject;
     [SerializeField] private int amount = 1;
 
     public void OnAfterDeserialize() {}
@@ -11,7 +11,7 @@ public class OnTerrainItem : MonoBehaviour, ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
         # if UNITY_EDITOR
-        GetComponentInChildren<SpriteRenderer>().sprite = item.iconDisplay;
+        GetComponentInChildren<SpriteRenderer>().sprite = itemObject.iconDisplay;
         EditorUtility.SetDirty(GetComponentInChildren<SpriteRenderer>());
         # endif
     }
@@ -20,7 +20,7 @@ public class OnTerrainItem : MonoBehaviour, ISerializationCallbackReceiver
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (other.GetComponent<CharacterInventory>().inventory.AddItem(new Item(item), amount))
+            if (other.GetComponent<CharacterInventory>().inventory.AddItem(new Item(itemObject), amount))
                 gameObject.SetActive(false);
         }
     }

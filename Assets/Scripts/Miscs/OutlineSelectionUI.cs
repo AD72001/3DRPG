@@ -47,6 +47,20 @@ public class OutlineSelectionUI : MonoBehaviour
                     highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
                 }
             }
+            else if (highlight.CompareTag("SavePoint") && highlight != selection)
+            {
+                if (highlight.gameObject.GetComponent<Outline>() != null)
+                {
+                    highlight.gameObject.GetComponent<Outline>().enabled = true;
+                }
+                else
+                {
+                    Outline outline = highlight.gameObject.AddComponent<Outline>();
+                    outline.enabled = true;
+                    highlight.gameObject.GetComponent<Outline>().OutlineColor = Color.cyan;
+                    highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
+                }
+            }
             else
             {
                 highlight = null;

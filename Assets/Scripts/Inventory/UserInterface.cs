@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -78,8 +79,11 @@ public abstract class UserInterface : MonoBehaviour
     public abstract void OnClick(GameObject obj);
 
     public void GetItemInfo(GameObject obj)
-    {
-        ItemInfoUI.instance.SetInfo(slotDisplayed[obj].ItemObject);
+    {        
+        int slotIndex = slotDisplayed.Values.ToList().IndexOf(slotDisplayed[obj]);
+        ItemInfoUI.instance.SetInfo(
+            inventory.GetSlots[slotIndex].ItemObject, 
+            inventory.GetSlots[slotIndex].item);
     }
 
 

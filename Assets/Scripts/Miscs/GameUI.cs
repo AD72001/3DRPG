@@ -33,6 +33,7 @@ public class GameUI : MonoBehaviour
     [Header("Inventory UI")]
     [SerializeField] private GameObject inventoryUI;
     [SerializeField] private GameObject equipmentUI;
+    [SerializeField] private GameObject itemInfoUI;
 
     [Header("Enemy UI")]
     [SerializeField] private GameObject enemyUI;
@@ -79,6 +80,11 @@ public class GameUI : MonoBehaviour
                 equipmentUI.SetActive(false);
             else
                 equipmentUI.SetActive(true);
+        }
+
+        if (!inventoryUI.activeSelf && !equipmentUI.activeSelf)
+        {
+            itemInfoUI.SetActive(false);
         }
 
         // Exp UI

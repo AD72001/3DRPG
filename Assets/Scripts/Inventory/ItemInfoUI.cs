@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,21 +16,13 @@ public class ItemInfoUI : MonoBehaviour
         instance = this;
     }
 
-    public void SetInfo(ItemObject itemObject)
+    public void SetInfo(ItemObject itemObject, Item item)
     {
+        ResetInfo();
+
         if (itemObject == null)
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
-
-            nameText.text = "";
-            icon.sprite = defaultIcon.sprite;
-            desc.text = "";
-
-            strText.text = "";
-            defText.text = "";
-            vitText.text = "";
-            intText.text = "";
-
             return;
         }
 
@@ -40,7 +33,7 @@ public class ItemInfoUI : MonoBehaviour
         if (itemObject.data.statBonus == null || 
             itemObject.data.statBonus.Length <= 0) return;
 
-        foreach (var statBonus in itemObject.data.statBonus)
+        foreach (var statBonus in item.statBonus)
         {
             if (statBonus.attribute == Attributes.Strength)
                 strText.text = $"STR: {statBonus.value}";
@@ -54,5 +47,17 @@ public class ItemInfoUI : MonoBehaviour
 
         if (!gameObject.transform.GetChild(0).gameObject.activeSelf)
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    private void ResetInfo()
+    {
+        nameText.text = "";
+        icon.sprite = defaultIcon.sprite;
+        desc.text = "";
+
+        strText.text = "";
+        defText.text = "";
+        vitText.text = "";
+        intText.text = "";
     }
 }
