@@ -1,29 +1,34 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class SavePoint : MonoBehaviour,  IPointerClickHandler
+public class SavePoint : MonoBehaviour
 {
     private GameObject player;
+    private int clickCount = 0;
+    public float delayClickTime;
+    private float delayClickTimer;
 
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public void OnPointerClick(PointerEventData pointerEventData)
-    {
-        Debug.Log(pointerEventData.button);
-        
-        if (pointerEventData.button == PointerEventData.InputButton.Right || pointerEventData.clickCount >= 2)
+    private void Update() {
+        if (delayClickTimer > delayClickTime)
         {
-            player.gameObject.GetComponentInParent<CharacterData>().SaveData();
-            Debug.Log($"Save at: {transform.position}");
-            pointerEventData.clickCount = 0;
+            clickCount = 0;
+            delayClickTimer = 0;
         }
 
-        if (pointerEventData.button == PointerEventData.InputButton.Left)
+        delayClickTimer += Time.deltaTime;
+    }
+
+    private void OnMouseDown() {
+        clickCount++;
+
+        if (clickCount >= 2)
         {
+            Debug.Log($"Save at {transform.position}");
             player.gameObject.GetComponentInParent<CharacterData>().SaveData();
-            Debug.Log($"Save at: {transform.position}");
+            clickCount = 0;
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     public GameObject itemPrefab;
-    [SerializeField] private GameObject item;
+    private GameObject item;
     [SerializeField] private float activeRange;
     private GameObject player;
     public bool pickedUp = false;
@@ -25,7 +25,8 @@ public class ItemSpawner : MonoBehaviour
             }
             else
             {
-                item.SetActive(false);
+                if (item != null)
+                    item.SetActive(false);
             }
         }
     }

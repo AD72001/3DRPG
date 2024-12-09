@@ -28,7 +28,6 @@ public class EnemyManager : MonoBehaviour
         foreach (GameObject enemy in enemyList)
         {
             values[index] = enemy.GetComponent<EnemySpawner>().ReActiveCondition();
-            Debug.Log($"Save: {values[index]}");
             index++;
         }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class OnTerrainItem : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] private ItemObject itemObject;
+    public ItemObject itemObject;
     [SerializeField] private int amount = 1;
 
     public void OnAfterDeserialize() {}
@@ -11,6 +11,8 @@ public class OnTerrainItem : MonoBehaviour, ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
         # if UNITY_EDITOR
+        if (itemObject == null)
+            return;
         GetComponentInChildren<SpriteRenderer>().sprite = itemObject.iconDisplay;
         EditorUtility.SetDirty(GetComponentInChildren<SpriteRenderer>());
         # endif

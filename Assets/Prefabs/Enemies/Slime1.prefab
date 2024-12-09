@@ -433,9 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHP: 0
   iFramesDuration: 0
-  components:
-  - {fileID: 2151167906540881281}
-  - {fileID: 5635248465251458011}
+  components: []
 --- !u!195 &269442814421590483
 NavMeshAgent:
   m_ObjectHideFlags: 0
