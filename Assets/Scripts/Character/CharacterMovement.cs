@@ -7,7 +7,6 @@ public class CharacterMovement : MonoBehaviour
 {
     // Player Movement
     private MouseUI mouseUI;
-    public float moveSpeed;
     public float turnSpeed;
     Vector3 position;
     public string[] savePosition;
@@ -114,13 +113,8 @@ public class CharacterMovement : MonoBehaviour
     public void MoveToPosition()
     {
         if (Vector3.Distance(new Vector3(position.x, 0, position.z), 
-            new Vector3(transform.position.x, 0, transform.position.z)) > 1f)
+            new Vector3(transform.position.x, 0, transform.position.z)) > 0.1f)
         {
-            Vector3 lookPosition = new Vector3(position.x, transform.position.y, position.z);
-
-            transform.LookAt(lookPosition);
-            
-            //controller.SimpleMove(transform.forward * moveSpeed);
             agent.destination = position;
         }
         else {

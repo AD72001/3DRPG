@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 1337089058294666140, guid: 142e3d4cf5729b04b9b53e9ef7cfdcd1, type: 3}
-  factory: {fileID: 0}
   spawnRate: 5
   spawnDistance: 2
+  active: 1
+  unique: 0
+  spawned: 0

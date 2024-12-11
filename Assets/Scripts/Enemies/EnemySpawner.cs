@@ -40,6 +40,11 @@ public class EnemySpawner : MonoBehaviour
             enemy = EnemyFactory.instance.SpawnEnemy(monsterPrefab.name, transform.position);
         }
 
+        if (enemy != null && !enemy.activeSelf && !enemy.GetComponent<HP>().defeat)
+        {
+            spawned = false;
+        }
+
         spawnTimer += Time.deltaTime;
     }
 

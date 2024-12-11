@@ -40,11 +40,14 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TMP_Text enemyInfo;
     [SerializeField] private Image enemyHP;
 
-    void Awake()
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
         playerHP.fillAmount = player.GetComponent<HP>().currentHP / player.GetComponent<HP>().startingHP;
+
+        inventoryUI.SetActive(true);
+        equipmentUI.SetActive(true);
 
         inventoryUI.SetActive(false);
         equipmentUI.SetActive(false);

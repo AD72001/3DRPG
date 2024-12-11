@@ -928,7 +928,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 237, y: 0, z: 207.82}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3948466028498458846}
@@ -972,10 +972,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Skeleton
-  activeRange: 40
-  detectRange: 10
+  activeRange: 20
+  detectRange: 6
   attackRange: 2
-  speed: 2
+  speed: 3
   exp: 0
   playerInAttackRange: {fileID: 0}
   attackCD: 1
@@ -1062,10 +1062,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 5936740168855159649}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 0
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -1074,7 +1074,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!1 &5961867455214548570
 GameObject:
   m_ObjectHideFlags: 0
