@@ -11,7 +11,7 @@ public class RangeSkill_4 : MonoBehaviour
 
     private void OnTriggerStay(Collider other) {
         if (GetComponentInParent<Fourth_Skill>().enemies.Contains(other.gameObject) && 
-            other.gameObject.GetComponent<Enemy>().getDeadStatus())
+            other.gameObject.GetComponent<HP>().defeat)
         {
             GetComponentInParent<Fourth_Skill>().enemies.Remove(other.gameObject);
         }

@@ -111,7 +111,12 @@ public class GameUI : MonoBehaviour
         {
             enemyUI.SetActive(true);
             enemyHP.fillAmount = enemy.GetComponent<HP>().currentHP / enemy.GetComponent<HP>().startingHP;
-            enemyInfo.text = $"{enemy.GetComponent<Enemy>().enemyName} - {enemy.GetComponent<Stat>().level}";
+            if (enemy.GetComponent<Enemy>())
+                enemyInfo.text = $"{enemy.GetComponent<Enemy>().enemyName} - {enemy.GetComponent<Stat>().level}";
+            else
+            {
+                enemyInfo.text = $"{enemy.GetComponent<WizardEnemy>().enemyName} - {enemy.GetComponent<Stat>().level}";
+            }
         }
         else enemyUI.SetActive(false);
     }

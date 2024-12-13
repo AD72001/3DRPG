@@ -46,7 +46,7 @@ public class CharacterCombat : MonoBehaviour
 
     private bool InRange()
     {
-        return Vector3.Distance(transform.position, opponent.transform.position) < range;
+        return Vector3.Distance(transform.position, opponent.transform.position) <= range;
     }
 
     void DamageOpponent()

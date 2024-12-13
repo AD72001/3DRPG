@@ -31,7 +31,12 @@ public class First_Skill : Skill
                     new Vector3(enemy.transform.position.x, enemy.transform.position.y + 2f, enemy.transform.position.z),
                     Quaternion.identity);
                 enemy.GetComponent<HP>().TakeDamage(DamageCalculator());
-                enemy.GetComponent<Enemy>().getStun(first_stun_dur);
+                if (enemy.GetComponent<Enemy>()) 
+                    enemy.GetComponent<Enemy>().getStun(first_stun_dur);
+                else
+                {
+                    enemy.GetComponent<WizardEnemy>().getStun(first_stun_dur);
+                }
             }
         }
 

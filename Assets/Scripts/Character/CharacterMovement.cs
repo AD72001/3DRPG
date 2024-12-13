@@ -100,7 +100,7 @@ public class CharacterMovement : MonoBehaviour
 
             if (hit.collider.CompareTag("Enemy"))
             {
-                if (hit.collider.gameObject.GetComponent<Enemy>().getDeadStatus())
+                if (hit.collider.gameObject.GetComponent<HP>().defeat)
                     return;
 
                 isAttacking = true;

@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
-        exp = GetComponent<Stat>().level * 20;
+        exp = GetComponent<Stat>().level * 5;
         player = GameObject.FindGameObjectWithTag("Player");
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
