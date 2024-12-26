@@ -18,7 +18,9 @@ MonoBehaviour:
   description: A low-price iron armor. Provides little defense for the user.
   data:
     name: Iron Armor
-    Id: 2
+    Id: 19
+    buyCost: 100
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

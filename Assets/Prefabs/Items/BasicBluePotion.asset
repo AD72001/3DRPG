@@ -19,7 +19,9 @@ MonoBehaviour:
     MP when consumed."
   data:
     name: Blue Potion
-    Id: 6
+    Id: 3
+    buyCost: 12
+    sellCost: 0
     statBonus: []
     regenValues:
     - regenType: 1

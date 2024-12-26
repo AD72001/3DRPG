@@ -18,7 +18,9 @@ MonoBehaviour:
   description: Common iron sword. Provides little offense and defense for the user.
   data:
     name: Iron Sword
-    Id: 8
+    Id: 25
+    buyCost: 100
+    sellCost: 0
     statBonus:
     - attribute: 0
       value: 0

@@ -14,6 +14,7 @@ TagManager:
   - PlayerCollision
   - EnemySpawner
   - SavePoint
+  - NPC
   layers:
   - Default
   - TransparentFX

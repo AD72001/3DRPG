@@ -49,6 +49,8 @@ public class Item
 {
     public string name;
     public int Id = -1;
+    public int buyCost;
+    public int sellCost;
     public ItemBonusAttribute[] statBonus;
     public ItemRegenValue[] regenValues;
 
@@ -58,25 +60,28 @@ public class Item
         Id = -1;
     }
 
-    public Item(ItemObject _item)
+    public Item(ItemObject _itemObject)
     {
-        name = _item.name;
-        Id = _item.data.Id;
+        name = _itemObject.name;
+        Id = _itemObject.data.Id;
 
-        statBonus = new ItemBonusAttribute[_item.data.statBonus.Length];
-        regenValues = new ItemRegenValue[_item.data.regenValues.Length];
+        statBonus = new ItemBonusAttribute[_itemObject.data.statBonus.Length];
+        regenValues = new ItemRegenValue[_itemObject.data.regenValues.Length];
 
         for (int i = 0; i < statBonus.Length; i++)
         {
-            statBonus[i] = new ItemBonusAttribute(_item.data.statBonus[i].min, _item.data.statBonus[i].max);
-            statBonus[i].attribute = _item.data.statBonus[i].attribute;
+            statBonus[i] = new ItemBonusAttribute(_itemObject.data.statBonus[i].min, _itemObject.data.statBonus[i].max);
+            statBonus[i].attribute = _itemObject.data.statBonus[i].attribute;
         }
 
         for (int i = 0; i < regenValues.Length; i++)
         {
-            regenValues[i] = new ItemRegenValue(_item.data.regenValues[i].value);
-            regenValues[i].regenType = _item.data.regenValues[i].regenType;
+            regenValues[i] = new ItemRegenValue(_itemObject.data.regenValues[i].value);
+            regenValues[i].regenType = _itemObject.data.regenValues[i].regenType;
         }
+
+        buyCost = _itemObject.data.buyCost;
+        sellCost = buyCost * 7 / 10;
     }
 }
 

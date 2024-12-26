@@ -22,7 +22,9 @@ MonoBehaviour:
     great defense for the user.'
   data:
     name: Golden Helmet
-    Id: 5
+    Id: 15
+    buyCost: 350
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

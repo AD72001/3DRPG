@@ -19,6 +19,8 @@ MonoBehaviour:
   data:
     name: Common Boots
     Id: 4
+    buyCost: 15
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

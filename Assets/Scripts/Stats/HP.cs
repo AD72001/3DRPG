@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HP : MonoBehaviour
 {
@@ -45,18 +46,16 @@ public class HP : MonoBehaviour
 
             currentHP = Mathf.Clamp(currentHP - _dmg, 0, startingHP);
 
-            if (gameObject.CompareTag("Player"))
-            {
-                Skill.isUsingSkill = false;
-                CharacterMovement.isAttacking = false;
-            }
-
             if (currentHP > 0)
             {
                 StartCoroutine(Invulnerable());
             }
             else
             {
+                if (gameObject.CompareTag("Player"))
+                {
+                    gameObject.GetComponent<NavMeshAgent>().isStopped=true;
+                }
                 PlayerDead();
             }
         }

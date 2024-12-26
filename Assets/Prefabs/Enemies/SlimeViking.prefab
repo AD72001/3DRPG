@@ -277,10 +277,11 @@ GameObject:
   - component: {fileID: 1172833048384845162}
   - component: {fileID: 824324358881555309}
   - component: {fileID: 3161151952060981383}
-  - component: {fileID: 2335959036955524197}
   - component: {fileID: 4706055280025235553}
   - component: {fileID: 2030836844958930797}
   - component: {fileID: 6433714807890605152}
+  - component: {fileID: 884593366305173408}
+  - component: {fileID: 2082458696248391148}
   m_Layer: 0
   m_Name: SlimeViking
   m_TagString: Enemy
@@ -352,26 +353,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.23, z: 0}
---- !u!114 &2335959036955524197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7461379804078157623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60147133b7f0c94e972d1230ba1c31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyName: Slime
-  activeRange: 20
-  detectRange: 5
-  attackRange: 1.3
-  speed: 4
-  exp: 0
-  playerInAttackRange: {fileID: 0}
-  attackCD: 1
 --- !u!114 &4706055280025235553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +423,51 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!114 &884593366305173408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461379804078157623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f329857053e9514ea05ce0589692508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: Armed Slime
+  activeRange: 20
+  detectRange: 5
+  attackRange: 1.3
+  speed: 4
+  exp: 0
+  cash: 0
+  playerInAttackRange: {fileID: 0}
+  attackCD: 1
+  attackTimer: Infinity
+--- !u!136 &2082458696248391148
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461379804078157623}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.33
+  m_Height: 0.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &8353768098118364512
 GameObject:
   m_ObjectHideFlags: 0

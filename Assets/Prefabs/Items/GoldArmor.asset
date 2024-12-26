@@ -23,6 +23,8 @@ MonoBehaviour:
   data:
     name: Golden Armor
     Id: 12
+    buyCost: 400
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

@@ -19,6 +19,8 @@ MonoBehaviour:
   data:
     name: Apple
     Id: 0
+    buyCost: 10
+    sellCost: 0
     statBonus: []
     regenValues:
     - regenType: 0

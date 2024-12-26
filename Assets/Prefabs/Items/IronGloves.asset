@@ -19,7 +19,9 @@ MonoBehaviour:
     and offense for the user."
   data:
     name: Iron Gloves
-    Id: 4
+    Id: 21
+    buyCost: 85
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

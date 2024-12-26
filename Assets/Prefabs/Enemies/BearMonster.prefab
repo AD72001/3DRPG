@@ -1179,6 +1179,7 @@ GameObject:
   - component: {fileID: 6940033027203406874}
   - component: {fileID: 3120544381495692148}
   - component: {fileID: 4913778750139201337}
+  - component: {fileID: 8787603551956882535}
   m_Layer: 0
   m_Name: BearMonster
   m_TagString: Enemy
@@ -1269,8 +1270,10 @@ MonoBehaviour:
   attackRange: 2
   speed: 5
   exp: 0
+  cash: 0
   playerInAttackRange: {fileID: 0}
   attackCD: 2
+  attackTimer: Infinity
   attackRateSelect: 0.4
   mod_str: 1
   stunDuration: 1
@@ -1344,6 +1347,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!136 &8787603551956882535
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399653771704480724}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.78
+  m_Height: 1.86
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!1 &6474125914127163477
 GameObject:
   m_ObjectHideFlags: 0

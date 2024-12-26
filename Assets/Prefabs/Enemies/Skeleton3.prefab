@@ -1089,10 +1089,11 @@ GameObject:
   - component: {fileID: 4125931862240296289}
   - component: {fileID: 4642483383362053162}
   - component: {fileID: 7463238115499336032}
-  - component: {fileID: 533786368969540780}
   - component: {fileID: 3385860475971891191}
   - component: {fileID: 3847231426915019773}
   - component: {fileID: 6572943064225020123}
+  - component: {fileID: 2197305017632239902}
+  - component: {fileID: 8103326832057166759}
   m_Layer: 0
   m_Name: Skeleton3
   m_TagString: Enemy
@@ -1167,26 +1168,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &533786368969540780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7840928827935741240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60147133b7f0c94e972d1230ba1c31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyName: Skeleton
-  activeRange: 20
-  detectRange: 6
-  attackRange: 1.2
-  speed: 3
-  exp: 0
-  playerInAttackRange: {fileID: 0}
-  attackCD: 2
 --- !u!114 &3385860475971891191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,6 +1242,51 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!114 &2197305017632239902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7840928827935741240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f329857053e9514ea05ce0589692508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: Dusty Skeleton
+  activeRange: 20
+  detectRange: 6
+  attackRange: 1.2
+  speed: 3
+  exp: 0
+  cash: 0
+  playerInAttackRange: {fileID: 0}
+  attackCD: 2
+  attackTimer: Infinity
+--- !u!136 &8103326832057166759
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7840928827935741240}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!1 &7884563372781259252
 GameObject:
   m_ObjectHideFlags: 0

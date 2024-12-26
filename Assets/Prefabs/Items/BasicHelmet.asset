@@ -19,6 +19,8 @@ MonoBehaviour:
   data:
     name: Common Helmet
     Id: 6
+    buyCost: 16
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

@@ -20,6 +20,8 @@ MonoBehaviour:
   data:
     name: Straight Sword
     Id: 10
+    buyCost: 20
+    sellCost: 0
     statBonus:
     - attribute: 0
       value: 0

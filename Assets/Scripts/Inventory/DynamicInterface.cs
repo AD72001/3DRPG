@@ -12,13 +12,12 @@ public class DynamicInterface : UserInterface
     public int columnNumber;
 
     public StaticInterface equipmentUI;
-    public GameObject player;
 
     public override void CreateSlots() 
     {
         slotDisplayed = new Dictionary<GameObject, InventorySlot>();
 
-        for (int i = 0; i < inventory.GetSlots.Length; i++)
+        for (int i = 0; i < thisInventory.GetSlots.Length; i++)
         {
             var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
@@ -30,15 +29,21 @@ public class DynamicInterface : UserInterface
             AddEvent(obj, EventTriggerType.EndDrag, delegate{ OnDragEnd(obj); });
             AddEvent(obj, EventTriggerType.Drag, delegate{ OnDragging(obj); });
 
-            inventory.GetSlots[i].slotDisplayed = obj;
+            thisInventory.GetSlots[i].slotDisplayed = obj;
 
-            slotDisplayed.Add(obj, inventory.GetSlots[i]);
+            slotDisplayed.Add(obj, thisInventory.GetSlots[i]);
         }
     }
 
     public override void OnClick(GameObject obj)
     {
         if (slotDisplayed[obj].ItemObject == null) return;
+
+        if (MerchantInterface.isShopping)
+        {
+            SellItem(obj);
+            return;
+        }
 
         switch (slotDisplayed[obj].ItemObject.type)
         {
@@ -50,6 +55,17 @@ public class DynamicInterface : UserInterface
             default:
                 EquipItem(obj);
                 break;
+        }
+    }
+
+    public void SellItem(GameObject obj)
+    {
+        slotDisplayed[obj].AddAmount(-1);
+        player.GetComponent<CharacterInventory>().AddCash(slotDisplayed[obj].item.sellCost);
+
+        if (slotDisplayed[obj].amount <= 0)
+        {
+            slotDisplayed[obj].RemoveItem();
         }
     }
 
@@ -76,17 +92,17 @@ public class DynamicInterface : UserInterface
 
     public void EquipItem(GameObject obj)
     {
-        for (int i = 0; i < equipmentUI.inventory.GetSlots.Length; i++)
+        for (int i = 0; i < equipmentUI.thisInventory.GetSlots.Length; i++)
         {
             InventorySlot tempSlot = AvailableSlotSameType(slotDisplayed[obj].ItemObject);
             if (tempSlot != null)
             {
-                inventory.SwapItem(slotDisplayed[obj], tempSlot);
+                thisInventory.SwapItem(slotDisplayed[obj], tempSlot);
                 break;
             }
-            else if (equipmentUI.inventory.GetSlots[i].CanPlaceInSlot(slotDisplayed[obj].ItemObject))
+            else if (equipmentUI.thisInventory.GetSlots[i].CanPlaceInSlot(slotDisplayed[obj].ItemObject))
             {
-                inventory.SwapItem(slotDisplayed[obj], equipmentUI.inventory.GetSlots[i]);
+                thisInventory.SwapItem(slotDisplayed[obj], equipmentUI.thisInventory.GetSlots[i]);
                 break;
             }
         }
@@ -94,12 +110,12 @@ public class DynamicInterface : UserInterface
 
     public InventorySlot AvailableSlotSameType(ItemObject _itemObject)
     {
-        for (int i = 0; i < equipmentUI.inventory.GetSlots.Length; i++)
+        for (int i = 0; i < equipmentUI.thisInventory.GetSlots.Length; i++)
         {
-            if (equipmentUI.inventory.GetSlots[i].CanPlaceInSlot(_itemObject) 
-            && equipmentUI.inventory.GetSlots[i].ItemObject == null)
+            if (equipmentUI.thisInventory.GetSlots[i].CanPlaceInSlot(_itemObject) 
+            && equipmentUI.thisInventory.GetSlots[i].ItemObject == null)
             {
-                return equipmentUI.inventory.GetSlots[i];
+                return equipmentUI.thisInventory.GetSlots[i];
             }
         }
         return null;

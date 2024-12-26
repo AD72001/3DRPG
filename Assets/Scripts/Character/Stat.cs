@@ -19,7 +19,7 @@ public class Stat : MonoBehaviour
     public int baseInt;
 
     // Bonus Stats
-    public Attribute[] attributes;
+    public Attribute[] attributes; // Str Def Vit Int 0 1 2 3
 
     private void Awake() {
         if (threshold == 0)
@@ -172,9 +172,9 @@ public class Stat : MonoBehaviour
     {
         if (_slot == null) return;
 
-        if (_slot.parent == null || _slot.parent.inventory == null) return;
+        if (_slot.parent == null || _slot.parent.thisInventory == null) return;
 
-        switch (_slot.parent.inventory.type)
+        switch (_slot.parent.thisInventory.type)
         {
             case InventoryType.Inventory:
                 break;
@@ -207,9 +207,9 @@ public class Stat : MonoBehaviour
     {
         if (_slot == null) return;
 
-        if (_slot.parent == null || _slot.parent.inventory == null) return;
+        if (_slot.parent == null || _slot.parent.thisInventory == null) return;
 
-        switch (_slot.parent.inventory.type)
+        switch (_slot.parent.thisInventory.type)
         {
             case InventoryType.Inventory:
                 break;

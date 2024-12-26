@@ -20,6 +20,8 @@ MonoBehaviour:
   data:
     name: Common Scroll
     Id: 8
+    buyCost: 10
+    sellCost: 0
     statBonus:
     - attribute: 2
       value: 0

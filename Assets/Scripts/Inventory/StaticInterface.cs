@@ -12,7 +12,7 @@ public class StaticInterface : UserInterface
     {
         slotDisplayed = new Dictionary<GameObject, InventorySlot>();
 
-        for (int i = 0; i < inventory.GetSlots.Length; i++)
+        for (int i = 0; i < thisInventory.GetSlots.Length; i++)
         {
             var obj = slots[i];
 
@@ -23,9 +23,9 @@ public class StaticInterface : UserInterface
             AddEvent(obj, EventTriggerType.EndDrag, delegate{ OnDragEnd(obj); });
             AddEvent(obj, EventTriggerType.Drag, delegate{ OnDragging(obj); });
 
-            inventory.GetSlots[i].slotDisplayed = obj;
+            thisInventory.GetSlots[i].slotDisplayed = obj;
 
-            slotDisplayed.Add(obj, inventory.GetSlots[i]);
+            slotDisplayed.Add(obj, thisInventory.GetSlots[i]);
         }
     }
 
@@ -37,11 +37,11 @@ public class StaticInterface : UserInterface
 
     public void DeEquipItem(GameObject obj)
     {
-        for (int i = 0; i < inventoryUI.inventory.GetSlots.Length; i++)
+        for (int i = 0; i < inventoryUI.thisInventory.GetSlots.Length; i++)
         {
-            if (inventoryUI.inventory.GetSlots[i].ItemObject == null) 
+            if (inventoryUI.thisInventory.GetSlots[i].ItemObject == null) 
             {
-                inventory.SwapItem(slotDisplayed[obj], inventoryUI.inventory.GetSlots[i]);
+                thisInventory.SwapItem(slotDisplayed[obj], inventoryUI.thisInventory.GetSlots[i]);
                 return;
             }
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BearEnemy : Enemy
+public class BearEnemy : MeleeEnemy
 {
     [SerializeField] private float attackRateSelect = 0.4f;
     private float attackRate;
@@ -54,7 +54,7 @@ public class BearEnemy : Enemy
         return animator.GetBool("attack_01") || animator.GetBool("attack_02");
     }
 
-    public override float DamageCalculator()
+    protected override float DamageCalculator()
     {
         return GetComponent<Stat>().GetStr() * mod_str;
     }

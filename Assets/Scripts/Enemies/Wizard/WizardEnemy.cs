@@ -1,24 +1,16 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WizardEnemy: MonoBehaviour
+public class WizardEnemy: Enemy
 {
-    // Player Component
-    protected GameObject player;
-
-    // Enemy Stat
-    public string enemyName;
     [SerializeField] private float safeRange;
-    private int exp;
 
     [SerializeField] private Transform[] safePoints;
     private int safePointIndex = 0;
-
-    private float stunTime = 0;
     
     // Skills Rate
-    [SerializeField] private float attackRateSelect = 0.5f;
-    private float attackRate;
+    [SerializeField] private float skillRate = 0.5f;
+    [SerializeField] private float attackRate;
 
     // Skills effect
     [SerializeField] private GameObject spell1;
@@ -27,64 +19,36 @@ public class WizardEnemy: MonoBehaviour
 
     // Cooldown
     [SerializeField] private float cd1;
-    private float timer1 = Mathf.Infinity;
+    [SerializeField] private float timer1 = Mathf.Infinity;
     [SerializeField] private float cd2;
-    private float timer2 = Mathf.Infinity;
+    [SerializeField] private float timer2 = Mathf.Infinity;
 
     bool isFleeing = false;
-    bool isAttacking = false;
-    bool isDead = false;
     public bool active = false;
 
     // Component
-    private CharacterController controller;
     private NavMeshAgent agent;
-    private Animator animator;
-
-    private MouseUI mouseUI;
-
     
-    void Start()
+    protected override void Start()
     {
-        exp = GetComponent<Stat>().level * 5;
-
-        player = GameObject.FindGameObjectWithTag("Player");
-        //controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        base.Start();
         agent = GetComponent<NavMeshAgent>();
-        mouseUI = GameObject.FindGameObjectWithTag("CursorUI").GetComponent<MouseUI>();
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         timer1 += Time.deltaTime;
         timer2 += Time.deltaTime;
 
-        if (!active) return;
-
-        if (GetComponent<HP>().defeat)
-        {
-            if (!isDead) 
-                Dead();
-            return;
-        }
-
-        // Stun
-        if (stunTime > 0)
-        {
-            Stun();
-            return;
-        }
-
-        if (InAttackAnimation() || isAttacking)
-        {
-            return;
-        }
+        if (!active || stunTime > 0) return;
 
         //Fleeing if player too close
         if (Vector3.Distance(player.transform.position, transform.position) <= safeRange)
         {
-            isFleeing = true;
+            if (!isAttacking)
+                isFleeing = true;
         }
 
         if (isFleeing)
@@ -94,40 +58,23 @@ public class WizardEnemy: MonoBehaviour
         }
 
         //Attack
-        Attack();
+        if (!isAttacking) Attack();
     }
 
-    // Stun effect
-    public void getStun(float time)
-    {
-        if (GetComponent<HP>().defeat)
-            return;
-        
-        stunTime = time;
-        animator.SetBool("stun", true);
-        isAttacking = false;
-    }
-
-    private void Stun()
-    {
-        stunTime -= Time.deltaTime;
-
-        if (stunTime <= 0)
-        {
-            animator.SetBool("stun", false);
-        }
-    }
-
-    void Flee()
+    private void Flee()
     {
         if (Vector3.Distance(
                 new Vector3(transform.position.x, 0, transform.position.z),
                 new Vector3(safePoints[safePointIndex].position.x, 0, 
-                    safePoints[safePointIndex].position.z)) < 0.2f)
+                    safePoints[safePointIndex].position.z)) < 0.5f)
         {
             animator.SetBool("moving", false);
             isFleeing = false;
             safePointIndex = Mathf.Clamp(safePointIndex+1, 0, safePoints.Length - 1);
+
+            if (safePointIndex >= safePoints.Length-1)
+                safePointIndex = 0;
+
             return;
         }
 
@@ -135,71 +82,34 @@ public class WizardEnemy: MonoBehaviour
         agent.destination = safePoints[safePointIndex].position;
     }
 
-    void Dead()
+    public override void Attack()
     {
-        isDead = true;
-
-        player.GetComponent<Stat>().AddExp(exp);
-        exp = 0;
-
-        player.GetComponent<CharacterCombat>().opponent = null;
-        
-        animator.SetBool("stun", false);
-
-        CharacterMovement.isAttacking = false;
-    }
-
-    public bool getDeadStatus()
-    {
-        return isDead;
-    }
-
-    private void OnMouseOver()
-    {
-        Cursor.SetCursor(mouseUI.mouseOnEnemy, Vector3.zero, CursorMode.Auto);
-    }
-
-    private void OnMouseExit()
-    {
-        Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
-    }
-
-    private void OnMouseDown() {
-        if (!isDead)
-            player.GetComponent<CharacterCombat>().opponent = gameObject;
-    }
-
-    public void FinishAttack()
-    {
-        isAttacking = false;
-        animator.SetBool("attacking", false);
-    }
-
-    public void Attack()
-    {
-        isAttacking = true;
-        animator.SetBool("attacking", true);
-
         attackRate = Random.Range(0.0f, 1.0f);
 
         transform.LookAt(player.transform);
 
-        if (attackRate > attackRateSelect && timer1 >= cd1)
-        {            
-            Attack_01();
-            timer1 = 0;
+        if (attackRate > skillRate)
+        {
+            if (timer1 >= cd1)
+            {            
+                Attack_01();
+                timer1 = 0;
+                return;
+            }
         }
         else if (timer2 >= cd2)
         {
             Attack_02();
             timer2 = 0;
+            return;
         }
-        else
-            Attack_03();
+        
+        Attack_03();
     }
 
     private void Attack_01()
     {
+        isAttacking = true;
         animator.SetTrigger("attack_01");
     }
 
@@ -207,17 +117,21 @@ public class WizardEnemy: MonoBehaviour
     {
         spell1.SetActive(true);
         spell1.transform.position = player.transform.position;
+        animator.SetBool("attacking", true);
 
-        Invoke("FinishAttack_01", spell1.GetComponentInChildren<ParticleSystem>().main.duration);
+        Invoke("FinishAttack_01", spell1.GetComponentInChildren<ParticleSystem>().main.duration*0.8f);
     }
 
     private void FinishAttack_01()
     {
         spell1.SetActive(false);
+        animator.SetBool("attacking", false);
+        isAttacking = false;
     }
 
     private void Attack_02()
-    {
+    {        
+        isAttacking = true;
         animator.SetTrigger("attack_02");
     }
 
@@ -225,17 +139,21 @@ public class WizardEnemy: MonoBehaviour
     {
         spell2.SetActive(true);
         spell2.transform.position = player.transform.position;
+        animator.SetBool("attacking", true);
 
-        Invoke("FinishAttack_02", spell2.GetComponentInChildren<ParticleSystem>().main.duration);
+        Invoke("FinishAttack_02", spell2.GetComponentInChildren<ParticleSystem>().main.duration*0.8f);
     }
 
     private void FinishAttack_02()
     {
         spell2.SetActive(false);
+        animator.SetBool("attacking", false);
+        isAttacking = false;
     }
 
     private void Attack_03()
-    {
+    {        
+        isAttacking = true;
         animator.SetTrigger("attack_03");
     }
 
@@ -243,18 +161,23 @@ public class WizardEnemy: MonoBehaviour
     {
         spell3.SetActive(true);
         spell3.transform.position = player.transform.position;
+        animator.SetBool("attacking", true);
 
-        Invoke("FinishAttack_03", spell3.GetComponentInChildren<ParticleSystem>().main.duration);
+        Invoke("FinishAttack_03", spell3.GetComponentInChildren<ParticleSystem>().main.duration*0.8f);
     }
 
     private void FinishAttack_03()
     {
         spell3.SetActive(false);
+        animator.SetBool("attacking", false);
+        isAttacking = false;
     }
 
-    private bool InAttackAnimation()
+    protected override bool InAttackAnimation()
     {
-        return animator.GetBool("attack_01") || animator.GetBool("attack_02") || animator.GetBool("attack_03");
+        return animator.GetBool("attacking") || 
+            animator.GetBool("attack_01") || 
+            animator.GetBool("attack_02") || 
+            animator.GetBool("attack_03");
     }
-
 }

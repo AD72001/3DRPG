@@ -20,6 +20,8 @@ MonoBehaviour:
   data:
     name: Wooden Shield
     Id: 9
+    buyCost: 20
+    sellCost: 0
     statBonus:
     - attribute: 0
       value: 0

@@ -19,6 +19,8 @@ MonoBehaviour:
   data:
     name: Cloak
     Id: 2
+    buyCost: 30
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

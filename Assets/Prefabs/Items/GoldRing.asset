@@ -22,7 +22,9 @@ MonoBehaviour:
     great offense for the user.'
   data:
     name: Golden Ring
-    Id: 1
+    Id: 16
+    buyCost: 360
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

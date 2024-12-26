@@ -19,6 +19,8 @@ MonoBehaviour:
   data:
     name: Shoulder Pad
     Id: 1
+    buyCost: 20
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

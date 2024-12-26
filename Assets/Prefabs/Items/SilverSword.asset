@@ -22,7 +22,9 @@ MonoBehaviour:
     average offense and defense for the user.'
   data:
     name: Silver Sword
-    Id: 8
+    Id: 34
+    buyCost: 120
+    sellCost: 0
     statBonus:
     - attribute: 0
       value: 0

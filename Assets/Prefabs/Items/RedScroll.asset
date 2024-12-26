@@ -20,6 +20,8 @@ MonoBehaviour:
   data:
     name: Red Scroll
     Id: 27
+    buyCost: 200
+    sellCost: 0
     statBonus:
     - attribute: 2
       value: 0

@@ -96,6 +96,7 @@ public class CharacterMovement : MonoBehaviour
                 isAttacking = false;
                 CharacterCombat.normalAtk = false;
                 position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                return;
             }
 
             if (hit.collider.CompareTag("Enemy"))

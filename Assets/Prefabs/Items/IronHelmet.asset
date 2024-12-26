@@ -19,6 +19,8 @@ MonoBehaviour:
   data:
     name: Iron Helmet
     Id: 22
+    buyCost: 85
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

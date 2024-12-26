@@ -20,6 +20,8 @@ MonoBehaviour:
   data:
     name: Red Potion
     Id: 7
+    buyCost: 12
+    sellCost: 0
     statBonus: []
     regenValues:
     - regenType: 0

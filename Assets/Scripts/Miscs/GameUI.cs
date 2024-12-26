@@ -17,6 +17,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TMP_Text playerLevel_text;
     [SerializeField] private Image playerExp;
     [SerializeField] private TMP_Text playerExp_text;
+    [SerializeField] private TMP_Text playerCash_text;
 
     [Header("Stats UI")]
     [SerializeField] private TMP_Text player_Str;
@@ -34,6 +35,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject inventoryUI;
     [SerializeField] private GameObject equipmentUI;
     [SerializeField] private GameObject itemInfoUI;
+    [SerializeField] private GameObject merchantUI;
 
     [Header("Enemy UI")]
     [SerializeField] private GameObject enemyUI;
@@ -85,10 +87,21 @@ public class GameUI : MonoBehaviour
                 equipmentUI.SetActive(true);
         }
 
-        if (!inventoryUI.activeSelf && !equipmentUI.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
+            equipmentUI.SetActive(false);
+            inventoryUI.SetActive(false);
             itemInfoUI.SetActive(false);
+            
+            foreach (Transform child in merchantUI.transform)
+                child.gameObject.SetActive(false);
+
+            MerchantInterface.isShopping = false;
+            Time.timeScale = 1;
+
         }
+
+        playerCash_text.text = player.GetComponent<CharacterInventory>().GetCash().ToString();;
 
         // Exp UI
         playerLevel_text.text = $"{player.GetComponent<Stat>().level}";

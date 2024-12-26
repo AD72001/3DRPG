@@ -22,7 +22,9 @@ MonoBehaviour:
     little defense and decent offense for the user.'
   data:
     name: Silver Ring
-    Id: 1
+    Id: 32
+    buyCost: 90
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

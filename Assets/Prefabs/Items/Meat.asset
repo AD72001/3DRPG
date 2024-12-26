@@ -18,7 +18,9 @@ MonoBehaviour:
   description: Meat. Regains a decent amount of HP when consumed.
   data:
     name: Meat
-    Id: 0
+    Id: 26
+    buyCost: 20
+    sellCost: 0
     statBonus: []
     regenValues:
     - regenType: 0

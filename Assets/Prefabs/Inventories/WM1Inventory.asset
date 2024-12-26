@@ -1,0 +1,303 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477628d354946ca4585fc1de27321671, type: 3}
+  m_Name: WM1Inventory
+  m_EditorClassIdentifier: 
+  saveLocation: /WM1Inventory.sav
+  container:
+    slots:
+    - allowedTypes: 
+      item:
+        name: SilverArmor
+        Id: 28
+        buyCost: 120
+        sellCost: 84
+        statBonus:
+        - attribute: 1
+          value: 15
+          min: 15
+          max: 19
+        - attribute: 2
+          value: 10
+          min: 8
+          max: 11
+        regenValues: []
+      amount: 1
+    - allowedTypes: 
+      item:
+        name: SilverShield
+        Id: 33
+        buyCost: 120
+        sellCost: 84
+        statBonus:
+        - attribute: 0
+          value: 4
+          min: 4
+          max: 5
+        - attribute: 1
+          value: 17
+          min: 17
+          max: 20
+        - attribute: 2
+          value: 5
+          min: 5
+          max: 6
+        regenValues: []
+      amount: 1
+    - allowedTypes: 
+      item:
+        name: SilverGloves
+        Id: 30
+        buyCost: 80
+        sellCost: 56
+        statBonus:
+        - attribute: 1
+          value: 6
+          min: 5
+          max: 7
+        - attribute: 2
+          value: 5
+          min: 5
+          max: 6
+        - attribute: 0
+          value: 6
+          min: 6
+          max: 7
+        regenValues: []
+      amount: 1
+    - allowedTypes: 
+      item:
+        name: SilverHelmet
+        Id: 31
+        buyCost: 100
+        sellCost: 70
+        statBonus:
+        - attribute: 1
+          value: 6
+          min: 6
+          max: 7
+        - attribute: 2
+          value: 6
+          min: 6
+          max: 7
+        regenValues: []
+      amount: 1
+    - allowedTypes: 
+      item:
+        name: SilverRing
+        Id: 32
+        buyCost: 90
+        sellCost: 63
+        statBonus:
+        - attribute: 1
+          value: 3
+          min: 3
+          max: 4
+        - attribute: 3
+          value: 14
+          min: 10
+          max: 15
+        regenValues: []
+      amount: 1
+    - allowedTypes: 
+      item:
+        name: SilverBoots
+        Id: 29
+        buyCost: 80
+        sellCost: 56
+        statBonus:
+        - attribute: 1
+          value: 5
+          min: 5
+          max: 6
+        - attribute: 2
+          value: 7
+          min: 7
+          max: 9
+        - attribute: 0
+          value: 4
+          min: 4
+          max: 5
+        regenValues: []
+      amount: 1
+    - allowedTypes: 
+      item:
+        name: SilverSword
+        Id: 34
+        buyCost: 120
+        sellCost: 84
+        statBonus:
+        - attribute: 0
+          value: 16
+          min: 15
+          max: 20
+        - attribute: 1
+          value: 10
+          min: 10
+          max: 12
+        regenValues: []
+      amount: 1
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+    - allowedTypes: 
+      item:
+        name: 
+        Id: -1
+        buyCost: 0
+        sellCost: 0
+        statBonus: []
+        regenValues: []
+      amount: 0
+  database: {fileID: 11400000, guid: 883859e6efdb08a43a6976929187c58a, type: 2}
+  type: 2

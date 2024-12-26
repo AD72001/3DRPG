@@ -19,7 +19,9 @@ MonoBehaviour:
     user."
   data:
     name: Iron Boots
-    Id: 3
+    Id: 20
+    buyCost: 80
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

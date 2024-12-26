@@ -19,7 +19,9 @@ MonoBehaviour:
     user."
   data:
     name: Iron Shield
-    Id: 7
+    Id: 24
+    buyCost: 90
+    sellCost: 0
     statBonus:
     - attribute: 0
       value: 0

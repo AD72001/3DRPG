@@ -22,7 +22,9 @@ MonoBehaviour:
     great defense for the user.'
   data:
     name: Golden Shield
-    Id: 7
+    Id: 17
+    buyCost: 420
+    sellCost: 0
     statBonus:
     - attribute: 0
       value: 0

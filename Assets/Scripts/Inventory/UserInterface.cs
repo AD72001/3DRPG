@@ -10,20 +10,22 @@ using UnityEngine.UI;
 public abstract class UserInterface : MonoBehaviour
 {
     public GameObject inventoryPrefab;
-    public InventoryObject inventory;
+    public InventoryObject thisInventory;
     public Dictionary<GameObject, InventorySlot> slotDisplayed = new Dictionary<GameObject, InventorySlot>();
+    public GameObject player;
 
     private void Awake() {
+        player = GameObject.FindGameObjectWithTag("Player");
 
-        for (int i=0; i < inventory.GetSlots.Length; i++) 
+        for (int i=0; i < thisInventory.GetSlots.Length; i++) 
         {
-            inventory.GetSlots[i].parent = this;
-            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
+            thisInventory.GetSlots[i].parent = this;
+            thisInventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
 
         CreateSlots();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate{ OnEnterInventory(gameObject); });
-        AddEvent(gameObject, EventTriggerType.PointerExit, delegate{ OnExitInventory(gameObject); });
+        AddEvent(gameObject, EventTriggerType.PointerExit, delegate{ OnExitInventory(); });
     }
 
     private void OnEnable() {
@@ -82,8 +84,8 @@ public abstract class UserInterface : MonoBehaviour
     {        
         int slotIndex = slotDisplayed.Values.ToList().IndexOf(slotDisplayed[obj]);
         ItemInfoUI.instance.SetInfo(
-            inventory.GetSlots[slotIndex].ItemObject, 
-            inventory.GetSlots[slotIndex].item);
+            thisInventory.GetSlots[slotIndex].ItemObject, 
+            thisInventory.GetSlots[slotIndex].item);
     }
 
 
@@ -122,9 +124,16 @@ public abstract class UserInterface : MonoBehaviour
         // Check if item currently dragged by the mouse is inside an inventory or not
 
         // Remove item
-        if (MouseData.interfaceMouseIsAt == null)
+        if (MouseData.interfaceMouseIsAt == null && !MerchantInterface.isShopping)
         {
             slotDisplayed[obj].RemoveItem();
+            return;
+        }
+
+        if (MerchantInterface.isShopping
+        && MouseData.interfaceMouseIsAt != null
+        && MouseData.interfaceMouseIsAt.GetComponent<MerchantInterface>() != null)
+        {
             return;
         }
 
@@ -132,7 +141,7 @@ public abstract class UserInterface : MonoBehaviour
         {
             InventorySlot slotHoveredData = MouseData.interfaceMouseIsAt.slotDisplayed[MouseData.slotHoveredObj];
 
-            inventory.SwapItem(slotHoveredData, slotDisplayed[obj]);
+            thisInventory.SwapItem(slotHoveredData, slotDisplayed[obj]);
         }
     }
 
@@ -147,9 +156,10 @@ public abstract class UserInterface : MonoBehaviour
     public void OnEnterInventory(GameObject obj)
     {
         MouseData.interfaceMouseIsAt = obj.GetComponent<UserInterface>();
+        MouseData.previousInterface = obj.GetComponent<UserInterface>();
     }
 
-    public void OnExitInventory(GameObject obj)
+    public void OnExitInventory()
     {
         MouseData.interfaceMouseIsAt = null;
     }
@@ -157,6 +167,7 @@ public abstract class UserInterface : MonoBehaviour
 
 public static class MouseData
 {
+    public static UserInterface previousInterface;
     public static UserInterface interfaceMouseIsAt;
     public static GameObject tempItemBeingDragged;
     public static GameObject slotHoveredObj;

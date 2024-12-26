@@ -7,6 +7,7 @@ public enum InventoryType
 {
     Inventory,
     Equipment,
+    Merchant,
     Storage
 }
 
@@ -180,7 +181,7 @@ public class InventorySlot
         get {
             if (item.Id >= 0)
             {
-                return parent.inventory.database.ItemObjects[item.Id];
+                return parent.thisInventory.database.ItemObjects[item.Id];
             }
             return null;
         }

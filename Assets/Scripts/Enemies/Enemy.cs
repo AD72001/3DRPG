@@ -10,31 +10,32 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float activeRange = 40;
     [SerializeField] private float detectRange;
     [SerializeField] private float attackRange;
-    [SerializeField] private float speed;
+    [SerializeField] protected float speed;
     [SerializeField] private int exp;
+    [SerializeField] private int cash;
 
     // Player In Range
     public GameObject playerInAttackRange;
 
-    private float stunTime = 0;
+    protected float stunTime = 0;
 
-    [SerializeField] private float attackCD;
-    private float attackTimer = Mathf.Infinity;
+    [SerializeField] protected float attackCD;
+    [SerializeField] protected float attackTimer = Mathf.Infinity;
 
-    bool isChasing = false;
     protected bool isAttacking = false;
     bool isDead = false;
 
     // Component
-    private CharacterController controller;
+    protected CharacterController controller;
     protected Animator animator;
 
     private MouseUI mouseUI;
 
     
-    void Start()
+    protected virtual void Start()
     {
         exp = GetComponent<Stat>().level * 5;
+        cash = GetComponent<Stat>().level * 20;
         player = GameObject.FindGameObjectWithTag("Player");
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -44,11 +45,14 @@ public class Enemy : MonoBehaviour
     private void OnEnable() {
         isDead = false;
         FinishAttack();
-        exp = GetComponent<Stat>().level * 20;
+        exp = GetComponent<Stat>().level * 5;
+        cash = GetComponent<Stat>().level * 20;
     }
 
-    void Update()
+    protected virtual void Update()
     {
+        attackTimer += Time.deltaTime;
+
         if (GetComponent<HP>().defeat)
         {
             if (!isDead) 
@@ -58,14 +62,7 @@ public class Enemy : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.transform.position) >= activeRange)
         {
-            this.gameObject.SetActive(false);
-            return;
-        }
-
-        if (InAttackAnimation() || isAttacking)
-        {
-            isChasing = false;
-            animator.SetBool("moving", false);
+            gameObject.SetActive(false);
             return;
         }
 
@@ -75,37 +72,6 @@ public class Enemy : MonoBehaviour
             Stun();
             return;
         }
-
-        if (PlayerInRange() && !PlayerInAttackRange())
-        {
-            isChasing = true;
-        }
-        else if (!PlayerInRange())
-        {
-            isChasing = false;
-            isAttacking = false;
-
-            animator.SetBool("moving", false);
-        }
-        
-        if (PlayerInAttackRange() && attackTimer > attackCD)
-        {
-            attackTimer = 0;
-            isChasing = false;
-            animator.SetBool("moving", false);
-            Attack();
-        }
-        else if (!PlayerInAttackRange())
-        {
-            isAttacking = false;
-        }
-
-        if (isChasing)
-        {
-            Chase();
-        }
-
-        attackTimer += Time.deltaTime;
     }
 
     // Stun effect
@@ -141,31 +107,13 @@ public class Enemy : MonoBehaviour
 
     protected bool PlayerInAttackRange()
     {
-        return Vector3.Distance(transform.position, player.transform.position) <= attackRange;
-    }
-
-    void Chase()
-    {
-        animator.SetBool("moving", true);
-        transform.LookAt(player.transform.position);
-        controller.SimpleMove(transform.forward * speed);
+        return Vector3.Distance(transform.position, player.transform.position) <= attackRange + player.GetComponent<CharacterController>().radius;
     }
 
     public virtual void Attack()
-    {
-        isAttacking = true;
-        animator.SetTrigger("meleeAttack");
-    }
+    {}
 
-    void DamagePlayer()
-    {
-        if (PlayerInAttackRange() /* && !Skill.unstoppable */)
-        {
-            player.GetComponent<HP>().TakeDamage(DamageCalculator());
-        }
-    }
-
-    public virtual float DamageCalculator()
+    protected virtual float DamageCalculator()
     {
         return GetComponent<Stat>().GetStr();
     }
@@ -175,7 +123,9 @@ public class Enemy : MonoBehaviour
         isDead = true;
 
         player.GetComponent<Stat>().AddExp(exp);
+        player.GetComponent<CharacterInventory>().AddCash(cash);
         exp = 0;
+        cash = 0;
 
         player.GetComponent<CharacterCombat>().opponent = null;
         

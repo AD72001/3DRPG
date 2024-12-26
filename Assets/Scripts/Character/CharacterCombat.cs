@@ -46,6 +46,9 @@ public class CharacterCombat : MonoBehaviour
 
     private bool InRange()
     {
+        if (opponent.GetComponent<CapsuleCollider>())
+            return Vector3.Distance(transform.position, opponent.transform.position) 
+            <= (range + opponent.GetComponent<CapsuleCollider>().radius);
         return Vector3.Distance(transform.position, opponent.transform.position) <= range;
     }
 

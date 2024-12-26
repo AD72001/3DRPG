@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9e44a2fe1b4e94b859ac1b654e17e9, type: 3}
   m_Name: GoldBoots
   m_EditorClassIdentifier: 
-  iconDisplay: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
+  iconDisplay: {fileID: 21300000, guid: df95a0b1df0881490b60fc952665938a, type: 3}
   type: 3
   stackable: 0
   description: 'Golden boots worn by elite knights or rich nobles.
@@ -23,6 +23,8 @@ MonoBehaviour:
   data:
     name: Golden Boots
     Id: 13
+    buyCost: 350
+    sellCost: 0
     statBonus:
     - attribute: 1
       value: 0

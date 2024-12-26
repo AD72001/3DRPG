@@ -22,7 +22,9 @@ MonoBehaviour:
     great offense and average defense for the user.'
   data:
     name: Golden Sword
-    Id: 8
+    Id: 18
+    buyCost: 420
+    sellCost: 0
     statBonus:
     - attribute: 0
       value: 0

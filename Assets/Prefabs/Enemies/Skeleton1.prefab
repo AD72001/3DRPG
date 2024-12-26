@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4725523357982280012}
   - component: {fileID: 8836713979668978960}
-  - component: {fileID: 5287483106548960150}
   - component: {fileID: 7598950407301015617}
   - component: {fileID: 2458008892113490878}
   - component: {fileID: 4269049387558743114}
   - component: {fileID: -4705864419819565618}
+  - component: {fileID: 8026181920301305520}
+  - component: {fileID: 4600871885609453619}
   m_Layer: 6
   m_Name: Skeleton1
   m_TagString: Enemy
@@ -63,26 +64,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5287483106548960150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513096579959544907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60147133b7f0c94e972d1230ba1c31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyName: Skeleton
-  activeRange: 20
-  detectRange: 6
-  attackRange: 1.2
-  speed: 3
-  exp: 0
-  playerInAttackRange: {fileID: 0}
-  attackCD: 1
 --- !u!143 &7598950407301015617
 CharacterController:
   m_ObjectHideFlags: 0
@@ -179,6 +160,51 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!114 &8026181920301305520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513096579959544907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f329857053e9514ea05ce0589692508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: Skeleton
+  activeRange: 20
+  detectRange: 6
+  attackRange: 1.2
+  speed: 3
+  exp: 0
+  cash: 0
+  playerInAttackRange: {fileID: 0}
+  attackCD: 1
+  attackTimer: Infinity
+--- !u!136 &4600871885609453619
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513096579959544907}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!1 &813817012999772201
 GameObject:
   m_ObjectHideFlags: 0
