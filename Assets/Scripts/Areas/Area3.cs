@@ -26,7 +26,7 @@ public class Area3 : MonoBehaviour
     }
 
     private void Update() {
-        Debug.Log(magicCircle1.getDeadStatus() +  " " + magicCircle2.getDeadStatus() + " " + isClosing + " " + isLocked);
+        // Debug.Log(magicCircle1.getDeadStatus() +  " " + magicCircle2.getDeadStatus() + " " + isClosing + " " + isLocked);
         if (isLocked)
         {
             if (isClosing && Vector3.Distance(transform.position, closePoint.transform.position) < 0.2f)

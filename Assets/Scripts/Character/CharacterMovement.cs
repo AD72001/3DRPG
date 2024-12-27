@@ -92,10 +92,21 @@ public class CharacterMovement : MonoBehaviour
 
             if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy"))
             {
-                animator.SetBool("moving", true);
+
+                NavMeshPath navMeshPath = new NavMeshPath();
                 isAttacking = false;
                 CharacterCombat.normalAtk = false;
-                position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+                if (agent.CalculatePath(new Vector3(hit.point.x, hit.point.y, hit.point.z), navMeshPath) 
+                    && navMeshPath.status == NavMeshPathStatus.PathComplete)
+                {
+                    if (PathLength(navMeshPath) > 20)
+                        return;
+                        
+                    position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                    SetPosition(position);
+                }
+
                 return;
             }
 
@@ -113,14 +124,37 @@ public class CharacterMovement : MonoBehaviour
 
     public void MoveToPosition()
     {
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    animator.SetBool("moving", false);
+                }
+            }
+        }
+
         if (Vector3.Distance(new Vector3(position.x, 0, position.z), 
             new Vector3(transform.position.x, 0, transform.position.z)) > 0.1f)
         {
             agent.destination = position;
+            animator.SetBool("moving", true);
         }
         else {
             animator.SetBool("moving", false);
         }
+    }
+
+    private float PathLength(NavMeshPath path) {
+        if (path.corners.Length < 2)
+            return 0;
+        
+        float length = 0.0F;
+        for (int i = 1; i < path.corners.Length; i++) {
+            length += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+        }
+        return length;
     }
 
     public void SetPosition(Vector3 target)

@@ -33058,7 +33058,7 @@ Transform:
   m_GameObject: {fileID: 947306527}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.540497, y: -0.8901508, z: -1.21698}
+  m_LocalPosition: {x: -19.540497, y: -0.8901508, z: -1.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74891,6 +74891,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1049128795181737432, guid: 3123dfb98c229d3499df7779eb1133c6, type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1525785717076458413, guid: 3123dfb98c229d3499df7779eb1133c6, type: 3}
       propertyPath: range
       value: 1.51
@@ -76437,7 +76441,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 5.736316}
+  m_LocalScale: {x: 1, y: 4, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 947306528}
@@ -76456,6 +76460,7 @@ GameObject:
   - component: {fileID: 598009155513082035}
   - component: {fileID: 4188960574362527084}
   - component: {fileID: 4188960574362527083}
+  - component: {fileID: 4188960574362527085}
   m_Layer: 0
   m_Name: RockGate
   m_TagString: Untagged
@@ -76533,7 +76538,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.22
-  m_Radius: 0.1
+  m_Radius: 0.08
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -76560,6 +76565,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0532092, y: 1.125648, z: 0.95477796}
   m_Center: {x: 0.03947358, y: 0.557436, z: 0.0110286465}
+--- !u!208 &4188960574362527085
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188960574360271786}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.527, y: 0.563, z: 0.47700003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.039, y: 0.55700004, z: 0.011000001}
+  m_TimeToStationary: 0.5
 --- !u!4 &4386270604183484532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1801006053922006105, guid: 2f0c074e94cdb9b4f82cfc1d864a1c10, type: 3}
