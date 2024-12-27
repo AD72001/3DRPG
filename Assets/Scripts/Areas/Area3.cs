@@ -13,6 +13,7 @@ public class Area3 : MonoBehaviour
     public StaticEnemy magicCircle2;
 
     private void OnTriggerEnter(Collider other) {
+        Debug.Log("Triggered");
         if (other.CompareTag("Player"))
         {
             //Player enter -> activate boss
@@ -51,12 +52,12 @@ public class Area3 : MonoBehaviour
 
     private void CloseGate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, closePoint.transform.position, Time.deltaTime*20.0f);
+        gate.transform.position = Vector3.MoveTowards(gate.transform.position, closePoint.transform.position, Time.deltaTime*10.0f);
     }
 
     private void OpenGate()
     {
         Debug.Log("Opening...");
-        transform.position = Vector3.MoveTowards(transform.position, openPoint.transform.position, Time.deltaTime*20.0f);
+        gate.transform.position = Vector3.MoveTowards(gate.transform.position, openPoint.transform.position, Time.deltaTime*1.0f);
     }
 }
