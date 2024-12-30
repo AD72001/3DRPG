@@ -366,7 +366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 0
+  currentHP: 0
   iFramesDuration: 0
+  saveLocation: /HP.sav
   components: []
 --- !u!114 &2030836844958930797
 MonoBehaviour:
@@ -384,9 +386,9 @@ MonoBehaviour:
   saveLocation: /stats.sav
   totalExp: 0
   threshold: 0
-  baseStr: 4
-  baseDef: 5
-  baseVit: 5
+  baseStr: 15
+  baseDef: 25
+  baseVit: 15
   baseInt: 1
   attributes:
   - type: 0
@@ -395,7 +397,7 @@ MonoBehaviour:
       modifiedValue: 0
   - type: 1
     value:
-      baseValue: 5
+      baseValue: 10
       modifiedValue: 0
   - type: 2
     value:

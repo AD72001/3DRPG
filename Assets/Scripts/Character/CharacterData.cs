@@ -11,6 +11,9 @@ public class CharacterData : MonoBehaviour
         // Save Stats
         GetComponent<Stat>().Save();
 
+        // Save HP
+        GetComponent<HP>().Save();
+
         // Save Position
         GetComponent<CharacterMovement>().SaveData();
 
@@ -27,8 +30,11 @@ public class CharacterData : MonoBehaviour
         GetComponent<CharacterInventory>().equipment.Load();
         GetComponent<CharacterInventory>().inventory.Load();
 
-        // Load Stats0
+        // Load Stats
         GetComponent<Stat>().Load();
+
+        // Load HP
+        GetComponent<HP>().Load();
 
         // Load Position
         GetComponent<CharacterMovement>().LoadData();
@@ -38,6 +44,7 @@ public class CharacterData : MonoBehaviour
 
         // Load Unique enemy states
         EnemyManager.instance.LoadData();
+        EnemyFactory.instance.DeactiveAll();
     }
     
     private void Update() {

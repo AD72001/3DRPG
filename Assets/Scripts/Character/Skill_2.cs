@@ -1,15 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class Second_Skill : Skill
+public class Skill_2 : Skill
 {
     [SerializeField] private float duration;
 
     /* Second Skill: Buff user's stats, 
-        Modifier: def, str, vit
+        Modifier: def, str, vit, int
         Duration: 10 seconds
         CD: 20 seconds
     */
+    public string GetDescription()
+    {
+        string desc = $"Increase player's strength, defense for a duration of {duration} seconds, restore {HPRestoreCalculator()} HP.";
+        return desc;
+    }
+
     protected override void UseSkill()
     {
         isUsingSkill = true;
@@ -39,11 +45,16 @@ public class Second_Skill : Skill
 
         GetComponent<Stat>().AddStr(amountStr);
         GetComponent<Stat>().AddDef(amountDef);
-        GetComponent<HP>().AddHP(mod_vit);
+        GetComponent<HP>().AddHP(HPRestoreCalculator());
 
         yield return new WaitForSeconds(duration);
 
         GetComponent<Stat>().AddStr(-amountStr);
         GetComponent<Stat>().AddDef(-amountDef);
+    }
+
+    private float HPRestoreCalculator()
+    {
+        return GetComponent<Stat>().GetVit()*mod_vit + GetComponent<Stat>().GetInt()*mod_int;
     }
 }

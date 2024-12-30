@@ -30,6 +30,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Image skill_2;
     [SerializeField] private Image skill_3;
     [SerializeField] private Image skill_4;
+    [SerializeField] private GameObject skillPanel;
 
     [Header("Inventory UI")]
     [SerializeField] private GameObject inventoryUI;
@@ -41,6 +42,12 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject enemyUI;
     [SerializeField] private TMP_Text enemyInfo;
     [SerializeField] private Image enemyHP;
+
+    public static GameUI instance {get; private set; }
+
+    private void Awake() {
+        if (instance == null) instance = this;
+    }
 
     void Start()
     {
@@ -109,14 +116,14 @@ public class GameUI : MonoBehaviour
         playerExp_text.text = $"{player.GetComponent<Stat>().totalExp} / {player.GetComponent<Stat>().threshold}";
 
         // Skills CD
-        skill_1.fillAmount = (player.GetComponent<First_Skill>().CD - player.GetComponent<First_Skill>().timer) 
-            / player.GetComponent<First_Skill>().CD;
-        skill_2.fillAmount = (player.GetComponent<Second_Skill>().CD - player.GetComponent<Second_Skill>().timer) 
-            / player.GetComponent<Second_Skill>().CD;
-        skill_3.fillAmount = (player.GetComponent<Third_Skill>().CD - player.GetComponent<Third_Skill>().timer) 
-            / player.GetComponent<Third_Skill>().CD;
-        skill_4.fillAmount = (player.GetComponent<Fourth_Skill>().CD - player.GetComponent<Fourth_Skill>().timer) 
-            / player.GetComponent<Fourth_Skill>().CD;
+        skill_1.fillAmount = (player.GetComponent<Skill_1>().CD - player.GetComponent<Skill_1>().timer) 
+            / player.GetComponent<Skill_1>().CD;
+        skill_2.fillAmount = (player.GetComponent<Skill_2>().CD - player.GetComponent<Skill_2>().timer) 
+            / player.GetComponent<Skill_2>().CD;
+        skill_3.fillAmount = (player.GetComponent<Skill_3>().CD - player.GetComponent<Skill_3>().timer) 
+            / player.GetComponent<Skill_3>().CD;
+        skill_4.fillAmount = (player.GetComponent<Skill_4>().CD - player.GetComponent<Skill_4>().timer) 
+            / player.GetComponent<Skill_4>().CD;
 
         enemy = player.GetComponent<CharacterCombat>().opponent;
 
@@ -132,5 +139,26 @@ public class GameUI : MonoBehaviour
             }
         }
         else enemyUI.SetActive(false);
+    }
+
+    public void ShowSkillInfo(int skillIndex)
+    {
+        Image skillUI;
+        switch (skillIndex)
+        {
+            case 2: skillUI = skill_2; break;
+            case 3: skillUI = skill_3; break;
+            case 4: skillUI = skill_4; break;
+            default: skillUI = skill_1; break;
+        }
+        
+        skillPanel.SetActive(true);
+        SkillInfoShow.instance.SetPosition(skillUI);
+        SkillInfoShow.instance.SetText(skillIndex);
+    }
+
+    public void Deactivate(GameObject deactivateUI)
+    {
+        deactivateUI.SetActive(false);
     }
 }

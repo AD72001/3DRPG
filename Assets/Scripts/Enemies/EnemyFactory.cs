@@ -25,4 +25,12 @@ public class EnemyFactory: MonoBehaviour
 
         return null;
     }
+
+    public void DeactiveAll()
+    {
+        foreach (GameObject enemy in enemyList)
+        {
+            enemy.SetActive(false);
+        }
+    }
 }

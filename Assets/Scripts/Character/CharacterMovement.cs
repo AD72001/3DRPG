@@ -28,6 +28,12 @@ public class CharacterMovement : MonoBehaviour
 
     public string saveLocation = "/position.sav";
 
+    public static CharacterMovement instance {get; private set; }
+
+    private void Awake() {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -221,6 +227,8 @@ public class CharacterMovement : MonoBehaviour
             float.Parse(savePosition[2]));
 
         SetPosition(transform.position);
+        effectOnClick.transform.position = transform.position;
+        effectOnClick.SetActive(false);
     }
 
     // Change Later

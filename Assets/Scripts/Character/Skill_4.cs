@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Fourth_Skill : Skill {
+public class Skill_4 : Skill {
     [SerializeField] private float duration;
 
     /*
@@ -10,6 +10,12 @@ public class Fourth_Skill : Skill {
         Stun Duration: 0.5 seconds
         CD: 25 seconds
     */
+    public string GetDescription()
+    {
+        string desc = $"Spin the blade for {duration} seconds, deal damage each seconds to enemies in range.";
+        return desc;
+    }
+
     protected override void UseSkill()
     {
         isUsingSkill = true;

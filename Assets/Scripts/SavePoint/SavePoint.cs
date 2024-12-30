@@ -6,8 +6,11 @@ public class SavePoint : MonoBehaviour
     private int clickCount = 0;
     public float delayClickTime;
     private float delayClickTimer;
+    public static SavePoint instance {get; private set;}
+    private Vector3 currentCheckPointPosition;
 
     private void Awake() {
+        instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -27,6 +30,7 @@ public class SavePoint : MonoBehaviour
         if (clickCount >= 2)
         {
             Debug.Log($"Save at {transform.position}");
+            currentCheckPointPosition = transform.position;
             player.gameObject.GetComponentInParent<CharacterData>().SaveData();
             clickCount = 0;
         }
@@ -36,7 +40,13 @@ public class SavePoint : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerCollision"))
         {
             Debug.Log($"Save at: {transform.position}");
+            currentCheckPointPosition = transform.position;
             other.gameObject.GetComponentInParent<CharacterData>().SaveData();
         }
+    }
+
+    public Vector3 GetSavePosition()
+    {
+        return currentCheckPointPosition;
     }
 }

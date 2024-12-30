@@ -1022,7 +1022,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 5
+  currentHP: 0
   iFramesDuration: 1
+  saveLocation: /HP.sav
   components: []
 --- !u!114 &2804671334786722523
 MonoBehaviour:
@@ -1040,9 +1042,9 @@ MonoBehaviour:
   saveLocation: /enemy_stats.sav
   totalExp: 0
   threshold: 0
-  baseStr: 2
+  baseStr: 5
   baseDef: 20
-  baseVit: 10
+  baseVit: 15
   baseInt: 1
   attributes:
   - type: 0
@@ -1051,11 +1053,11 @@ MonoBehaviour:
       modifiedValue: 0
   - type: 1
     value:
-      baseValue: 3
+      baseValue: 10
       modifiedValue: 0
   - type: 2
     value:
-      baseValue: 3
+      baseValue: 5
       modifiedValue: 0
 --- !u!195 &1007311285670800558
 NavMeshAgent:

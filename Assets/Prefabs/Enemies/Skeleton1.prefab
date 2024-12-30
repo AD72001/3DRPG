@@ -103,7 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 5
-  iFramesDuration: 1
+  currentHP: 0
+  iFramesDuration: 0
+  saveLocation: /HP.sav
   components: []
 --- !u!114 &4269049387558743114
 MonoBehaviour:

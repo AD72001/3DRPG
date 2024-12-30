@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +9,7 @@ public class HP : MonoBehaviour
 {
     // HP
     [SerializeField] public float startingHP;
-    [NonSerialized] public float currentHP;
+    public float currentHP;
 
     // IFrames
     [SerializeField] private float iFramesDuration;
@@ -17,6 +19,7 @@ public class HP : MonoBehaviour
     // [SerializeField] private AudioClip defeatSound;
 
     private Animator animator;
+    public string saveLocation = "/HP.sav";
     
     public bool defeat {get; private set;}
     private bool isInvul = false;
@@ -42,7 +45,7 @@ public class HP : MonoBehaviour
         if (!isInvul)
         {
             // Limit current HP to 0 -> maximum
-            _dmg = _dmg * 100 / (100 + GetComponent<Stat>().GetDef()*1.0f);
+            _dmg = _dmg * 70 / (70 + GetComponent<Stat>().GetDef()*1.0f);
 
             currentHP = Mathf.Clamp(currentHP - _dmg, 0, startingHP);
 
@@ -74,8 +77,6 @@ public class HP : MonoBehaviour
             }
 
             animator.SetTrigger("dead");
-
-            // Deactivate();
         }
     }
 
@@ -113,9 +114,11 @@ public class HP : MonoBehaviour
         animator.ResetTrigger("dead");
         animator.Play("Idle");
 
-        StartCoroutine(Invulnerable());
-
         defeat = false;
+        gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+        gameObject.transform.position = SavePoint.instance.GetSavePosition();
+        gameObject.GetComponent<CharacterMovement>().SetPosition(gameObject.transform.position);
+        EnemyFactory.instance.DeactiveAll();
     }
 
     // IFrames function
@@ -135,5 +138,27 @@ public class HP : MonoBehaviour
     private void Deactivate()
     {
         gameObject.SetActive(false);
+    }
+
+    [ContextMenu("Save")]
+    public void Save()
+    {
+        string saveData = JsonUtility.ToJson(this, true);
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(string.Concat(Application.persistentDataPath, saveLocation));
+        bf.Serialize(file, saveData);
+        file.Close();
+    }
+
+    [ContextMenu("Load")]
+    public void Load()
+    {
+        if (File.Exists(string.Concat(Application.persistentDataPath, saveLocation)))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(string.Concat(Application.persistentDataPath, saveLocation), FileMode.Open);
+            JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+            file.Close();
+        }
     }
 }

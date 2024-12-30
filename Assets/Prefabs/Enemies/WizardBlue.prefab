@@ -802,8 +802,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 0
+  currentHP: 0
   iFramesDuration: 0
-  components: []
+  saveLocation: /HP.sav
+  components:
+  - {fileID: 1137487179697698096}
+  - {fileID: 7536704838835934490}
 --- !u!114 &6395399226756592427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -821,9 +825,9 @@ MonoBehaviour:
   totalExp: 0
   threshold: 0
   baseStr: 10
-  baseDef: 101
-  baseVit: 50
-  baseInt: 200
+  baseDef: 100
+  baseVit: 100
+  baseInt: 100
   attributes:
   - type: 0
     value:
@@ -831,15 +835,15 @@ MonoBehaviour:
       modifiedValue: 0
   - type: 1
     value:
-      baseValue: 0
+      baseValue: 20
       modifiedValue: 0
   - type: 2
     value:
-      baseValue: 0
+      baseValue: 10
       modifiedValue: 0
   - type: 3
     value:
-      baseValue: 0
+      baseValue: 50
       modifiedValue: 0
 --- !u!195 &7536704838835934490
 NavMeshAgent:

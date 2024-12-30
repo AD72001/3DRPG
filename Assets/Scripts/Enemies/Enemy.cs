@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float attackTimer = Mathf.Infinity;
 
     protected bool isAttacking = false;
-    bool isDead = false;
+    protected bool isDead = false;
 
     // Component
     protected CharacterController controller;

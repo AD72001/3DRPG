@@ -383,10 +383,10 @@ MonoBehaviour:
   saveLocation: /stats.sav
   totalExp: 0
   threshold: 0
-  baseStr: 4
-  baseDef: 5
-  baseVit: 5
-  baseInt: 1
+  baseStr: 10
+  baseDef: 20
+  baseVit: 10
+  baseInt: 5
   attributes:
   - type: 0
     value:
@@ -397,6 +397,10 @@ MonoBehaviour:
       baseValue: 0
       modifiedValue: 0
   - type: 2
+    value:
+      baseValue: 0
+      modifiedValue: 0
+  - type: 3
     value:
       baseValue: 0
       modifiedValue: 0
@@ -413,7 +417,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 0
+  currentHP: 0
   iFramesDuration: 0
+  saveLocation: /HP.sav
   components: []
 --- !u!195 &269442814421590483
 NavMeshAgent:

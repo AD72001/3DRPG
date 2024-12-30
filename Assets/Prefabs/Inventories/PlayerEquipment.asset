@@ -19,6 +19,8 @@ MonoBehaviour:
       item:
         name: 
         Id: -1
+        buyCost: 0
+        sellCost: 0
         statBonus: []
         regenValues: []
       amount: 0
@@ -26,6 +28,8 @@ MonoBehaviour:
       item:
         name: 
         Id: -1
+        buyCost: 0
+        sellCost: 0
         statBonus: []
         regenValues: []
       amount: 0
@@ -33,27 +37,55 @@ MonoBehaviour:
       item:
         name: 
         Id: -1
+        buyCost: 0
+        sellCost: 0
         statBonus: []
         regenValues: []
       amount: 0
     - allowedTypes: 04000000
       item:
-        name: 
-        Id: -1
-        statBonus: []
+        name: BasicShield
+        Id: 9
+        buyCost: 20
+        sellCost: 14
+        statBonus:
+        - attribute: 0
+          value: 1
+          min: 1
+          max: 2
+        - attribute: 1
+          value: 9
+          min: 8
+          max: 10
+        - attribute: 2
+          value: 2
+          min: 2
+          max: 3
         regenValues: []
-      amount: 0
+      amount: 1
     - allowedTypes: 04000000
       item:
-        name: 
-        Id: -1
-        statBonus: []
+        name: BasicSword
+        Id: 10
+        buyCost: 20
+        sellCost: 14
+        statBonus:
+        - attribute: 0
+          value: 7
+          min: 5
+          max: 8
+        - attribute: 1
+          value: 3
+          min: 2
+          max: 4
         regenValues: []
-      amount: 0
+      amount: 1
     - allowedTypes: 05000000
       item:
         name: 
         Id: -1
+        buyCost: 0
+        sellCost: 0
         statBonus: []
         regenValues: []
       amount: 0
@@ -61,6 +93,8 @@ MonoBehaviour:
       item:
         name: 
         Id: -1
+        buyCost: 0
+        sellCost: 0
         statBonus: []
         regenValues: []
       amount: 0

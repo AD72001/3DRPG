@@ -1454,22 +1454,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f940d6de147d1744aeb9b9d5a12a3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 8
+  level: 12
   saveLocation: /stats.sav
   totalExp: 0
   threshold: 0
-  baseStr: 5
-  baseDef: 15
-  baseVit: 10
+  baseStr: 30
+  baseDef: 40
+  baseVit: 25
   baseInt: 2
   attributes:
   - type: 0
     value:
-      baseValue: 5
+      baseValue: 10
       modifiedValue: 0
   - type: 1
     value:
-      baseValue: 10
+      baseValue: 20
       modifiedValue: 0
   - type: 2
     value:
@@ -1492,7 +1492,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 0
+  currentHP: 0
   iFramesDuration: 0
+  saveLocation: /HP.sav
   components: []
 --- !u!195 &5809255644979365925
 NavMeshAgent:

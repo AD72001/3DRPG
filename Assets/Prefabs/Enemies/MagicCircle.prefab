@@ -14755,8 +14755,8 @@ MonoBehaviour:
   totalExp: 0
   threshold: 0
   baseStr: 0
-  baseDef: 20
-  baseVit: 20
+  baseDef: 40
+  baseVit: 50
   baseInt: 30
   attributes:
   - type: 0

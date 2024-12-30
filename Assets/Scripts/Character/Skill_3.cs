@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Third_Skill : Skill
+public class Skill_3 : Skill
 {
     [SerializeField] private float stun_dur;
 
@@ -10,6 +10,12 @@ public class Third_Skill : Skill
         Stun Duration: 1 seconds
         CD: 10 seconds
     */
+    public string GetDescription()
+    {
+        string desc = $"Jump up and slam the ground, deal {DamageCalculator()} damage and stun the enemies in range for {stun_dur} second(s).";
+        return desc;
+    }
+
     protected override void UseSkill()
     {
         isUsingSkill = true;

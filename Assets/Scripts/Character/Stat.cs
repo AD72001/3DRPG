@@ -81,22 +81,22 @@ public class Stat : MonoBehaviour
 
     void UnlockSkill()
     {
-        if (level >= GetComponent<Second_Skill>().unlockLevel 
-            && GetComponent<Second_Skill>().enabled == false)
+        if (level >= GetComponent<Skill_2>().unlockLevel 
+            && GetComponent<Skill_2>().enabled == false)
         {
-            GetComponent<Second_Skill>().UnlockSkill();
+            GetComponent<Skill_2>().UnlockSkill();
         }
 
-        if (level >= GetComponent<Third_Skill>().unlockLevel 
-            && GetComponent<Third_Skill>().enabled == false)
+        if (level >= GetComponent<Skill_3>().unlockLevel 
+            && GetComponent<Skill_3>().enabled == false)
         {
-            GetComponent<Third_Skill>().UnlockSkill();
+            GetComponent<Skill_3>().UnlockSkill();
         }
 
-        if (level >= GetComponent<Fourth_Skill>().unlockLevel 
-            && GetComponent<Fourth_Skill>().enabled == false)
+        if (level >= GetComponent<Skill_4>().unlockLevel 
+            && GetComponent<Skill_4>().enabled == false)
         {
-            GetComponent<Fourth_Skill>().UnlockSkill();
+            GetComponent<Skill_4>().UnlockSkill();
         }
     }
 

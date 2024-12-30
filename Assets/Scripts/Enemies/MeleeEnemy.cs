@@ -8,7 +8,7 @@ public class MeleeEnemy : Enemy
     protected override void Update() {
         
         base.Update();
-        if (stunTime > 0)
+        if (stunTime > 0 || isDead)
             return;
             
         if (InAttackAnimation() || isAttacking)

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class First_Skill : Skill
+public class Skill_1 : Skill
 {
-    [SerializeField] private float first_stun_dur;
+    [SerializeField] private float stun_dur;
 
     
     /* First Skill: Melee Attack to stun, 
@@ -10,6 +10,13 @@ public class First_Skill : Skill
         Stun Duration: 1 seconds
         CD: 5 seconds
     */
+    public string GetDescription()
+    {
+        string desc = $"Slash forward, deal {DamageCalculator()} damage to enemy in range, stun them for {stun_dur} second(s)";
+        return desc;
+    }
+
+
     protected override void UseSkill()
     {
         isUsingSkill = true;
@@ -32,11 +39,7 @@ public class First_Skill : Skill
                     Quaternion.identity);
                 enemy.GetComponent<HP>().TakeDamage(DamageCalculator());
                 if (enemy.GetComponent<Enemy>()) 
-                    enemy.GetComponent<Enemy>().getStun(first_stun_dur);
-                else
-                {
-                    enemy.GetComponent<WizardEnemy>().getStun(first_stun_dur);
-                }
+                    enemy.GetComponent<Enemy>().getStun(stun_dur);
             }
         }
 

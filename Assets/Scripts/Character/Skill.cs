@@ -79,7 +79,7 @@ public class Skill : MonoBehaviour
 
     public void UnlockSkill()
     {
-        this.enabled = true;
+        enabled = true;
         skillUI.SetActive(true);
     }
 }
