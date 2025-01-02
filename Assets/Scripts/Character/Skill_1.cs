@@ -10,12 +10,10 @@ public class Skill_1 : Skill
         Stun Duration: 1 seconds
         CD: 5 seconds
     */
-    public string GetDescription()
-    {
-        string desc = $"Slash forward, deal {DamageCalculator()} damage to enemy in range, stun them for {stun_dur} second(s)";
-        return desc;
+    private void Start() {
+        skillName = "Straight Slash";
+        desc = $"Slash forward, deal {DamageCalculator()} damage to enemy in range, stun them for {stun_dur} second(s)";
     }
-
 
     protected override void UseSkill()
     {
@@ -28,6 +26,11 @@ public class Skill_1 : Skill
         animator.SetTrigger("skill_1");
     }
 
+    void ActivateSkillEffect_1()
+    {
+        SkillEffect();
+    }
+    
     protected override void SkillEffect()
     {
         if (enemies.Count > 0)
@@ -38,8 +41,7 @@ public class Skill_1 : Skill
                     new Vector3(enemy.transform.position.x, enemy.transform.position.y + 2f, enemy.transform.position.z),
                     Quaternion.identity);
                 enemy.GetComponent<HP>().TakeDamage(DamageCalculator());
-                if (enemy.GetComponent<Enemy>()) 
-                    enemy.GetComponent<Enemy>().getStun(stun_dur);
+                enemy.GetComponent<Enemy>().getStun(stun_dur);
             }
         }
 

@@ -10,10 +10,9 @@ public class Skill_4 : Skill {
         Stun Duration: 0.5 seconds
         CD: 25 seconds
     */
-    public string GetDescription()
-    {
-        string desc = $"Spin the blade for {duration} seconds, deal damage each seconds to enemies in range.";
-        return desc;
+    private void Start() {
+        skillName = "Slasing Tornado";
+        desc = $"Spin the blade for {duration} seconds, deal damage each seconds to enemies in range.";
     }
 
     protected override void UseSkill()

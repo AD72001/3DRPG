@@ -29,6 +29,11 @@ public class Merchant : MonoBehaviour
             delayClickTimer = 0;
         }
 
+        if (merchantInventoryUI.activeSelf == false && Time.timeScale < 1)
+        {
+            Time.timeScale = 1;
+        }
+
         delayClickTimer += Time.deltaTime;
     }
 

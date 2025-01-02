@@ -10,10 +10,9 @@ public class Skill_3 : Skill
         Stun Duration: 1 seconds
         CD: 10 seconds
     */
-    public string GetDescription()
-    {
-        string desc = $"Jump up and slam the ground, deal {DamageCalculator()} damage and stun the enemies in range for {stun_dur} second(s).";
-        return desc;
+    private void Start() {
+        skillName = "Heroic Slam";
+        desc = $"Jump up and slam the ground, deal {DamageCalculator()} damage and stun the enemies in range for {stun_dur} second(s).";
     }
 
     protected override void UseSkill()

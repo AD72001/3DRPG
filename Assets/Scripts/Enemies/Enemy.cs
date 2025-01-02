@@ -130,6 +130,7 @@ public class Enemy : MonoBehaviour
         player.GetComponent<CharacterCombat>().opponent = null;
         
         animator.SetBool("stun", false);
+        Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
 
         CharacterMovement.isAttacking = false;
     }
@@ -141,7 +142,8 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseOver()
     {
-        Cursor.SetCursor(mouseUI.mouseOnEnemy, Vector3.zero, CursorMode.Auto);
+        if (!isDead)
+            Cursor.SetCursor(mouseUI.mouseOnEnemy, Vector3.zero, CursorMode.Auto);
     }
 
     private void OnMouseExit()

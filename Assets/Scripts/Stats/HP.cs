@@ -58,13 +58,15 @@ public class HP : MonoBehaviour
                 if (gameObject.CompareTag("Player"))
                 {
                     gameObject.GetComponent<NavMeshAgent>().isStopped=true;
+                    CharacterMovement.isAttacking=false;
+                    gameObject.GetComponent<CharacterCombat>().opponent = null;
                 }
-                PlayerDead();
+                Dead();
             }
         }
     }
 
-    public void PlayerDead()
+    public void Dead()
     {
         if (!defeat)
         {
@@ -108,17 +110,30 @@ public class HP : MonoBehaviour
             if (comp != null)
                 comp.enabled = true;
         }
+        gameObject.SetActive(false);
 
+        Debug.Log("GameObject: " + gameObject.transform.position);
         AddHP(startingHP);
 
         animator.ResetTrigger("dead");
         animator.Play("Idle");
 
         defeat = false;
-        gameObject.GetComponent<NavMeshAgent>().isStopped = false;
-        gameObject.transform.position = SavePoint.instance.GetSavePosition();
-        gameObject.GetComponent<CharacterMovement>().SetPosition(gameObject.transform.position);
+        Skill.isUsingSkill = false;
+
+        Vector3 spawnLocation = gameObject.GetComponent<CharacterMovement>().currentCheckPointPosition;
+
+        gameObject.transform.position = spawnLocation;
+
+        gameObject.GetComponent<CharacterMovement>().SetPosition(spawnLocation);
+        Physics.SyncTransforms();
+        Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
         EnemyFactory.instance.DeactiveAll();
+
+        gameObject.SetActive(true);
+
+        gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+        gameObject.GetComponent<NavMeshAgent>().nextPosition = spawnLocation;
     }
 
     // IFrames function

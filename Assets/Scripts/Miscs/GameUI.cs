@@ -86,6 +86,12 @@ public class GameUI : MonoBehaviour
                 inventoryUI.SetActive(true);
         }
 
+        foreach (Transform child in merchantUI.transform)
+        {
+            if (child.gameObject.activeSelf)
+                inventoryUI.SetActive(true);
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (equipmentUI.activeSelf)
@@ -153,7 +159,6 @@ public class GameUI : MonoBehaviour
         }
         
         skillPanel.SetActive(true);
-        SkillInfoShow.instance.SetPosition(skillUI);
         SkillInfoShow.instance.SetText(skillIndex);
     }
 

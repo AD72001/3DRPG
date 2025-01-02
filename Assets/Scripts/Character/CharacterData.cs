@@ -32,6 +32,7 @@ public class CharacterData : MonoBehaviour
 
         // Load Stats
         GetComponent<Stat>().Load();
+        CheckSkillUnlocked();
 
         // Load HP
         GetComponent<HP>().Load();
@@ -45,6 +46,18 @@ public class CharacterData : MonoBehaviour
         // Load Unique enemy states
         EnemyManager.instance.LoadData();
         EnemyFactory.instance.DeactiveAll();
+    }
+
+    private void CheckSkillUnlocked()
+    {
+        int level = GetComponent<Stat>().level;
+
+        if (level >= 2)
+            GetComponent<Skill_2>().enabled = true;
+        if (level >= 3)
+            GetComponent<Skill_3>().enabled = true;
+        if (level >= 6)
+            GetComponent<Skill_4>().enabled = true;
     }
     
     private void Update() {

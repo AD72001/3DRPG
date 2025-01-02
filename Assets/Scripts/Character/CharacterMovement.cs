@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     private MouseUI mouseUI;
     public float turnSpeed;
     Vector3 position;
+    [SerializeField] public Vector3 currentCheckPointPosition;
     public string[] savePosition;
     private NavMeshAgent agent;
 
@@ -45,6 +46,9 @@ public class CharacterMovement : MonoBehaviour
 
         if (position == Vector3.zero) 
             position = transform.position;
+
+        if (currentCheckPointPosition == Vector3.zero)
+            currentCheckPointPosition = transform.position;
         
         animator = GetComponent<Animator>();
         mouseUI = GameObject.FindGameObjectWithTag("CursorUI").GetComponent<MouseUI>();
@@ -70,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
             animator.SetBool("moving", false);
             return;
         }
-
+        
         if (Input.GetMouseButtonDown(1))
         {
             // Locate the location of the click -> move or attack
@@ -137,6 +141,7 @@ public class CharacterMovement : MonoBehaviour
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
                     animator.SetBool("moving", false);
+                    return;
                 }
             }
         }

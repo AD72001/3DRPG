@@ -18,6 +18,10 @@ public class Skill : MonoBehaviour
     public float CD;
     public float timer;
 
+    // Skill information
+    [SerializeField] protected string skillName;
+    [SerializeField] protected string desc;
+
     // Keycode
     [SerializeField] protected KeyCode keyCode;
 
@@ -28,7 +32,7 @@ public class Skill : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected GameObject skillUI;
 
-    private void Start() {
+    private void OnEnable() {
         animator = GetComponent<Animator>();
         
         if (GetComponent<Stat>().level < unlockLevel)
@@ -36,10 +40,14 @@ public class Skill : MonoBehaviour
             enabled = false;
             skillUI.SetActive(false);
         }
+        else {
+            enabled = true;
+            skillUI.SetActive(true);
+        }
     }
 
     private void Update() {
-        if (isUsingSkill)
+        if (isUsingSkill || GetComponent<HP>().defeat)
         {
             return;
         }
@@ -68,6 +76,16 @@ public class Skill : MonoBehaviour
 
     protected virtual void UseSkill() {}
     protected virtual void SkillEffect() {}
+
+    public string GetDescription()
+    {
+        return desc;
+    }
+
+    public string GetName()
+    {
+        return skillName;
+    }
 
     protected void FinishSkill()
     {

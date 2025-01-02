@@ -10,10 +10,9 @@ public class Skill_2 : Skill
         Duration: 10 seconds
         CD: 20 seconds
     */
-    public string GetDescription()
-    {
-        string desc = $"Increase player's strength, defense for a duration of {duration} seconds, restore {HPRestoreCalculator()} HP.";
-        return desc;
+    private void Start() {
+        skillName = "Iron Will";
+        desc = $"Increase player's strength, defense for a duration of {duration} seconds, restore {HPRestoreCalculator()} HP.";
     }
 
     protected override void UseSkill()

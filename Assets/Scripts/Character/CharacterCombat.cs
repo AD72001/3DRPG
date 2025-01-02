@@ -17,7 +17,7 @@ public class CharacterCombat : MonoBehaviour
         movement = GetComponent<CharacterMovement>();
         animator = GetComponent<Animator>();
     }
-
+    
     private void FixedUpdate() {
 
         if (CharacterMovement.isAttacking && normalAtk)
