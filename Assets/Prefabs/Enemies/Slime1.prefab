@@ -379,13 +379,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f940d6de147d1744aeb9b9d5a12a3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 4
+  level: 5
   saveLocation: /stats.sav
   totalExp: 0
   threshold: 0
   baseStr: 10
   baseDef: 20
-  baseVit: 10
+  baseVit: 20
   baseInt: 5
   attributes:
   - type: 0
@@ -404,6 +404,7 @@ MonoBehaviour:
     value:
       baseValue: 0
       modifiedValue: 0
+  levelUpSound: {fileID: 0}
 --- !u!114 &2606116031059616229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +420,8 @@ MonoBehaviour:
   startingHP: 0
   currentHP: 0
   iFramesDuration: 0
+  hurtSound: {fileID: 8300000, guid: 905b50fa37b5b904d95d82de522413ab, type: 3}
+  defeatSound: {fileID: 8300000, guid: cd9561f18bac43849b88e2f2db78fdb5, type: 3}
   saveLocation: /HP.sav
   components: []
 --- !u!195 &269442814421590483

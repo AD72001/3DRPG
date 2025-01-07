@@ -14697,6 +14697,7 @@ GameObject:
   - component: {fileID: 5490785962872328051}
   - component: {fileID: 7330731670943641501}
   - component: {fileID: 3687970021799215984}
+  - component: {fileID: 2076691444943104985}
   m_Layer: 6
   m_Name: MagicCircle
   m_TagString: Enemy
@@ -14736,7 +14737,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 0
+  currentHP: 0
   iFramesDuration: 0
+  hurtSound: {fileID: 8300000, guid: 905b50fa37b5b904d95d82de522413ab, type: 3}
+  defeatSound: {fileID: 8300000, guid: cd9561f18bac43849b88e2f2db78fdb5, type: 3}
+  saveLocation: /HP.sav
   components: []
 --- !u!114 &7249935697630321420
 MonoBehaviour:
@@ -14755,9 +14760,9 @@ MonoBehaviour:
   totalExp: 0
   threshold: 0
   baseStr: 0
-  baseDef: 40
+  baseDef: 50
   baseVit: 50
-  baseInt: 30
+  baseInt: 40
   attributes:
   - type: 0
     value:
@@ -14775,6 +14780,7 @@ MonoBehaviour:
     value:
       baseValue: 0
       modifiedValue: 0
+  levelUpSound: {fileID: 0}
 --- !u!114 &5490785962872328051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14841,6 +14847,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!143 &2076691444943104985
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6501996321863725875}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7013015554831893284
 GameObject:
   m_ObjectHideFlags: 0

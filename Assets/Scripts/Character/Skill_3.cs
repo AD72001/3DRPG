@@ -32,6 +32,7 @@ public class Skill_3 : Skill
     protected override void SkillEffect()
     {
         Instantiate(effects[0], transform.position, Quaternion.identity);
+        AudioManager.instance.PlaySound(skillSound);
 
         if (enemies.Count > 0)
         {

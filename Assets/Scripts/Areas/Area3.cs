@@ -3,14 +3,32 @@ using UnityEngine;
 public class Area3 : MonoBehaviour
 {
     [SerializeField] private GameObject boss;
+    private GameObject player;
+    
+    // Gate
     [SerializeField] private GameObject gate;
     public GameObject closePoint;
     public GameObject openPoint;
+
+    // Goal point
+    [SerializeField] private GameObject goal;
+
+    // Status
+    private bool bossAlive = true;
     private bool isClosing = true;
     private bool isLocked = false;
 
+    // Locked Conditions
     public StaticEnemy magicCircle1;
     public StaticEnemy magicCircle2;
+
+    // Victory
+    [SerializeField] private GameObject victoryUI;
+    [SerializeField] private AudioClip victorySound;
+
+    private void Awake() {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
@@ -26,7 +44,18 @@ public class Area3 : MonoBehaviour
     }
 
     private void Update() {
-        // Debug.Log(magicCircle1.getDeadStatus() +  " " + magicCircle2.getDeadStatus() + " " + isClosing + " " + isLocked);
+
+        if (boss.GetComponent<HP>().defeat && bossAlive)
+        {
+            GoalActive();
+            return;
+        }
+
+        if (player.GetComponent<HP>().defeat)
+        {
+            boss.GetComponent<WizardEnemy>().active = false;
+        }
+
         if (isLocked)
         {
             if (isClosing && Vector3.Distance(transform.position, closePoint.transform.position) < 0.2f)
@@ -47,6 +76,14 @@ public class Area3 : MonoBehaviour
             CloseGate();
         else
             OpenGate();
+
+    }
+
+    public void GoalActive()
+    {
+        bossAlive = false;
+
+        goal.SetActive(true);
     }
 
     private void CloseGate()

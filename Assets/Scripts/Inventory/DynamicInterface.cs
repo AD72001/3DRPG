@@ -11,6 +11,11 @@ public class DynamicInterface : UserInterface
     public int y_space_between_items;
     public int columnNumber;
 
+    // Audio
+    [SerializeField] private AudioClip soldSound;
+    [SerializeField] private AudioClip useItemSound;
+    [SerializeField] private AudioClip equipItemSound;
+
     public StaticInterface equipmentUI;
 
     public override void CreateSlots() 
@@ -63,6 +68,8 @@ public class DynamicInterface : UserInterface
         slotDisplayed[obj].AddAmount(-1);
         player.GetComponent<CharacterInventory>().AddCash(slotDisplayed[obj].item.sellCost);
 
+        AudioManager.instance.PlaySound(soldSound);
+
         if (slotDisplayed[obj].amount <= 0)
         {
             slotDisplayed[obj].RemoveItem();
@@ -71,6 +78,8 @@ public class DynamicInterface : UserInterface
 
     public void UseItem(GameObject obj)
     {
+        AudioManager.instance.PlaySound(useItemSound);
+
         for (int i = 0; i < slotDisplayed[obj].item.regenValues.Length; i++)
         {
             if (slotDisplayed[obj].item.regenValues[i].regenType == RegenValues.Health)
@@ -92,6 +101,8 @@ public class DynamicInterface : UserInterface
 
     public void EquipItem(GameObject obj)
     {
+        AudioManager.instance.PlaySound(equipItemSound);
+
         for (int i = 0; i < equipmentUI.thisInventory.GetSlots.Length; i++)
         {
             InventorySlot tempSlot = AvailableSlotSameType(slotDisplayed[obj].ItemObject);

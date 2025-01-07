@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -133,6 +134,11 @@ public class Enemy : MonoBehaviour
         Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
 
         CharacterMovement.isAttacking = false;
+
+        if (gameObject.GetComponent<NavMeshAgent>())
+        {
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+        }
     }
 
     public bool getDeadStatus()

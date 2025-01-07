@@ -24,6 +24,7 @@ public class Skill_1 : Skill
 
         Instantiate(effects[0], range.transform.position, Quaternion.LookRotation(transform.forward));
         animator.SetTrigger("skill_1");
+        AudioManager.instance.PlaySound(skillSound);
     }
 
     void ActivateSkillEffect_1()

@@ -20,7 +20,8 @@ public class Skill_2 : Skill
         isUsingSkill = true;
 
         animator.SetTrigger("skill_2");
-
+        AudioManager.instance.PlaySound(skillSound);
+        
         GameObject initEffect = Instantiate(effects[0], transform.position, Quaternion.identity);
         GameObject shieldEffect = Instantiate(effects[1], transform.position, Quaternion.identity);
 

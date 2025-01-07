@@ -6,7 +6,7 @@ public class ItemSpawner : MonoBehaviour
     private GameObject item;
     [SerializeField] private float activeRange;
     private GameObject player;
-    public bool pickedUp = false;
+    [SerializeField] public bool pickedUp = false;
 
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -29,6 +29,11 @@ public class ItemSpawner : MonoBehaviour
                     item.SetActive(false);
             }
         }
+    }
+
+    public void SetPickedUp(bool status)
+    {
+        pickedUp = status;
     }
 
     private void OnTriggerEnter(Collider other) {

@@ -23,7 +23,7 @@ public class Skill : MonoBehaviour
     [SerializeField] protected string desc;
 
     // Keycode
-    [SerializeField] protected KeyCode keyCode;
+    [SerializeField] public KeyCode keyCode;
 
     // Enemies list
     [SerializeField] public List<GameObject> enemies;
@@ -31,6 +31,9 @@ public class Skill : MonoBehaviour
     // Components
     [SerializeField] protected Animator animator;
     [SerializeField] protected GameObject skillUI;
+
+    // Audio
+    [SerializeField] protected AudioClip skillSound;
 
     private void OnEnable() {
         animator = GetComponent<Animator>();

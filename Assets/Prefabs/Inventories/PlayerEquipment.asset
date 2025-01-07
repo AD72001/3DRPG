@@ -71,7 +71,7 @@ MonoBehaviour:
         sellCost: 14
         statBonus:
         - attribute: 0
-          value: 7
+          value: 5
           min: 5
           max: 8
         - attribute: 1

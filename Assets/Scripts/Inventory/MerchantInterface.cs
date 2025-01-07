@@ -13,7 +13,15 @@ public class MerchantInterface : UserInterface
     public int y_space_between_items;
     public int columnNumber;
 
+    // Audio
+    [SerializeField] private AudioClip purchaseSound;
+
     public static bool isShopping;
+
+    public void OnDisable() {
+        isShopping = false;
+        PauseMenuUI.isPausing = false;
+    }
 
     public override void CreateSlots() 
     {
@@ -47,10 +55,10 @@ public class MerchantInterface : UserInterface
 
     public void BuyItem(GameObject obj)
     {
-        Debug.Log($"{player.GetComponent<CharacterInventory>().GetCash()} - {slotDisplayed[obj].item.buyCost}");
         // Buy the item
         if (player.GetComponent<CharacterInventory>().GetCash() >= slotDisplayed[obj].item.buyCost)
         {
+            AudioManager.instance.PlaySound(purchaseSound);
             player.GetComponent<CharacterInventory>().AddCash(slotDisplayed[obj].item.buyCost*-1);
             player.GetComponent<CharacterInventory>().inventory.AddItem(new Item(slotDisplayed[obj].ItemObject), 1);
         }

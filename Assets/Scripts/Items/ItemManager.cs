@@ -16,8 +16,26 @@ public class ItemManager : MonoBehaviour
     }
 
     private void Start() {
-        itemList = GameObject.FindGameObjectsWithTag("Item");
+        GetItemList();
         values = new bool[itemList.Length];
+    }
+
+    private void GetItemList()
+    {
+        int l = GameObject.FindGameObjectsWithTag("ItemSpawner").Length;
+        itemList = new GameObject[l];
+
+        string nameByIndex;
+
+        for (int index = 0; index < l; index++)
+        {
+            if (index < 10)
+                nameByIndex = "ItemSpawner_0" + index.ToString();
+            else
+                nameByIndex = "ItemSpawner_" + index.ToString();
+
+            itemList[index] = GameObject.Find(nameByIndex);
+        }
     }
 
     public void SaveData()
@@ -49,11 +67,13 @@ public class ItemManager : MonoBehaviour
             file.Close();
         }
 
+        GetItemList();
+
         int index = 0;
 
         foreach (GameObject item in itemList)
         {
-            item.SetActive(!values[index]);
+            item.GetComponent<ItemSpawner>().SetPickedUp(!values[index]);
             index++;
         }
     }

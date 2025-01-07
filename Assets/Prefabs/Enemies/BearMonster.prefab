@@ -1197,7 +1197,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 638, y: 0, z: 381.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1202240785174913301}
@@ -1266,7 +1266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Bear Man
   activeRange: 30
-  detectRange: 30
+  detectRange: 20
   attackRange: 2
   speed: 5
   exp: 0
@@ -1292,6 +1292,8 @@ MonoBehaviour:
   startingHP: 0
   currentHP: 0
   iFramesDuration: 0
+  hurtSound: {fileID: 8300000, guid: 905b50fa37b5b904d95d82de522413ab, type: 3}
+  defeatSound: {fileID: 8300000, guid: cd9561f18bac43849b88e2f2db78fdb5, type: 3}
   saveLocation: /HP.sav
   components: []
 --- !u!114 &3120544381495692148
@@ -1311,8 +1313,8 @@ MonoBehaviour:
   totalExp: 0
   threshold: 0
   baseStr: 30
-  baseDef: 100
-  baseVit: 50
+  baseDef: 150
+  baseVit: 100
   baseInt: 10
   attributes:
   - type: 0
@@ -1331,6 +1333,7 @@ MonoBehaviour:
     value:
       baseValue: 0
       modifiedValue: 0
+  levelUpSound: {fileID: 0}
 --- !u!195 &4913778750139201337
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -29,9 +29,15 @@ public class Merchant : MonoBehaviour
             delayClickTimer = 0;
         }
 
-        if (merchantInventoryUI.activeSelf == false && Time.timeScale < 1)
+        if (!IsShopping() && !PauseMenuUI.isPausing)
         {
             Time.timeScale = 1;
+        }
+
+        if (IsShopping())
+        {
+            Time.timeScale = 0;
+            PauseMenuUI.isPausing = true;
         }
 
         delayClickTimer += Time.deltaTime;
@@ -46,8 +52,19 @@ public class Merchant : MonoBehaviour
             clickCount = 0;
             // Pause game
             Time.timeScale = 0;
+            PauseMenuUI.isPausing = true;
             // Open Inventory UI of merchant and player
             merchantInventoryUI.SetActive(true);
         }
+    }
+
+    private bool IsShopping()
+    {
+        foreach (Transform child in merchantInventoryUI.transform.parent)
+        {
+            if (child.gameObject.activeSelf) return true;
+        }
+
+        return false;
     }
 }

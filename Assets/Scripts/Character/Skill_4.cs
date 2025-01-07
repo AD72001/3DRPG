@@ -21,6 +21,7 @@ public class Skill_4 : Skill {
         unstoppable = true;
 
         animator.SetBool("skill_4", true);
+        AudioManager.instance.PlaySound(skillSound);
 
         StartCoroutine(UseSkillAsync());
     }

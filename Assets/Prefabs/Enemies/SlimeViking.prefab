@@ -368,6 +368,8 @@ MonoBehaviour:
   startingHP: 0
   currentHP: 0
   iFramesDuration: 0
+  hurtSound: {fileID: 8300000, guid: 905b50fa37b5b904d95d82de522413ab, type: 3}
+  defeatSound: {fileID: 8300000, guid: cd9561f18bac43849b88e2f2db78fdb5, type: 3}
   saveLocation: /HP.sav
   components: []
 --- !u!114 &2030836844958930797
@@ -386,9 +388,9 @@ MonoBehaviour:
   saveLocation: /stats.sav
   totalExp: 0
   threshold: 0
-  baseStr: 15
-  baseDef: 25
-  baseVit: 15
+  baseStr: 10
+  baseDef: 30
+  baseVit: 25
   baseInt: 1
   attributes:
   - type: 0
@@ -397,12 +399,13 @@ MonoBehaviour:
       modifiedValue: 0
   - type: 1
     value:
-      baseValue: 10
+      baseValue: 20
       modifiedValue: 0
   - type: 2
     value:
-      baseValue: 5
+      baseValue: 10
       modifiedValue: 0
+  levelUpSound: {fileID: 0}
 --- !u!195 &6433714807890605152
 NavMeshAgent:
   m_ObjectHideFlags: 0

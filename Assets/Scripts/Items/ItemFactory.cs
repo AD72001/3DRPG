@@ -26,4 +26,12 @@ public class ItemFactory: MonoBehaviour
 
         return null;
     }
+
+    public void DeactiveAll()
+    {
+        foreach (GameObject item in itemList)
+        {
+            item.SetActive(false);
+        }
+    }
 }

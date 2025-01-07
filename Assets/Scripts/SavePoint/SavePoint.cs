@@ -6,6 +6,9 @@ public class SavePoint : MonoBehaviour
     private int clickCount = 0;
     public float delayClickTime;
     private float delayClickTimer;
+    [SerializeField] private GameObject saveNotifUI;
+    [SerializeField] private AudioClip saveSound;
+
     public static SavePoint instance {get; private set;}
 
 
@@ -31,6 +34,10 @@ public class SavePoint : MonoBehaviour
         {
             player.GetComponent<CharacterMovement>().currentCheckPointPosition = player.transform.position;
             player.gameObject.GetComponentInParent<CharacterData>().SaveData();
+
+            saveNotifUI.SetActive(true);
+            AudioManager.instance.PlaySound(saveSound);
+
             clickCount = 0;
         }
     }
@@ -39,6 +46,10 @@ public class SavePoint : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerCollision"))
         {
             player.GetComponent<CharacterMovement>().currentCheckPointPosition = player.transform.position;
+
+            saveNotifUI.SetActive(true);
+            AudioManager.instance.PlaySound(saveSound);
+
             other.gameObject.GetComponentInParent<CharacterData>().SaveData();
         }
     }

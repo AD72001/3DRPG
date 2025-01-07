@@ -15,6 +15,9 @@ TagManager:
   - EnemySpawner
   - SavePoint
   - NPC
+  - OnClickEffect
+  - ItemSpawner
+  - Object
   layers:
   - Default
   - TransparentFX

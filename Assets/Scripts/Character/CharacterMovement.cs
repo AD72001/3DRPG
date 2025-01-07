@@ -3,6 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController controller;
     private Animator animator;
 
-    // Effect on click
-    [SerializeField] private GameObject effectOnClick;
+    // Audio
+    [SerializeField] private AudioClip stunSound;
 
     public string saveLocation = "/position.sav";
 
@@ -33,11 +34,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Awake() {
         instance = this;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         controller = GetComponent<CharacterController>();
 
         agent = GetComponent<NavMeshAgent>();
@@ -56,15 +53,17 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        if ((Skill.isUsingSkill && !Skill.unstoppable)
-            || animator.GetBool("stun")
-            || animator.GetBool("dead"))
-        {
-            if (GetComponent<HP>().defeat)
-            {
-                return;
-            }
+        if (Time.timeScale < 1)
+            return;
 
+        if (GetComponent<HP>().defeat)
+        {
+            return;
+        }
+
+        if ((Skill.isUsingSkill && !Skill.unstoppable)
+            || animator.GetBool("stun"))
+        {
             if (stunTime > 0)
             {
                 Stun();
@@ -95,14 +94,16 @@ public class CharacterMovement : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (Physics.Raycast(ray, out hit, 2000))
         {
-            effectOnClick.SetActive(true);
-            effectOnClick.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+            GameUI.instance.ActivateClickEffect();
+            GameUI.instance.SetClickEffectPosition(new Vector3(hit.point.x, hit.point.y, hit.point.z));
 
             if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy"))
             {
-
                 NavMeshPath navMeshPath = new NavMeshPath();
                 isAttacking = false;
                 CharacterCombat.normalAtk = false;
@@ -171,7 +172,7 @@ public class CharacterMovement : MonoBehaviour
     public void SetPosition(Vector3 target)
     {
         position = target;
-        agent.destination = position;
+        if (agent) agent.destination = position;
     }
 
     // Stun effect
@@ -180,6 +181,7 @@ public class CharacterMovement : MonoBehaviour
         if (GetComponent<HP>().defeat) return;
         
         stunTime = time;
+        AudioManager.instance.PlaySound(stunSound);
         animator.SetBool("stun", true);
     }
 
@@ -231,9 +233,20 @@ public class CharacterMovement : MonoBehaviour
             float.Parse(savePosition[1]),
             float.Parse(savePosition[2]));
 
-        SetPosition(transform.position);
-        effectOnClick.transform.position = transform.position;
-        effectOnClick.SetActive(false);
+
+        GameUI.instance.SetClickEffectPosition(transform.position);
+        GameUI.instance.DeactivateClickEffect();
+
+        Skill.isUsingSkill = false;
+
+        Physics.SyncTransforms();
+        Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
+
+        gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+        gameObject.GetComponent<NavMeshAgent>().nextPosition = transform.position;
+        gameObject.GetComponent<NavMeshAgent>().destination = transform.position;
+
+        position = transform.position;
     }
 
     // Change Later

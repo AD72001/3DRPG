@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private bool active = true;
     [SerializeField] private bool unique = false;
     [SerializeField] private bool spawned = false;
-    private bool defeat = false;
+    [SerializeField] private bool defeat = false;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update() {
         if (!active) 
         {
-            gameObject.SetActive(false);
+            return;
         }
 
         if (enemy != null) defeat = enemy.GetComponent<HP>().defeat;
@@ -54,6 +54,11 @@ public class EnemySpawner : MonoBehaviour
             return false;
 
         return (spawnTimer >= spawnRate) && (Vector3.Distance(transform.position, player.transform.position) <= spawnDistance);
+    }
+
+    public void SetActiveStatus(bool status)
+    {
+        active = status;
     }
 
     public bool ReActiveCondition()

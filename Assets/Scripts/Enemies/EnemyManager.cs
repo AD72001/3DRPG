@@ -15,18 +15,35 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void Start() {
-        enemyList = GameObject.FindGameObjectsWithTag("EnemySpawner");
+        GetEnemyList();
         values = new bool[enemyList.Length];
+    }
+
+    private void GetEnemyList()
+    {
+        int l = GameObject.FindGameObjectsWithTag("EnemySpawner").Length;
+        enemyList = new GameObject[l];
+
+        string nameByIndex;
+
+        for (int index = 0; index < l; index++)
+        {
+            if (index < 10)
+                nameByIndex = "MonsterSpawner_0" + index.ToString();
+            else
+                nameByIndex = "MonsterSpawner_" + index.ToString();
+
+            enemyList[index] = GameObject.Find(nameByIndex);
+        }
     }
 
     public void SaveData()
     {
-        values = new bool[enemyList.Length];
-
         int index = 0;
 
         foreach (GameObject enemy in enemyList)
         {
+            if (values[index] == true) continue;
             values[index] = enemy.GetComponent<EnemySpawner>().ReActiveCondition();
             index++;
         }
@@ -48,12 +65,13 @@ public class EnemyManager : MonoBehaviour
             file.Close();
         }
 
+        GetEnemyList();
+        
         int index = 0;
 
         foreach (GameObject enemy in enemyList)
         {
-            Debug.Log($"Load: {values[index]}");
-            enemy.SetActive(!values[index]);
+            enemy.GetComponent<EnemySpawner>().SetActiveStatus(!values[index]);
             index++;
         }
     }

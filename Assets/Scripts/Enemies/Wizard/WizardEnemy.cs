@@ -17,6 +17,11 @@ public class WizardEnemy: Enemy
     [SerializeField] private GameObject spell2;
     [SerializeField] private GameObject spell3;
 
+    // Audio
+    [SerializeField] private AudioClip spell1Sound;
+    [SerializeField] private AudioClip spell2Sound;
+    [SerializeField] private AudioClip spell3Sound;
+
     // Cooldown
     [SerializeField] private float cd1;
     [SerializeField] private float timer1 = Mathf.Infinity;
@@ -111,6 +116,7 @@ public class WizardEnemy: Enemy
     {
         isAttacking = true;
         animator.SetTrigger("attack_01");
+        AudioManager.instance.PlaySound(spell1Sound);
     }
 
     private void Attack_01_Damage()
@@ -133,6 +139,7 @@ public class WizardEnemy: Enemy
     {        
         isAttacking = true;
         animator.SetTrigger("attack_02");
+        AudioManager.instance.PlaySound(spell2Sound);
     }
 
     private void Attack_02_Damage()
@@ -162,6 +169,8 @@ public class WizardEnemy: Enemy
         spell3.SetActive(true);
         spell3.transform.position = player.transform.position;
         animator.SetBool("attacking", true);
+
+        AudioManager.instance.PlaySound(spell3Sound);
 
         Invoke("FinishAttack_03", spell3.GetComponentInChildren<ParticleSystem>().main.duration*0.8f);
     }

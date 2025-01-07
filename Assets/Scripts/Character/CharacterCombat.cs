@@ -12,6 +12,8 @@ public class CharacterCombat : MonoBehaviour
     [SerializeField] private float range;
     public static bool normalAtk;
 
+    // Audio
+    [SerializeField] private AudioClip normalAtkSound;
 
     private void Awake() {
         movement = GetComponent<CharacterMovement>();
@@ -58,6 +60,7 @@ public class CharacterCombat : MonoBehaviour
 
         if (InRange())
         {
+            AudioManager.instance.PlaySound(normalAtkSound);
             opponent.GetComponent<HP>().TakeDamage(DamageCalculator());
         }
     }

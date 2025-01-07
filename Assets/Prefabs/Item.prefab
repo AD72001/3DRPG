@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemObject: {fileID: 0}
   amount: 1
+  pickUpSound: {fileID: 8300000, guid: 177e643ec00e39b4c902c173fbf0b773, type: 3}
 --- !u!1 &6061521250692588650
 GameObject:
   m_ObjectHideFlags: 0

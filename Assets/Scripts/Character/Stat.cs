@@ -21,6 +21,9 @@ public class Stat : MonoBehaviour
     // Bonus Stats
     public Attribute[] attributes; // Str Def Vit Int 0 1 2 3
 
+    // Audio
+    [SerializeField] private AudioClip levelUpSound;
+
     private void Awake() {
         if (threshold == 0)
         {
@@ -70,6 +73,8 @@ public class Stat : MonoBehaviour
         level += 1;
         threshold += expGap;
         expGap = expGap * 3 / 2;
+
+        AudioManager.instance.PlaySound(levelUpSound);
 
         AddVit(1);
         AddStr(2);

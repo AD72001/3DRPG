@@ -15,8 +15,8 @@ public class HP : MonoBehaviour
     [SerializeField] private float iFramesDuration;
 
     // Audio
-    // [SerializeField] private AudioClip hurtSound;
-    // [SerializeField] private AudioClip defeatSound;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip defeatSound;
 
     private Animator animator;
     public string saveLocation = "/HP.sav";
@@ -25,7 +25,7 @@ public class HP : MonoBehaviour
     private bool isInvul = false;
 
     [SerializeField] private Behaviour[] components;
-
+ 
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
@@ -42,27 +42,24 @@ public class HP : MonoBehaviour
     
     public void TakeDamage(float _dmg)
     {
-        if (!isInvul)
+        // Limit current HP to 0 -> maximum
+        _dmg = _dmg * 70 / (70 + GetComponent<Stat>().GetDef()*1.0f);
+
+        currentHP = Mathf.Clamp(currentHP - _dmg, 0, startingHP);
+
+        AudioManager.instance.PlaySound(hurtSound);
+
+        if (currentHP <= 0)
         {
-            // Limit current HP to 0 -> maximum
-            _dmg = _dmg * 70 / (70 + GetComponent<Stat>().GetDef()*1.0f);
-
-            currentHP = Mathf.Clamp(currentHP - _dmg, 0, startingHP);
-
-            if (currentHP > 0)
+            if (defeat) return;
+            
+            if (gameObject.CompareTag("Player"))
             {
-                StartCoroutine(Invulnerable());
+                gameObject.GetComponent<NavMeshAgent>().isStopped=true;
+                CharacterMovement.isAttacking=false;
+                gameObject.GetComponent<CharacterCombat>().opponent = null;
             }
-            else
-            {
-                if (gameObject.CompareTag("Player"))
-                {
-                    gameObject.GetComponent<NavMeshAgent>().isStopped=true;
-                    CharacterMovement.isAttacking=false;
-                    gameObject.GetComponent<CharacterCombat>().opponent = null;
-                }
-                Dead();
-            }
+            Dead();
         }
     }
 
@@ -71,6 +68,8 @@ public class HP : MonoBehaviour
         if (!defeat)
         {
             defeat = true;
+
+            AudioManager.instance.PlaySound(defeatSound);
 
             foreach (Behaviour comp in components)
             {
@@ -105,14 +104,26 @@ public class HP : MonoBehaviour
 
     public void Respawn()
     {
+        StartCoroutine(RespawnIE());
+    }
+
+    IEnumerator RespawnIE()
+    {
+        GameUI.instance.ActiveDefeatScreen(false);
+        GameUI.instance.ActiveDefeatScreen(true);
+
+        yield return new WaitForSeconds(2);
+
+        GameUI.instance.EndDefeatScreen();
+
         foreach (Behaviour comp in components)
         {
             if (comp != null)
                 comp.enabled = true;
         }
+
         gameObject.SetActive(false);
 
-        Debug.Log("GameObject: " + gameObject.transform.position);
         AddHP(startingHP);
 
         animator.ResetTrigger("dead");
@@ -125,29 +136,18 @@ public class HP : MonoBehaviour
 
         gameObject.transform.position = spawnLocation;
 
-        gameObject.GetComponent<CharacterMovement>().SetPosition(spawnLocation);
-        Physics.SyncTransforms();
         Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
-        EnemyFactory.instance.DeactiveAll();
 
         gameObject.SetActive(true);
 
+        gameObject.GetComponent<CharacterMovement>().SetPosition(spawnLocation);
+        Physics.SyncTransforms();
+
         gameObject.GetComponent<NavMeshAgent>().isStopped = false;
         gameObject.GetComponent<NavMeshAgent>().nextPosition = spawnLocation;
-    }
 
-    // IFrames function
-    private IEnumerator Invulnerable()
-    {
-        isInvul = true;
-
-        Physics2D.IgnoreLayerCollision(8, 9, true);
-
-        yield return new WaitForSeconds(iFramesDuration);
-
-        Physics2D.IgnoreLayerCollision(8, 9, false);
-
-        isInvul = false;
+        EnemyFactory.instance.DeactiveAll();
+        ItemFactory.instance.DeactiveAll();
     }
 
     private void Deactivate()

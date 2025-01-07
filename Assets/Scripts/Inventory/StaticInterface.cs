@@ -8,6 +8,8 @@ public class StaticInterface : UserInterface
 
     public DynamicInterface inventoryUI;
 
+    [SerializeField] private AudioClip equipItemSound;
+
     public override void CreateSlots()
     {
         slotDisplayed = new Dictionary<GameObject, InventorySlot>();
@@ -37,6 +39,8 @@ public class StaticInterface : UserInterface
 
     public void DeEquipItem(GameObject obj)
     {
+        AudioManager.instance.PlaySound(equipItemSound);
+
         for (int i = 0; i < inventoryUI.thisInventory.GetSlots.Length; i++)
         {
             if (inventoryUI.thisInventory.GetSlots[i].ItemObject == null) 

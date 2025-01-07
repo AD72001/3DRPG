@@ -44,6 +44,8 @@ public class BearEnemy : MeleeEnemy
     {
         if (playerInAttackRange != null)
         {
+            if (player.GetComponent<HP>().defeat) return;
+
             player.GetComponent<CharacterMovement>().getStun(stunDuration);
             player.GetComponent<HP>().TakeDamage(DamageCalculator());
         }

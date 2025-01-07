@@ -1459,8 +1459,8 @@ MonoBehaviour:
   totalExp: 0
   threshold: 0
   baseStr: 30
-  baseDef: 40
-  baseVit: 25
+  baseDef: 50
+  baseVit: 30
   baseInt: 2
   attributes:
   - type: 0
@@ -1473,12 +1473,13 @@ MonoBehaviour:
       modifiedValue: 0
   - type: 2
     value:
-      baseValue: 5
+      baseValue: 10
       modifiedValue: 0
   - type: 3
     value:
       baseValue: 0
       modifiedValue: 0
+  levelUpSound: {fileID: 0}
 --- !u!114 &7781549165912034243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,6 +1495,8 @@ MonoBehaviour:
   startingHP: 0
   currentHP: 0
   iFramesDuration: 0
+  hurtSound: {fileID: 8300000, guid: 905b50fa37b5b904d95d82de522413ab, type: 3}
+  defeatSound: {fileID: 8300000, guid: cd9561f18bac43849b88e2f2db78fdb5, type: 3}
   saveLocation: /HP.sav
   components: []
 --- !u!195 &5809255644979365925

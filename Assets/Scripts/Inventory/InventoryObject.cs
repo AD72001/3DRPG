@@ -16,12 +16,16 @@ public class InventoryObject : ScriptableObject
 {
     public string saveLocation = "/Inventory.sav";
     public Inventory container;
-    public ItemDatabase database;
+    [SerializeField] public ItemDatabase database;
     public InventoryType type;
     public InventorySlot[] GetSlots {
         get {
             return container.slots;
         }
+    }
+
+    private void Awake() {
+        database = Resources.Load<ItemDatabase>("ItemDatabase");
     }
 
     private void OnEnable() {
@@ -135,6 +139,8 @@ public class InventoryObject : ScriptableObject
 
             file.Close();
         }
+
+        database = Resources.Load<ItemDatabase>("ItemDatabase");
     }
 
     [ContextMenu("Clear")]

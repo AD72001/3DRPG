@@ -983,9 +983,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 10
+  currentCheckPointPosition: {x: 0, y: 0, z: 0}
   savePosition: []
   cam: {fileID: 0}
-  effectOnClick: {fileID: 3432958286849152088, guid: 87ee7299dd44ed747af24dbb91bcd33b, type: 3}
+  stunSound: {fileID: 0}
   saveLocation: /position.sav
 --- !u!114 &1525785717076458413
 MonoBehaviour:
@@ -1001,6 +1002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponent: {fileID: 0}
   range: 4
+  normalAtkSound: {fileID: 8300000, guid: 7699c2cd6999e5846974e36d73d46ccc, type: 3}
 --- !u!114 &1889671573677946650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,7 +1016,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 5
+  currentHP: 0
   iFramesDuration: 0.5
+  hurtSound: {fileID: 8300000, guid: 343f136a795f5a04e87b3c575ebcd99e, type: 3}
+  defeatSound: {fileID: 8300000, guid: 2864bbba3d78d7d498cc69fcd56f599b, type: 3}
+  saveLocation: /HP.sav
   components:
   - {fileID: 5541799526543829013}
   - {fileID: 1525785717076458413}
@@ -1072,6 +1078,7 @@ MonoBehaviour:
     value:
       baseValue: 0
       modifiedValue: 0
+  levelUpSound: {fileID: 0}
 --- !u!114 &5688888974837546575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,11 +1103,14 @@ MonoBehaviour:
   cost: 2
   CD: 5
   timer: 0
+  skillName: 
+  desc: 
   keyCode: 113
   enemies: []
   animator: {fileID: 0}
   skillUI: {fileID: 0}
-  first_stun_dur: 2
+  skillSound: {fileID: 0}
+  stun_dur: 0
 --- !u!114 &5354303346417441685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,10 +1135,13 @@ MonoBehaviour:
   cost: 0
   CD: 20
   timer: 0
+  skillName: 
+  desc: 
   keyCode: 119
   enemies: []
   animator: {fileID: 0}
   skillUI: {fileID: 0}
+  skillSound: {fileID: 0}
   duration: 10
 --- !u!114 &3440014396534604000
 MonoBehaviour:
@@ -1154,10 +1167,13 @@ MonoBehaviour:
   cost: 10
   CD: 7
   timer: 0
+  skillName: 
+  desc: 
   keyCode: 101
   enemies: []
   animator: {fileID: 0}
   skillUI: {fileID: 0}
+  skillSound: {fileID: 0}
   stun_dur: 1
 --- !u!114 &2859372267514464702
 MonoBehaviour:
@@ -1182,10 +1198,13 @@ MonoBehaviour:
   cost: 12
   CD: 20
   timer: 0
+  skillName: 
+  desc: 
   keyCode: 114
   enemies: []
   animator: {fileID: 0}
   skillUI: {fileID: 0}
+  skillSound: {fileID: 0}
   duration: 7
 --- !u!114 &4153092138461086559
 MonoBehaviour:
@@ -1201,6 +1220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 99e2b65bc3590434bbc0678b18ae75bb, type: 2}
   equipment: {fileID: 11400000, guid: eb1c0b4277176b94694e720cdaebbe95, type: 2}
+  cash: 0
 --- !u!195 &1049128795181737432
 NavMeshAgent:
   m_ObjectHideFlags: 0

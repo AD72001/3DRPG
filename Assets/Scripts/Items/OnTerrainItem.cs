@@ -5,6 +5,7 @@ public class OnTerrainItem : MonoBehaviour, ISerializationCallbackReceiver
 {
     public ItemObject itemObject;
     [SerializeField] private int amount = 1;
+    [SerializeField] private AudioClip pickUpSound;
 
     public void OnAfterDeserialize() {}
 
@@ -23,7 +24,10 @@ public class OnTerrainItem : MonoBehaviour, ISerializationCallbackReceiver
         if (other.gameObject.CompareTag("Player"))
         {
             if (other.GetComponent<CharacterInventory>().inventory.AddItem(new Item(itemObject), amount))
+            {
                 gameObject.SetActive(false);
+                AudioManager.instance.PlaySound(pickUpSound);
+            }
         }
     }
 

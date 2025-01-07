@@ -4,7 +4,7 @@ using UnityEngine;
 public class AoE : MonoBehaviour
 {
     [SerializeField] private float dmgRate;
-    private float dmgTimer;
+    public float dmgTimer;
     
     [SerializeField] private GameObject user;
     [SerializeField] private float mod_int;
@@ -26,6 +26,17 @@ public class AoE : MonoBehaviour
     }
     
     private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player"))
+        {
+            if (dmgTimer >= dmgRate)
+            {
+                other.gameObject.GetComponent<HP>().TakeDamage(user.GetComponent<Stat>().GetInt() * mod_int);
+                dmgTimer = 0;
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other) {
         if (other.CompareTag("Player"))
         {
             if (dmgTimer >= dmgRate)

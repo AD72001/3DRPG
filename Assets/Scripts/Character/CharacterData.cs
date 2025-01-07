@@ -1,7 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterData : MonoBehaviour
 {
+    private void Start() {
+        if (LoadStatus.LoadGame)
+            LoadData();
+    }
+
     public void SaveData()
     {
         // Save Inventory data
@@ -29,23 +35,25 @@ public class CharacterData : MonoBehaviour
         // Load Inventory data
         GetComponent<CharacterInventory>().equipment.Load();
         GetComponent<CharacterInventory>().inventory.Load();
-
+Debug.Log(1);
         // Load Stats
         GetComponent<Stat>().Load();
         CheckSkillUnlocked();
-
+Debug.Log(2);
         // Load HP
         GetComponent<HP>().Load();
-
+Debug.Log(3);
         // Load Position
         GetComponent<CharacterMovement>().LoadData();
-
+Debug.Log(4);
         // Load Map Items states
         ItemManager.instance.LoadData();
-
+        ItemFactory.instance.DeactiveAll();
+Debug.Log(5);
         // Load Unique enemy states
         EnemyManager.instance.LoadData();
         EnemyFactory.instance.DeactiveAll();
+        Debug.Log(6);
     }
 
     private void CheckSkillUnlocked()
