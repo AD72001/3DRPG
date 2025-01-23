@@ -24,5 +24,5 @@ Hero's Adventure is a 3D RPG Demo built on Unity Engine that transports players 
 
 ### Links
 - **Game DL**: [Link](https://drive.google.com/file/d/1Cpfs3TNIkAAbv3rk-eM4t0WrUNLjr_lk/view?usp=sharing)
-- **WebGL**: [Link WebGL](https://play.unity.com/en/games/81b3e47d-db9c-4ce1-9e7a-abd720d57c20/webgl-builds)
+- **WebGL**: [Link WebGL](https://play.unity.com/en/games/6c7bb055-4bd9-410d-aa09-8974bce851df/webgl-builds)
 - **Demo Video**: [YT Link](https://youtu.be/f5TNytclO20)
