@@ -82,6 +82,8 @@ public class Stat : MonoBehaviour
         AddInt(5);
 
         UnlockSkill();
+
+        GameUI.instance.SetUpgradeUI(true);
     }
 
     void UnlockSkill()

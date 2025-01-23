@@ -40,8 +40,8 @@ public class Skill_2 : Skill
 
     IEnumerator BuffEffect()
     {
-        int amountStr = (int) (GetComponent<Stat>().GetStr() * mod_str - GetComponent<Stat>().GetStr());
-        int amountDef = (int) (GetComponent<Stat>().GetDef() * mod_def - GetComponent<Stat>().GetDef());
+        int amountStr = (int) (GetComponent<Stat>().GetStr() * mod_str * (float) LevelScale()[0] - GetComponent<Stat>().GetStr());
+        int amountDef = (int) (GetComponent<Stat>().GetDef() * mod_def * (float) LevelScale()[1] - GetComponent<Stat>().GetDef());
 
         GetComponent<Stat>().AddStr(amountStr);
         GetComponent<Stat>().AddDef(amountDef);
@@ -51,6 +51,37 @@ public class Skill_2 : Skill
 
         GetComponent<Stat>().AddStr(-amountStr);
         GetComponent<Stat>().AddDef(-amountDef);
+    }
+
+    private float[] LevelScale()
+    {
+        float[] scale = new float[2];
+        // Str - Def
+        switch (level)
+        {
+            case 1: 
+                scale[0] = 1.0f;
+                scale[1] = 0.5f;
+                break;
+            case 2: 
+                scale[0] = 1.1f;
+                scale[1] = 0.7f;
+                break;
+            case 3: 
+                scale[0] = 1.2f;
+                scale[1] = 1.0f;
+                break;
+            case 4: 
+                scale[0] = 1.3f;
+                scale[1] = 1.2f;
+                break;
+            default:
+                scale[0] = 0.0f;
+                scale[1] = 0.0f;
+                break;
+        }
+
+        return scale;
     }
 
     private float HPRestoreCalculator()

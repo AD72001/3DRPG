@@ -1,6 +1,5 @@
 using System;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +24,9 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject defeatScreen;
     [SerializeField] private GameObject tutorialScreen;
 
+    [Header("Upgrade UI")]
+    [SerializeField] private GameObject upgradeUI;
+
     [Header("Stats UI")]
     [SerializeField] private TMP_Text player_Str;
     [SerializeField] private TMP_Text player_Def;
@@ -37,10 +39,18 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Image skill_3;
     [SerializeField] private Image skill_4;
     [SerializeField] private GameObject skillPanel;
+    
+    [Header("Skill Key")]
     [SerializeField] private TMP_Text key_1;
     [SerializeField] private TMP_Text key_2;
     [SerializeField] private TMP_Text key_3;
     [SerializeField] private TMP_Text key_4;
+
+    [Header("Skill Level")]
+    [SerializeField] private TMP_Text skill_level_1;
+    [SerializeField] private TMP_Text skill_level_2;
+    [SerializeField] private TMP_Text skill_level_3;
+    [SerializeField] private TMP_Text skill_level_4;
 
     [Header("Inventory UI")]
     [SerializeField] private GameObject inventoryUI;
@@ -56,6 +66,7 @@ public class GameUI : MonoBehaviour
     [Header("Click Effect")]
     [SerializeField] private GameObject clickEffect;
     [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip clickSound_2;
 
     [Header("Audio")]
     [SerializeField] private AudioClip victorySound;
@@ -101,6 +112,12 @@ public class GameUI : MonoBehaviour
         player_Def.text = "DEF: " + player.GetComponent<Stat>().GetDef();
         player_Vit.text = "VIT: " + player.GetComponent<Stat>().GetVit();
         player_Int.text = "INT: " + player.GetComponent<Stat>().GetInt();
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            player.GetComponent<Skill_1>().level += 1;
+            UpdateSkillLevel();
+        }
 
         // Inventory UI
         if (Input.GetKeyDown(KeyCode.I))
@@ -186,6 +203,19 @@ public class GameUI : MonoBehaviour
         SkillInfoShow.instance.SetText(skillIndex);
     }
 
+    public void SetUpgradeUI(bool status)
+    {
+        upgradeUI.SetActive(status);
+    }
+
+    public void UpdateSkillLevel()
+    {
+        skill_level_1.text = player.GetComponent<Skill_1>().level.ToString();
+        skill_level_2.text = player.GetComponent<Skill_2>().level.ToString();
+        skill_level_3.text = player.GetComponent<Skill_3>().level.ToString();
+        skill_level_4.text = player.GetComponent<Skill_4>().level.ToString();
+    }
+
     public void ActivateVictoryScreen()
     {
         victoryUI.SetActive(true);
@@ -231,6 +261,11 @@ public class GameUI : MonoBehaviour
     public void SetClickSound()
     {
         AudioManager.instance.PlaySound(clickSound);
+    }
+
+    public void SetClickSound_2()
+    {
+        AudioManager.instance.PlaySound(clickSound_2);
     }
 
     public void SetSkillKeyUI()

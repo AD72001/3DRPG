@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Skill_1 : Skill
@@ -42,7 +43,7 @@ public class Skill_1 : Skill
                     new Vector3(enemy.transform.position.x, enemy.transform.position.y + 2f, enemy.transform.position.z),
                     Quaternion.identity);
                 enemy.GetComponent<HP>().TakeDamage(DamageCalculator());
-                enemy.GetComponent<Enemy>().getStun(stun_dur);
+                enemy.GetComponent<Enemy>().getStun(stun_dur*(float)LevelScale()[1]);
             }
         }
 
@@ -51,7 +52,39 @@ public class Skill_1 : Skill
 
     private float DamageCalculator()
     {
-        return GetComponent<Stat>().GetStr() * mod_str + GetComponent<Stat>().GetInt() * mod_int;
+        return GetComponent<Stat>().GetStr() * mod_str * (float)LevelScale()[0] 
+            + GetComponent<Stat>().GetInt() * mod_int * (float)LevelScale()[1];
+    }
+
+    private float[] LevelScale()
+    {
+        float[] scale = new float[2];
+        // Str - Int
+        switch (level)
+        {
+            case 1: 
+                scale[0] = 1.0f;
+                scale[1] = 1.0f;
+                break;
+            case 2: 
+                scale[0] = 1.2f;
+                scale[1] = 1.1f;
+                break;
+            case 3: 
+                scale[0] = 1.5f;
+                scale[1] = 1.2f;
+                break;
+            case 4: 
+                scale[0] = 1.8f;
+                scale[1] = 1.3f;
+                break;
+            default:
+                scale[0] = 0.0f;
+                scale[1] = 0.0f;
+                break;
+        }
+
+        return scale;
     }
 
     void LookAtPosition()

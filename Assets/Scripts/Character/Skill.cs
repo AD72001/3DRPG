@@ -10,6 +10,7 @@ public class Skill : MonoBehaviour
     public int unlockLevel;
     [SerializeField] protected GameObject[] effects;
     [SerializeField] protected Collider range;
+    [SerializeField] public int level = 1;
     [SerializeField] protected float mod_str;
     [SerializeField] protected float mod_int;
     [SerializeField] protected float mod_def;
@@ -102,5 +103,10 @@ public class Skill : MonoBehaviour
     {
         enabled = true;
         skillUI.SetActive(true);
+    }
+
+    public void LevelingSkill()
+    {
+        level++;
     }
 }
